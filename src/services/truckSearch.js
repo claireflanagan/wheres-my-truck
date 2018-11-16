@@ -5,7 +5,8 @@ export const getTrucks = () => {
     .then((trucks) => {
       return {
         trucks: trucks.map(truck => ({
-          name: truck.name
+          name: truck.name,
+          location: truck.location
         }))
       };
     });

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { getTrucks } from '../../services/truckSearch';
 // import Truck from '../truck/Truck';
 
@@ -9,7 +9,7 @@ export default class TruckDetail extends Component {
 
     fetchTrucks = () => {
       getTrucks()
-        .then(({ trucks }) => this.setState({ trucks }));
+        .then((trucks) => this.setState(trucks));
     };
 
     componentDidMount() {
@@ -19,15 +19,20 @@ export default class TruckDetail extends Component {
     render() {
       const trucks = this.state.trucks.map(truck => {
         return (
-          <li key={truck.id}>
-            {truck.name} 
-          </li>
+          <Fragment key={truck.id}> 
+            <tr>            
+              <td>{truck.name}</td>
+              <td>{truck.location}</td>
+            </tr>         
+          </Fragment>
         );
       });
       return (
-        <ul>
+        <table>
+          <th>Truck</th>
+          <th>Location</th>
           {trucks}
-        </ul>
+        </table>
       );
     }
 }

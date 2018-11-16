@@ -1,7 +1,7 @@
 
 import TruckDetail from '../components/truck/TruckDetail';
 // import Locations from '../components/locations/Locations';
-import Trucks from '../components/trucks/Trucks';
+import Trucks from '../components/trucks/TrucksTable';
 
 export const ROUTES = {
   TRUCK: {
