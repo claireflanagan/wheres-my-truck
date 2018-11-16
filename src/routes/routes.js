@@ -1,4 +1,4 @@
-import React from 'react';
+
 import TruckDetail from '../components/truck/TruckDetail';
 // import Locations from '../components/locations/Locations';
 import Trucks from '../components/trucks/Trucks';
