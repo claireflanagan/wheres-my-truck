@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getTrucks } from '../../services/truckSearch';
+import Truck from '../truck/Truck';
 
 export default class TruckList extends Component {
     state = {
@@ -19,7 +20,7 @@ export default class TruckList extends Component {
       const trucks = this.state.trucks.map(truck => {
         return (
           <li key={truck.id}>
-            {truck.name}
+            <Truck name={truck.name} id={truck.id} />
           </li>
         );
       });

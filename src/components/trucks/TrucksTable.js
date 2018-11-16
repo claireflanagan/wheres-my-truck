@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { getTrucks } from '../../services/truckSearch';
+import styles from './TrucksTable.css';
+
 // import Truck from '../truck/Truck';
 
 export default class TrucksTable extends Component {
@@ -28,7 +30,7 @@ export default class TrucksTable extends Component {
         );
       });
       return (
-        <table>
+        <table className={styles.table}>
           <th>Truck</th>
           <th>Location</th>
           {trucks}
