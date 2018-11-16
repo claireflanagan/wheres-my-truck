@@ -1,7 +1,6 @@
-
 import TruckDetail from '../components/truck/TruckDetail';
-// import Locations from '../components/locations/Locations';
-import Trucks from '../components/trucks/TrucksTable';
+import TrucksTable from '../components/trucks/TrucksTable';
+import TrucksList from '../components/trucks/TrucksList';
 
 export const ROUTES = {
   TRUCK: {
@@ -9,9 +8,15 @@ export const ROUTES = {
     Component: TruckDetail,
     linkTo: id => `/trucks/${id}`
   },
-  TRUCKS: {
-    path: '/trucks',
-    Component: Trucks,
-    linkTo: () => '/trucks'
+  TRUCKSTABLE: {
+    path: '/trucks/table',
+    Component: TrucksTable,
+    linkTo: () => '/trucks/table'
   },
+  TRUCKSLIST: {
+    path: '/trucks/list',
+    Component: TrucksList,
+    linkTo: () => '/trucks/list'
+  }
+
 };

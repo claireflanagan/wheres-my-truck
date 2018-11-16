@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { getTrucks } from '../../services/truckSearch';
 // import Truck from '../truck/Truck';
 
-export default class TruckDetail extends Component {
+export default class TrucksTable extends Component {
     state = {
       trucks: []
     };
