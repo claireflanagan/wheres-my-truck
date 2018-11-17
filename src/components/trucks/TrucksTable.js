@@ -31,8 +31,8 @@ export default class TrucksTable extends Component {
       });
       return (
         <table className={styles.table}>
-          <th>Truck</th>
-          <th>Location</th>
+          <th>Truck:</th>
+          <th>Location:</th>
           {trucks}
         </table>
       );

@@ -32,22 +32,21 @@ body {
   border-collapse: collapse;
   height: 320px;
   margin: auto;
-  max-width: 600px;
+  max-width: 400px;
   padding:5px;
   width: 100%;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.1);
   /* animation: float 5s infinite; */
 }
  
 th {
-  color:#D5DDE5;;
-  background:#1b1e24;
   border-bottom:4px solid #9ea7af;
+  border-top:4px solid #9ea7af;
   font-size:23px;
   font-weight: 100;
   padding:24px;
   text-align:left;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 3px 1px rgba(0, 0, 0, 0.1);
   vertical-align:middle;
 }
 
