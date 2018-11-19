@@ -2,6 +2,7 @@ import TruckDetail from '../components/truck/TruckDetail';
 import TrucksTable from '../components/trucks/TrucksTable';
 import TrucksList from '../components/trucks/TrucksList';
 import ImageDisplay from '../components/truck/ImageDisplay';
+import MaintenanceList from '../components/maintenance/MaintenanceList';
 
 export const ROUTES = {
   TRUCK: {
@@ -23,6 +24,11 @@ export const ROUTES = {
     path: '/trucks/:id/:imageType',
     Component: ImageDisplay,
     linkTo: (id, imageType) => `/trucks/${id}/${imageType}`
+  },
+  MAINTENANCE_LIST: {
+    path: '/trucks/:id/maintenanceList',
+    Component: MaintenanceList,
+    linkTo: id => `/trucks/${id}/maintenanceList`
   }
 
 };

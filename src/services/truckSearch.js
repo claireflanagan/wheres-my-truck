@@ -30,3 +30,11 @@ export const getTruck = id => {
       insurance: truck.insurance
     }));
 };
+
+export const getMaintenances = id => {
+  return get(`https://car-db.herokuapp.com/maintenances/${id}`)
+    .then(({ maintenances, details }) => ({
+      details,
+      maintenances
+    }));
+};

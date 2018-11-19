@@ -8,6 +8,7 @@ export default function App() {
       <div>
         <h1>wheres my truck dude</h1>
         <Switch>
+          <Route component={ROUTES.MAINTENANCE_LIST.Component} path={ROUTES.MAINTENANCE_LIST.path} />
           <Route component={ROUTES.IMAGEDISPLAY.Component} path={ROUTES.IMAGEDISPLAY.path} />
           <Route component={ROUTES.TRUCKSTABLE.Component} path={ROUTES.TRUCKSTABLE.path} />
           <Route component={ROUTES.TRUCKSLIST.Component} path={ROUTES.TRUCKSLIST.path} />

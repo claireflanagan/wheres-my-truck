@@ -26,6 +26,7 @@ export default class TruckDetail extends Component {
           <div className={styles.truckLinks}>
             <Link to={ROUTES.IMAGEDISPLAY.linkTo(truck.id, 'registration')}>Registration</Link>
             <Link to={ROUTES.IMAGEDISPLAY.linkTo(truck.id, 'insurance')}>Insurance</Link>
+            <Link to={ROUTES.MAINTENANCE_LIST.linkTo(truck.id)}>Maintenance</Link>
           </div>
           <table className={styles.table}>
             <th>{truck.name}</th>
