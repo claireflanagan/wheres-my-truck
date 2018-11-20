@@ -4,7 +4,7 @@ const HtmlPlugin = require('html-webpack-plugin');
 
 module.exports = {
   // start here
-  entry: './src/index.js',
+  entry: './src/reducers/index.js',
   // put the build output here (not dev server)
   output: {
     filename: 'bundle.[hash].js',
