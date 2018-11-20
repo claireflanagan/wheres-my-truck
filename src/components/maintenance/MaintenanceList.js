@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import styles from './MaintenanceList.css';
-import { getTruck, getMaintenances } from '../../services/truckSearch';
+import { getMaintenances } from '../../services/truckSearch';
 
 export default class MaintenancesList extends Component {
     state = {
@@ -31,7 +31,7 @@ export default class MaintenancesList extends Component {
       return (
         <Fragment>  
           <h1>{details.name}</h1> 
-          <table className={styles.table}>
+          <table className={styles.maintTable}>
             <th>Date</th>
             <th>Type</th>
             <th>Notes</th>

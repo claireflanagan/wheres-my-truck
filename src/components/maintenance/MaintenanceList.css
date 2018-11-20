@@ -1,11 +1,11 @@
-.table {
+.maint-table {
   background: white;
   border-radius:3px;
   border-collapse: collapse;
   height: 320px;
   margin: auto;
   max-width: 800px;
-  padding:5px;
+  padding: 5px;
   width: 100%;
   box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.1);
   /* animation: float 5s infinite; */
