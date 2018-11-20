@@ -1,8 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from '../components/app/App';
+import { combineReducers } from 'redux';
+import trucks from './trucks';
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
+export default combineReducers({
+  trucks
+});
