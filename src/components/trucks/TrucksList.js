@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Truck from '../truck/Truck';
 
-export default class TruckList extends Component {
+export default class TrucksList extends Component {
 
   render() {
     console.log('hi');

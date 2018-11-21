@@ -6,7 +6,7 @@ export default class ImageDisplay extends React.Component {
     state={
       img: ''
     };
-
+    //refactored without this???????????
     fetchTruck = () => {
       const { imageType } = this.props.match.params;
       getTruck(this.props.match.params.id)
