@@ -5,3 +5,9 @@ export const getTrucks = state => {
 export const getTruck = (state, id) => {
   return state.truck[id];
 };
+
+export const getImage = (state, id, imageType) => {
+  const truck = getTruck(state, id);
+  return truck[imageType];
+};
+

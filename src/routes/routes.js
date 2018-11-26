@@ -1,6 +1,6 @@
 import Truck from '../containers/trucks/Truck';
 import TrucksTable from '../containers/trucks/TrucksTable';
-import ImageDisplay from '../components/truck/ImageDisplay';
+import ImageDisplay from '../containers/trucks/ImageDisplay';
 import AllMaintenances from '../containers/maintenences/AllMaintenances';
 import AllTrucks from '../containers/trucks/TrucksList';
 
