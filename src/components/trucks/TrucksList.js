@@ -1,21 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Truck from '../truck/Truck';
 
-export default class TrucksList extends Component {
-
-  render() {
-    console.log('hi');
-    const trucks = this.props.trucks.map(truck => {
-      return (
-        <li key={truck.id}>
-          <Truck name={truck.name} id={truck.id} />
-        </li>
-      );
-    });
+const TruckList = ({ trucks }) => {
+  console.log('trucks', trucks);
+  const trucksList = trucks.map(truck => {
     return (
-      <ul>
-        {trucks}
-      </ul>
+      <li key={truck.id}>
+        <Truck name={truck.name} id={truck.id} />
+      </li>
     );
-  }
-}
+  });
+  return (
+    <ul>
+      {trucksList}
+    </ul>
+  );
+};
+
+export default TruckList;

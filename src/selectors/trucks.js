@@ -3,5 +3,5 @@ export const getTrucks = state => {
 };
 
 export const getTruck = (state, id) => {
-  return Object.values(state.truck[id]);
+  return state.truck[id];
 };
