@@ -1,7 +1,7 @@
 import React from 'react';
 import Truck from '../truck/Truck';
 
-const TruckList = ({ trucks }) => {
+const TrucksList = ({ trucks }) => {
   console.log('trucks', trucks);
   const trucksList = trucks.map(truck => {
     return (
@@ -17,4 +17,4 @@ const TruckList = ({ trucks }) => {
   );
 };
 
-export default TruckList;
+export default TrucksList;

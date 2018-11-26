@@ -2,7 +2,8 @@ import Truck from '../containers/trucks/Truck';
 import TrucksTable from '../containers/trucks/TrucksTable';
 import ImageDisplay from '../containers/trucks/ImageDisplay';
 import AllMaintenances from '../containers/maintenences/AllMaintenances';
-import AllTrucks from '../containers/trucks/TrucksList';
+import TrucksList from '../containers/trucks/TrucksList';
+
 
 export const ROUTES = {
   TRUCK: {
@@ -17,7 +18,7 @@ export const ROUTES = {
   },
   TRUCKSLIST: {
     path: '/trucks/list',
-    Component: AllTrucks,
+    Component: TrucksList,
     linkTo: () => '/trucks/list'
   },
   IMAGEDISPLAY: {
