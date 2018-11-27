@@ -1,11 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import TrucksList from './TrucksList';
+import MaintenanceList from './MaintenanceList';
 
-jest.mock('../../routes/routes');
-describe('TruckList component', () => {
-  const trucks = [
-    {
+describe('MaintenanceList component', () => {
+  const maintenances = {
+    details: {
       id: 'a0',
       name: 'Truck 0',
       location: '10th and Couch',
@@ -18,12 +17,20 @@ describe('TruckList component', () => {
       boughtDate: '2017-09-10',
       registration: 'https://www.dmv.ca.gov/imageserver/dmv/images/vr/regcard_w_arrow2.jpg',
       insurance: 'https://approvedauto.files.wordpress.com/2013/12/id-card-example.jpg'
-    }
-  ];
+    },
+    maintenances: [
+      {
+        type: 'oil change',
+        date: '2018-10-31',
+        notes: 'this was hard!'
+      }
+    ]
+  };
   it('matches a snapshot', () => {
     expect(true);
-    const wrapper = shallow(<TrucksList
-      trucks={trucks}/>);
+    const wrapper = shallow(<MaintenanceList
+      maintenances={maintenances}/>);
     expect(wrapper).toMatchSnapshot();
+        
   });
 });

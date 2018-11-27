@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TruckTable component matches a snapshot 1`] = `
+<table
+  className="table"
+>
+  <th>
+    Truck:
+  </th>
+  <th>
+    Location:
+  </th>
+  <tr>
+    <td>
+      Truck 0
+    </td>
+    <td>
+      10th and Couch
+    </td>
+  </tr>
+</table>
+`;

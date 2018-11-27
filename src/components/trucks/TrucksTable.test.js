@@ -1,9 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import TrucksList from './TrucksList';
+import TrucksTable from './TrucksTable';
 
-jest.mock('../../routes/routes');
-describe('TruckList component', () => {
+describe('TruckTable component', () => {
   const trucks = [
     {
       id: 'a0',
@@ -22,7 +21,7 @@ describe('TruckList component', () => {
   ];
   it('matches a snapshot', () => {
     expect(true);
-    const wrapper = shallow(<TrucksList
+    const wrapper = shallow(<TrucksTable
       trucks={trucks}/>);
     expect(wrapper).toMatchSnapshot();
   });

@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MaintenanceList component matches a snapshot 1`] = `
+<Fragment>
+  <h1>
+    Truck 0
+  </h1>
+  <table
+    className="maintTable"
+  >
+    <th>
+      Date
+    </th>
+    <th>
+      Type
+    </th>
+    <th>
+      Notes
+    </th>
+    <tr
+      key="0"
+    >
+      <td>
+        2018-10-31
+      </td>
+      <td>
+        oil change
+      </td>
+      <td>
+        this was hard!
+      </td>
+    </tr>
+  </table>
+</Fragment>
+`;

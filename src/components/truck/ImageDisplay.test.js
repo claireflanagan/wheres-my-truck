@@ -1,9 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import TrucksList from './TrucksList';
+import ImageDisplay from './ImageDisplay';
 
-jest.mock('../../routes/routes');
-describe('TruckList component', () => {
+describe('ImageDisplay component', () => {
   const trucks = [
     {
       id: 'a0',
@@ -20,10 +19,11 @@ describe('TruckList component', () => {
       insurance: 'https://approvedauto.files.wordpress.com/2013/12/id-card-example.jpg'
     }
   ];
+  const imageSource = trucks[0].registration;
   it('matches a snapshot', () => {
     expect(true);
-    const wrapper = shallow(<TrucksList
-      trucks={trucks}/>);
+    const wrapper = shallow(<ImageDisplay
+      imageSource={imageSource}/>);
     expect(wrapper).toMatchSnapshot();
   });
 });
