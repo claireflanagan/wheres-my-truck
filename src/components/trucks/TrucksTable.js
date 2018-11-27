@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
-// import { getTrucks } from '../../services/truckSearch';
 import styles from './TrucksTable.css';
-// import Truck from '../truck/Truck';
+
 
 const TrucksTable = ({ trucks }) => {
   console.log('trucks', trucks);

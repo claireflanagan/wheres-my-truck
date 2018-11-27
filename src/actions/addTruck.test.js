@@ -1,6 +1,6 @@
-import { addTruck, ADD_TRUCK } from './addTrucks';
+import { addTruck, ADD_TRUCK } from './addTruck';
 
-describe('add trucks', () => {
+describe('add truck', () => {
   it('can create a note action', () => {
     const truck = {
       id: 'a0',

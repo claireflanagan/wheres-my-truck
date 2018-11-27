@@ -1,3 +1,5 @@
+import { ADD_TRUCK } from '../actions/addTruck';
+
 const initialState = {
   a0: {
     id: 'a0',
@@ -15,6 +17,11 @@ const initialState = {
   }
 };
 
-export default function reducer(state = initialState, action) {
-  return state;
+export default function reducer(state = initialState, { type, payload }) {
+  switch(type) {
+    case ADD_TRUCK:
+      return { ...state, truck: payload }; //????
+    default:
+      return state;
+  }
 }
