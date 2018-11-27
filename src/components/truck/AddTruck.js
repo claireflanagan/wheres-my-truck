@@ -1,4 +1,5 @@
 import React, { Fragment, Component } from 'react';
+import styles from './AddTruck.css';
 
 export default class AddTruck extends Component {
     state = {
@@ -44,50 +45,50 @@ export default class AddTruck extends Component {
       return (
         <Fragment>
           <h1>Add a Truck</h1>
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleSubmit} className={styles.form}>
             <p>
               <label>Truck Name:</label>
-              <input name="truckName" type="text" value={name}/>
+              <input name="name" type="text" value={name} onChange={this.handleChange}/>
             </p>
             <p>
               <label>Current Location:</label>
-              <input name="location" type="text" value={location}/>
+              <input name="location" type="text" value={location} onChange={this.handleChange}/>
             </p>
             <p>
               <label>Vin:</label>
-              <input name="vin" type="text" value={vin}/>
+              <input name="vin" type="text" value={vin} onChange={this.handleChange}/>
             </p>
             <p>
               <label>Plates:</label>
-              <input name="plates" type="text" value={plates}/>
+              <input name="plates" type="text" value={plates} onChange={this.handleChange}/>
             </p>
             <p>
               <label>Year:</label>
-              <input name="year" type="year" value={year}/>
+              <input name="year" type="year" value={year} onChange={this.handleChange}/>
             </p>
             <p>
               <label>Make:</label>
-              <input name="make" type="text" value={make}/>
+              <input name="make" type="text" value={make} onChange={this.handleChange}/>
             </p>
             <p>
               <label>Model:</label>
-              <input name="model" type="text" value={model}/>
+              <input name="model" type="text" value={model} onChange={this.handleChange}/>
             </p>
             <p>
               <label>Tire Size:</label>
-              <input name="tireSize" type="number" value={tireSize}/>
+              <input name="tireSize" type="number" value={tireSize} onChange={this.handleChange}/>
             </p>
             <p>
-              <label>Bought Date:</label>
-              <input name="boughtDate" type="date" value={boughtDate}/>
+              <label>Date of Purchase:</label>
+              <input name="boughtDate" type="date" value={boughtDate} onChange={this.handleChange}/>
             </p>
             <p>
               <label>Proof of Registration:</label>
-              <input name="registration" type="file" accept=".jpg, .png, .svg, .gif" value={registration}/>
+              <input name="registration" type="file" accept=".jpg, .png, .svg, .gif" value={registration} onChange={this.handleChange}/>
             </p>
             <p>
               <label>Proof of Insurance:</label>
-              <input name="insurance" type="file" accept=".jpg, .png, .svg, .gif" value={insurance}/>
+              <input name="insurance" type="file" accept=".jpg, .png, .svg, .gif" value={insurance} onChange={this.handleChange}/>
             </p>
             <button type="submit">Save</button>
           </form>
