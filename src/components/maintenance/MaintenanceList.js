@@ -5,7 +5,7 @@ export default class MaintenancesList extends Component {
 
   render() {
     const { maintenances } = this.props;
-    console.log('mainten', maintenances);
+    console.log('maintenances', maintenances);
     const tableRows = maintenances.maintenances.map((maintenance, i) => {
       return (
         <tr key={i}>

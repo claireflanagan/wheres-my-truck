@@ -1,8 +1,10 @@
-import { addTruck, ADD_TRUCK } from './addTruck';
+import React from 'react';
+import { shallow } from 'enzyme';
+import TruckDetail from './TruckDetail';
 
-describe('add truck', () => {
-  it('can create a note action', () => {
-    const truck = {
+describe('TruckDetail component', () => {
+  const trucks = [
+    {
       id: 'a0',
       name: 'Truck 0',
       location: '10th and Couch',
@@ -15,10 +17,13 @@ describe('add truck', () => {
       boughtDate: '2017-09-10',
       registration: 'https://www.dmv.ca.gov/imageserver/dmv/images/vr/regcard_w_arrow2.jpg',
       insurance: 'https://approvedauto.files.wordpress.com/2013/12/id-card-example.jpg'
-    };
-
-    const action = addTruck(truck);
-    expect(action.type).toEqual(ADD_TRUCK);
-    expect(action.payload).toEqual(truck);
+    }
+  ];
+  it('matches a snapshot', () => {
+    expect(true);
+    const wrapper = shallow(<TruckDetail
+      trucks={trucks}/>);
+    expect(wrapper).toMatchSnapshot();
   });
-});
+})
+;

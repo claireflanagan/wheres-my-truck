@@ -1,9 +1,9 @@
 export const getTrucks = state => {
-  return Object.values(state.trucks);
+  return state.trucks.list;
 };
 
-export const getTruck = (state, id) => {
-  return state.truck[id];
+export const getTruck = (state) => {
+  return state.truck.truck;
 };
 
 export const getImage = (state, id, imageType) => {
@@ -12,4 +12,4 @@ export const getImage = (state, id, imageType) => {
 };
 
 
-
+// selector only gets things out of state, the only way state changes is if you call an action that calls a reducter

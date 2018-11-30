@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import AddTruck from '../../components/truck/AddTruck';
-import { addTruck } from '../../actions/addTruck';
+import { updateTrucks } from '../../actions/trucks';
 
 const mapStateToProps = () => {
   return {};
@@ -8,7 +8,7 @@ const mapStateToProps = () => {
 
 const mapDispatchToProps = dispatch => ({
   onSubmit(truck) {
-    dispatch(addTruck(truck));
+    dispatch(updateTrucks(truck));
   } 
 });
 

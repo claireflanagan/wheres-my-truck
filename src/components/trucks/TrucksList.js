@@ -1,20 +1,29 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Truck from '../truck/Truck';
 
-const TrucksList = ({ trucks }) => {
-  console.log('trucks', trucks);
-  const trucksList = trucks.map(truck => {
+export default class TruckList extends Component {
+  componentDidMount() {
+    this.props.getTrucks();
+  }
+  
+  render() {
+    const { trucks } = this.props;
+    console.log('trucks', trucks);
+    const trucksList = trucks.map(truck => {
+      return (
+        <li key={truck.id}>
+          <Truck name={truck.name} id={truck.id} />
+        </li>
+      );
+    });
     return (
-      <li key={truck.id}>
-        <Truck name={truck.name} id={truck.id} />
-      </li>
+      <ul>
+        {trucksList}
+      </ul>
     );
-  });
-  return (
-    <ul>
-      {trucksList}
-    </ul>
-  );
-};
+  }
+}
 
-export default TrucksList;
+
+
+
