@@ -11,3 +11,5 @@ export const getImage = (state, id, imageType) => {
   return truck[imageType];
 };
 
+
+
