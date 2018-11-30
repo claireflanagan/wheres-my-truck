@@ -19,10 +19,14 @@ export default class MaintenancesList extends Component {
       <Fragment>  
         <h1>{maintenances.details.name}</h1> 
         <table className={styles.maintTable}>
-          <th>Date</th>
-          <th>Type</th>
-          <th>Notes</th>
-          {tableRows}
+          <thead>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Notes</th>
+          </thead>
+          <tbody>
+            {tableRows}
+          </tbody>          
         </table>
       </Fragment>
      

@@ -20,10 +20,12 @@ export default class TruckDetail extends Component {
           <Link to={ROUTES.MAINTENANCE_LIST.linkTo(truck.id)}>Maintenance</Link>
         </div>
         <table className={styles.table}>
-          <tbody>
+          <thead> 
             <tr>
               <th>{truck.name}</th>
             </tr>
+          </thead>
+          <tbody>
             <tr>
               <td>Year: {truck.year}</td>
             </tr>

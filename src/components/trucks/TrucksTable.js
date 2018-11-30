@@ -16,11 +16,13 @@ const TrucksTable = ({ trucks }) => {
   });
   return (
     <table className={styles.table}>
-      <tbody>
+      <thead>
         <tr>
           <th>Truck:</th>
           <th>Location:</th>
         </tr>
+      </thead>
+      <tbody>
         {trucksTable}
       </tbody>
     </table>
