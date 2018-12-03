@@ -8,28 +8,32 @@ exports[`MaintenanceList component matches a snapshot 1`] = `
   <table
     className="maintTable"
   >
-    <th>
-      Date
-    </th>
-    <th>
-      Type
-    </th>
-    <th>
-      Notes
-    </th>
-    <tr
-      key="0"
-    >
-      <td>
-        2018-10-31
-      </td>
-      <td>
-        oil change
-      </td>
-      <td>
-        this was hard!
-      </td>
-    </tr>
+    <thead>
+      <th>
+        Date
+      </th>
+      <th>
+        Type
+      </th>
+      <th>
+        Notes
+      </th>
+    </thead>
+    <tbody>
+      <tr
+        key="0"
+      >
+        <td>
+          2018-10-31
+        </td>
+        <td>
+          oil change
+        </td>
+        <td>
+          this was hard!
+        </td>
+      </tr>
+    </tbody>
   </table>
 </Fragment>
 `;

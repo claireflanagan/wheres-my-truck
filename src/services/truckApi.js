@@ -1,4 +1,4 @@
-import { get } from './request';
+import { get, post } from './request';
 
 export const getTrucks = () => {
   return get('https://car-db.herokuapp.com/trucks')
@@ -14,6 +14,7 @@ export const getTrucks = () => {
 };
 
 export const getTruck = id => {
+  console.log('idinapi', id);
   return get(`https://car-db.herokuapp.com/trucks/${id}`)
     .then(truck => ({
       id: truck.id,
@@ -29,6 +30,10 @@ export const getTruck = id => {
       registration: truck.registration,
       insurance: truck.insurance
     }));
+}; 
+
+export const addTruck = truck => {
+  return post(`https://car-db.herokuapp.com/trucks`, truck);
 };
 
 export const getMaintenances = id => {
@@ -38,3 +43,16 @@ export const getMaintenances = id => {
       maintenances
     }));
 };
+
+export const getMaintenance = id => {
+  return get(`https://car-db.herokuapp.com/maintenances/${id}`) //what should go here??
+    .then(maintenance => ({
+      type: maintenance.type,
+      date: maintenance.date,
+      notes: maintenance.notes
+    }));
+};
+
+
+// post createMaintenence which you give a url which will be the same as get mainenences, and the actual maintenance you want to create --- same for truck and issue
+// this is what my forms will call eventually by way of an action

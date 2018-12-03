@@ -2,8 +2,21 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import TruckDetail from './TruckDetail';
 
+jest.mock('../../routes/routes', () => ({
+  ROUTES: {  
+    IMAGEDISPLAY: {
+      path: '/trucks/:id/:imageType',
+      linkTo: (id, imageType) => `/trucks/${id}/${imageType}`
+    },
+    MAINTENANCE_LIST: {
+      path: '/trucks/:id/maintenanceList',
+      linkTo: id => `/trucks/${id}/maintenanceList`
+    }
+  }
+}));
+
 describe('TruckDetail component', () => {
-  const trucks = [
+  const truck =
     {
       id: 'a0',
       name: 'Truck 0',
@@ -17,13 +30,14 @@ describe('TruckDetail component', () => {
       boughtDate: '2017-09-10',
       registration: 'https://www.dmv.ca.gov/imageserver/dmv/images/vr/regcard_w_arrow2.jpg',
       insurance: 'https://approvedauto.files.wordpress.com/2013/12/id-card-example.jpg'
-    }
-  ];
+    };
+  const match = { params: { id: 'a0' } };
   it('matches a snapshot', () => {
     expect(true);
     const wrapper = shallow(<TruckDetail
-      trucks={trucks}/>);
+      truck={truck}
+      match={match}
+      getTruck={jest.fn()}/>);
     expect(wrapper).toMatchSnapshot();
   });
-})
-;
+});

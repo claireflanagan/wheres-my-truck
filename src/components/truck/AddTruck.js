@@ -1,5 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import styles from './AddTruck.css';
+import { ROUTES } from '../../routes/routes';
+import { addTruck } from '../../services/truckApi';
 
 export default class AddTruck extends Component {
     state = {
@@ -24,6 +26,8 @@ export default class AddTruck extends Component {
       const truck = this.state;
       event.preventDefault();
       this.props.onSubmit({ truck });
+      addTruck(truck)
+        .then(() => this.props.history.push(ROUTES.TRUCK.linkTo(truck.id)));
     };
 
     render() {

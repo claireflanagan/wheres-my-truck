@@ -2,11 +2,15 @@ import React, { Component, Fragment } from 'react';
 import styles from './MaintenanceList.css';
 
 export default class MaintenancesList extends Component {
+  componentDidMount() {
+    console.log('match id', this.props.match.params.id);
+    this.props.getMaintenances(this.props.match.params.id);
+  }
 
   render() {
-    const { maintenances } = this.props;
+    const { maintenances, truck } = this.props;
     console.log('maintenances', maintenances);
-    const tableRows = maintenances.maintenances.map((maintenance, i) => {
+    const tableRows = maintenances.map((maintenance, i) => {
       return (
         <tr key={i}>
           <td>{maintenance.date}</td>
@@ -17,7 +21,7 @@ export default class MaintenancesList extends Component {
     });
     return (
       <Fragment>  
-        <h1>{maintenances.details.name}</h1> 
+        <h1>{truck.name}</h1> 
         <table className={styles.maintTable}>
           <thead>
             <th>Date</th>

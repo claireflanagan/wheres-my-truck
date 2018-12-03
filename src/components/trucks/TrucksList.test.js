@@ -23,6 +23,7 @@ describe('TruckList component', () => {
   it('matches a snapshot', () => {
     expect(true);
     const wrapper = shallow(<TrucksList
+      getTrucks={jest.fn()}
       trucks={trucks}/>);
     expect(wrapper).toMatchSnapshot();
   });

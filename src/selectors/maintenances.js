@@ -1,4 +1,4 @@
-export const getMaintenances = (state, id) => {
-  return state.maintenances[id];
+export const getMaintenances = (state) => {
+  return state.maintenances.list;
 };
   
