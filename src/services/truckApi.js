@@ -1,21 +1,20 @@
 import { get, post } from './request';
 
 export const getTrucks = () => {
-  return get('https://car-db.herokuapp.com/trucks')
+  return get('/api/trucks')
     .then((trucks) => {
       return {
         trucks: trucks.map(truck => ({
           name: truck.name,
-          id: truck.id,
+          id: truck._id,
           location: truck.location
         }))
       };
     });
 };
 
-export const getTruck = id => {
-  console.log('idinapi', id);
-  return get(`https://car-db.herokuapp.com/trucks/${id}`)
+export const getTruck = _id => {
+  return get(`/api/trucks/${_id}`)
     .then(truck => ({
       id: truck.id,
       name: truck.name,
@@ -33,7 +32,7 @@ export const getTruck = id => {
 }; 
 
 export const addTruck = truck => {
-  return post(`https://car-db.herokuapp.com/trucks`, truck);
+  return post('/api/trucks', truck);
 };
 
 export const getMaintenances = id => {
