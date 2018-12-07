@@ -1,5 +1,20 @@
 import { get, post } from './request';
 
+const parseTruck = truck => ({
+  id: truck._id,
+  name: truck.name,
+  location: truck.location,
+  vin: truck.vin,
+  plates: truck.plates,
+  year: truck.year,
+  make: truck.make,
+  model: truck.model,
+  tireSize: truck.tireSize,
+  boughtDate: truck.boughtDate,
+  registration: truck.registration,
+  insurance: truck.insurance
+});
+
 export const getTrucks = () => {
   return get('/api/trucks')
     .then((trucks) => {
@@ -15,24 +30,13 @@ export const getTrucks = () => {
 
 export const getTruck = id => {
   return get(`/api/trucks/${id}`)
-    .then(truck => ({
-      id: truck._id,
-      name: truck.name,
-      location: truck.location,
-      vin: truck.vin,
-      plates: truck.plates,
-      year: truck.year,
-      make: truck.make,
-      model: truck.model,
-      tireSize: truck.tireSize,
-      boughtDate: truck.boughtDate,
-      registration: truck.registration,
-      insurance: truck.insurance
-    }));
+    .then(parseTruck);
 }; 
 
 export const addTruck = truck => {
-  return post('/api/trucks', truck);
+  console.log('truck here', truck);
+  return post('/api/trucks', truck)
+    .then(parseTruck);
 };
 
 export const addMaintenance = maintenance => {

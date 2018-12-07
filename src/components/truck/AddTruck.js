@@ -1,9 +1,9 @@
 import React, { Fragment, Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import styles from './AddTruck.css';
 import { ROUTES } from '../../routes/routes';
-import { addTruck } from '../../services/truckApi';
 
-export default class AddTruck extends Component {
+class AddTruck extends Component {
     state = {
       name: '',
       location: '',
@@ -23,11 +23,11 @@ export default class AddTruck extends Component {
     };
 
     handleSubmit = event => {
-      const truck = this.state;
       event.preventDefault();
-      this.props.onSubmit({ truck });
-      addTruck(truck)
-        .then(() => this.props.history.push(ROUTES.TRUCK.linkTo(truck.id)));
+      const truck = this.state;
+      console.log('truckk');
+      this.props.onSubmit(truck)
+        .then((newTruck) => this.props.history.push(ROUTES.TRUCK.linkTo(newTruck.id)));
     };
 
     render() {
@@ -100,3 +100,5 @@ export default class AddTruck extends Component {
       );
     }
 }
+
+export default withRouter(AddTruck);

@@ -1,15 +1,18 @@
 import { connect } from 'react-redux';
 import AddTruck from '../../components/truck/AddTruck';
 import { addTruckPromise } from '../../actions/trucks';
+import { getTruck } from '../../services/truckApi';
 
-const mapStateToProps = () => {
-  return {};
-};
+const mapStateToProps = state => ({
+  truck: getTruck(state)
+});
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   onSubmit(truck) {
-    console.log('working addTruck!');
-    dispatch(addTruckPromise(truck));
+    const action = addTruckPromise(truck);
+    console.log('working addTruck!', truck);
+    dispatch(action);
+    return action.payload;
   } 
 });
 

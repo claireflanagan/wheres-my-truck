@@ -1,6 +1,6 @@
 const isPromise = payload => {
   return typeof payload === 'object' &&
-        typeof payload.then === 'function';
+    typeof payload.then === 'function';
 };
 
 export const LOAD_START = 'LOAD_START';
@@ -8,21 +8,26 @@ export const LOAD_END = 'LOAD_END';
 export const PROMISE_ERROR = 'PROMISE_ERROR';
 
 export default store => next => action => {
-  const { type, payload } = action;
+  const { dispatch } = store;
+  const {
+    type,
+    payload,
+    loadStart = LOAD_START,
+    loadEnd = LOAD_END,
+    errorType = PROMISE_ERROR
+  } = action;
 
-  if(!isPromise(action.payload)) return next(action);
+  if(!isPromise(payload)) return next(action);
 
-  store.dispatch({ type: LOAD_START });
+  dispatch({ type: loadStart });
 
   return payload
     .then(result => {
-      console.log('result', result);
       next({ type, payload: result });
-      store.dispatch({ type: LOAD_END });
+      dispatch({ type: loadEnd });
     })
     .catch(err => {
-      store.dispatch({ type: LOAD_END });
-      store.dispatch({ type: PROMISE_ERROR, payload: err });
+      dispatch({ type: loadEnd });
+      dispatch({ type: errorType, payload: err });
     });
 };
-

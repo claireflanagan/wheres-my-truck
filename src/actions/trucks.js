@@ -21,7 +21,9 @@ export const fetchTruckPromise = (id) => ({
 });
 
 export const ADD_TRUCK = 'ADD_TRUCK';
-export const addTruckPromise = (truck)  => ({
+export const addTruckPromise = (truck) => ({
   type: ADD_TRUCK,
+  loadStart: TRUCKS_LOAD_START,
+  loadEnd: TRUCKS_LOAD_END,
   payload: addTruck(truck)
 });

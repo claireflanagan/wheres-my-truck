@@ -1,4 +1,4 @@
-import { GET_TRUCK } from '../actions/trucks';
+import { GET_TRUCK, ADD_TRUCK } from '../actions/trucks';
 
 const initialState = {
   truck: {},
@@ -9,6 +9,9 @@ export default function reducer(state = initialState, { type, payload }) {
   switch(type) {
     case GET_TRUCK:
       return { ...state, truck: payload }; //????
+    case ADD_TRUCK:
+      console.log('payload', payload);
+      return { ...state, truck: payload };
     default:
       return state;
   }
