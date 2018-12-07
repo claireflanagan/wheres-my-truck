@@ -3,19 +3,19 @@ import styles from './MaintenanceList.css';
 
 export default class MaintenancesList extends Component {
   componentDidMount() {
-    console.log('match id', this.props.match.params.id);
     this.props.getMaintenances(this.props.match.params.id);
   }
 
   render() {
     const { maintenances, truck } = this.props;
+    // if(!maintenances || !truck) return null;
     console.log('maintenances', maintenances);
     const tableRows = maintenances.map((maintenance, i) => {
       return (
         <tr key={i}>
-          <td>{maintenance.date}</td>
+          <td>{maintenance.dateReported}</td>
           <td>{maintenance.type}</td>
-          <td>{maintenance.notes}</td>
+          <td>{maintenance.issueDescription}</td>
         </tr>
       );
     });

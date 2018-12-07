@@ -11,7 +11,7 @@ export default class TruckDetail extends Component {
   }
   render() {
     const { truck } = this.props;
-    console.log('truck', truck);
+    console.log('truck4354', truck);
     return (
       <div>
         <div className={styles.truckLinks}>

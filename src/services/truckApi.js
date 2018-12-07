@@ -13,10 +13,10 @@ export const getTrucks = () => {
     });
 };
 
-export const getTruck = _id => {
-  return get(`/api/trucks/${_id}`)
+export const getTruck = id => {
+  return get(`/api/trucks/${id}`)
     .then(truck => ({
-      id: truck.id,
+      id: truck._id,
       name: truck.name,
       location: truck.location,
       vin: truck.vin,
@@ -35,22 +35,22 @@ export const addTruck = truck => {
   return post('/api/trucks', truck);
 };
 
-export const getMaintenances = id => {
-  return get(`https://car-db.herokuapp.com/maintenances/${id}`)
-    .then(({ maintenances, details }) => ({
-      details,
-      maintenances
-    }));
+export const addMaintenance = maintenance => {
+  return post('/api/maintenances', maintenance);
 };
 
-export const getMaintenance = id => {
-  return get(`https://car-db.herokuapp.com/maintenances/${id}`) //what should go here??
-    .then(maintenance => ({
-      type: maintenance.type,
-      date: maintenance.date,
-      notes: maintenance.notes
-    }));
+export const getMaintenances = id => {
+  return get(`/api/maintenances/${id}`);
 };
+
+// export const getMaintenance = id => {
+//   return get(`https://car-db.herokuapp.com/maintenances/${id}`) //what should go here??
+//     .then(maintenance => ({
+//       type: maintenance.type,
+//       date: maintenance.date,
+//       notes: maintenance.notes
+//     }));
+// };
 
 
 // post createMaintenence which you give a url which will be the same as get mainenences, and the actual maintenance you want to create --- same for truck and issue

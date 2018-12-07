@@ -9,7 +9,7 @@ export default function reducer(state = initialState, action) {
   const { type, payload } = action;
   switch(type) {
     case UPDATE_MAINTENANCES:
-      return { ...state, list: payload.maintenances };
+      return { ...state, list: payload };
     case MAINTENANCES_LOAD_START:
       return { ...state, loading: true };
     case MAINTENANCES_LOAD_END:
