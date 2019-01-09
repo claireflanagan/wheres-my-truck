@@ -1,25 +1,24 @@
 
 .form {
-    grid-row-start: 2;
-    max-width: 500px;
+    width: 90%;
 	background: #F8F8F8;
-	margin: 4em auto 5em auto;
-	padding: 20px;
+	margin: 1vw auto 7vw auto;
+	padding-top: 15px;
+    padding-bottom: 5px;
 	border-radius: 8px;
-	font-family: 'Source Code Pro', monospace;
     label {
         display: block;
-	    margin-bottom: 5px;
+	    margin: 5px 5px 0 12px;   
     }
     input {
         border-radius: 4px;
-        width: 100%;
+        width: 90%;
         height: 35px;
         border: 1px solid #ccc;
-        margin-bottom: 15px;
+        margin: 15px 4%;
     }
     textarea {
-        width: 100%; 
+        width: 90%; 
         padding: 12px;  
         border: 1px solid #ccc; 
         border-radius: 4px; 
@@ -28,13 +27,11 @@
         margin-bottom: 16px; 
         resize: vertical;
     }
-
     textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {   
         border-color: #99BE7F;
         box-shadow: 0 1px 1px #99BE7F inset, 0 0 8px #99BE7F;
         outline: 0 none;
     }
-
     .checkbox {
         margin-left: 40px;
     }
@@ -44,21 +41,17 @@
     button {
         position: relative;
         display: block;
+        background-color: #F8F8F8;
         padding: 19px 39px 18px 39px;
-        color: #FFF;
         margin: 0 auto;
-        background: #77A756;
         font-size: 18px;
         text-align: center;
-        font-style: normal;
-        width: 100%;
-        border: 1px solid #77A756;
-        border-width: 1px 1px 3px;
+        width: 90%;
+        border-radius: 3px;
+        border: 1px solid #397c15;
         margin-bottom: 10px;
-        transition: border .4s ease-out;
-        border: 5px solid transparent;
         &:hover {
-            border: 5px solid green;
+            background-color: #DCDCDC;
         }
     }
 }

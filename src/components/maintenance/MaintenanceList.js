@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import styles from './MaintenanceList.css';
+import styles from '../truck/TruckDetail.css';
 
 export default class MaintenancesList extends Component {
   componentDidMount() {
@@ -22,7 +22,7 @@ export default class MaintenancesList extends Component {
     return (
       <Fragment>  
         <h1>{truck.name}</h1> 
-        <table className={styles.maintTable}>
+        <table className={`${styles.table} ${styles.threeColumns}`}>
           <thead>
             <th>Date</th>
             <th>Type</th>

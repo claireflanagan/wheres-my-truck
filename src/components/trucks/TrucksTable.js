@@ -1,6 +1,5 @@
 import React, { Fragment, Component } from 'react';
-import styles from './TrucksTable.css';
-
+import tableStyles from '../truck/TruckDetail.css';
 
 export default class TruckDetail extends Component {
   componentDidMount() {
@@ -20,17 +19,20 @@ export default class TruckDetail extends Component {
       );
     });
     return (
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            <th>Truck:</th>
-            <th>Location:</th>
-          </tr>
-        </thead>
-        <tbody>
-          {trucksTable}
-        </tbody>
-      </table>
+      <>
+        <h1>Where's my truck?</h1>
+        <table className={tableStyles.table}>
+          <thead>
+            <tr>
+              <th className={tableStyles.tableHeader}>Truck:</th>
+              <th className={tableStyles.tableHeader}>Location:</th>
+            </tr>
+          </thead>
+          <tbody>
+            {trucksTable}
+          </tbody>
+        </table>
+      </>
     );
   }
 }

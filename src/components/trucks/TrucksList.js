@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Truck from '../truck/Truck';
+import styles from './TrucksList.css';
 
 export default class TruckList extends Component {
   componentDidMount() {
@@ -17,9 +18,12 @@ export default class TruckList extends Component {
       );
     });
     return (
-      <ul>
-        {trucksList}
-      </ul>
+      <>
+        <h1>Truck Information</h1>
+        <ul className={styles.trucksList}>
+          {trucksList}
+        </ul>
+      </>
     );
   }
 }

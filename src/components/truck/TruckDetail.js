@@ -17,35 +17,42 @@ export default class TruckDetail extends Component {
         <div className={styles.truckLinks}>
           <Link to={ROUTES.IMAGEDISPLAY.linkTo(truck.id, 'registration')}>Registration</Link>
           <Link to={ROUTES.IMAGEDISPLAY.linkTo(truck.id, 'insurance')}>Insurance</Link>
-          <Link to={ROUTES.MAINTENANCE_LIST.linkTo(truck.id)}>Maintenance</Link>
+          <Link to={ROUTES.MAINTENANCE_LIST.linkTo(truck.id)}>Maintenance Records</Link>
         </div>
         <table className={styles.table}>
           <thead> 
             <tr>
-              <th>{truck.name}</th>
+              <th colSpan="2">{truck.name}</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Year: {truck.year}</td>
+              <td>Year:</td>
+              <td>{truck.year}</td>
             </tr>
             <tr>
-              <td>Make: {truck.make}</td>
+              <td>Make:</td>
+              <td>{truck.make}</td>
             </tr>
             <tr>
-              <td>Model: {truck.model}</td>
+              <td>Model:</td>
+              <td>{truck.model}</td>
             </tr>
             <tr>
-              <td>Vin: {truck.vin}</td>
+              <td>Vin:</td>
+              <td>{truck.vin}</td>
             </tr>
             <tr>
-              <td>Plates: {truck.plates}</td>
+              <td>Plates:</td>
+              <td>{truck.plates}</td>
             </tr>
             <tr>
-              <td>Tire Size: {truck.tireSize}</td>
+              <td>Tire Size:</td>
+              <td>{truck.tireSize}</td>
             </tr>
             <tr>
-              <td>Year Bought: {truck.boughtDate}</td>
+              <td>Year Bought:</td>
+              <td>{truck.boughtDate}</td>
             </tr>
           </tbody>
         </table>
