@@ -1,0 +1,57 @@
+
+.form {
+    width: 90%;
+	background: #F8F8F8;
+	margin: 1vw auto 7vw auto;
+	padding-top: 15px;
+    padding-bottom: 5px;
+	border-radius: 8px;
+    label {
+        display: block;
+	    margin: 5px 5px 0 12px;   
+    }
+    input {
+        border-radius: 4px;
+        width: 90%;
+        height: 35px;
+        border: 1px solid #ccc;
+        margin: 15px 4%;
+    }
+    textarea {
+        width: 90%; 
+        padding: 12px;  
+        border: 1px solid #ccc; 
+        border-radius: 4px; 
+        box-sizing: border-box; 
+        margin-top: 6px; 
+        margin-bottom: 16px; 
+        resize: vertical;
+    }
+    textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {   
+        border-color: #99BE7F;
+        box-shadow: 0 1px 1px #99BE7F inset, 0 0 8px #99BE7F;
+        outline: 0 none;
+    }
+    .checkbox {
+        margin-left: 40px;
+    }
+    .radio {
+        margin-left: 40px;
+    }
+    button {
+        position: relative;
+        display: block;
+        background-color: #F8F8F8;
+        padding: 19px 39px 18px 39px;
+        margin: 0 auto;
+        font-size: 18px;
+        text-align: center;
+        width: 90%;
+        border-radius: 3px;
+        border: 1px solid #397c15;
+        margin-bottom: 10px;
+        &:hover {
+            background-color: #DCDCDC;
+        }
+    }
+}

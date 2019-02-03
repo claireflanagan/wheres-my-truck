@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TruckDetail component matches a snapshot 1`] = `
+<div>
+  <div
+    className="truckLinks"
+  >
+    <Link
+      replace={false}
+      to="/trucks/a0/registration"
+    >
+      Registration
+    </Link>
+    <Link
+      replace={false}
+      to="/trucks/a0/insurance"
+    >
+      Insurance
+    </Link>
+    <Link
+      replace={false}
+      to="/trucks/a0/maintenanceList"
+    >
+      Maintenance
+    </Link>
+  </div>
+  <table
+    className="table"
+  >
+    <thead>
+      <tr>
+        <th>
+          Truck 0
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          Year: 
+          2018
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Make: 
+          Truck
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Model: 
+          Big Truck
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Vin: 
+          1FTFS24Y8PHA25143
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Plates: 
+          876ABC
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Tire Size: 
+          20
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Year Bought: 
+          2017-09-10
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;

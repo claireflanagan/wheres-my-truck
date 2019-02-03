@@ -1,33 +1,33 @@
 import React, { Component } from 'react';
-import { getTrucks } from '../../services/truckSearch';
 import Truck from '../truck/Truck';
+import styles from './TrucksList.css';
 
 export default class TruckList extends Component {
-    state = {
-      trucks: []
-    };
-
-    fetchTrucks = () => {
-      getTrucks()
-        .then((trucks) => this.setState(trucks));
-    };
+  componentDidMount() {
+    this.props.getTrucks();
+  }
   
-    componentDidMount() {
-      this.fetchTrucks();
-    }
-
-    render() {
-      const trucks = this.state.trucks.map(truck => {
-        return (
-          <li key={truck.id}>
-            <Truck name={truck.name} id={truck.id} />
-          </li>
-        );
-      });
+  render() {
+    const { trucks } = this.props;
+    console.log('trucks', trucks);
+    const trucksList = trucks.map(truck => {
       return (
-        <ul>
-          {trucks}
-        </ul>
+        <li key={truck.id}>
+          <Truck name={truck.name} id={truck.id} />
+        </li>
       );
-    }
+    });
+    return (
+      <>
+        <h1>Truck Information</h1>
+        <ul className={styles.trucksList}>
+          {trucksList}
+        </ul>
+      </>
+    );
+  }
 }
+
+
+
+

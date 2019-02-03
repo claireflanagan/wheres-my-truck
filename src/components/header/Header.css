@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    text-decoration: none;
+    color: #397c15;
+    /* border-bottom: 1px solid #397c15; */
+    box-shadow: 0 1px 5px grey;    
+    h1 {
+      margin: 8vw 7vw 1vw 1vw;
+      font-size: 7vw;
+      font-family: 'Dokdo', cursive;
+    }
+    img {
+      height: 22vw;
+    }
+  }

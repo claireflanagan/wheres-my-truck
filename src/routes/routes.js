@@ -1,13 +1,21 @@
-import TruckDetail from '../components/truck/TruckDetail';
-import TrucksTable from '../components/trucks/TrucksTable';
-import TrucksList from '../components/trucks/TrucksList';
-import ImageDisplay from '../components/truck/ImageDisplay';
-import MaintenanceList from '../components/maintenance/MaintenanceList';
+import Truck from '../containers/trucks/TruckContainer';
+import TrucksTable from '../containers/trucks/TrucksTableContainer';
+import ImageDisplay from '../containers/trucks/ImageDisplayContainer';
+import AllMaintenances from '../containers/maintenences/TruckMaintenancesContainer';
+import TrucksList from '../containers/trucks/TrucksListContainer';
+import AddTruck from '../containers/trucks/AddTruckContainer';
+import Home from '../components/home/Home';
+
 
 export const ROUTES = {
+  HOME: {
+    path: '/',
+    Component: Home,
+    linkTo: () => '/'
+  },
   TRUCK: {
     path: '/trucks/:id',
-    Component: TruckDetail,
+    Component: Truck,
     linkTo: id => `/trucks/${id}`
   },
   TRUCKSTABLE: {
@@ -27,8 +35,13 @@ export const ROUTES = {
   },
   MAINTENANCE_LIST: {
     path: '/trucks/:id/maintenanceList',
-    Component: MaintenanceList,
+    Component: AllMaintenances,
     linkTo: id => `/trucks/${id}/maintenanceList`
+  },
+  ADD_TRUCK: {
+    path: '/trucks/addTruck',
+    Component: AddTruck,
+    linkTo: () => '/trucks/addTruck'
   }
 
 };

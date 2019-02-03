@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TruckList component matches a snapshot 1`] = `
+<ul>
+  <li
+    key="a0"
+  >
+    <Truck
+      id="a0"
+      name="Truck 0"
+    />
+  </li>
+</ul>
+`;
