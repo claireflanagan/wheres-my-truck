@@ -7,6 +7,7 @@ This is a fleet managment application was designed for No More Deaths, a humanit
 ## Setup/Installation Requirements
 
 * _Download or clone GitHub repository for the client and the server._
+* _copy the contents of `.env-example` to `.env` and fill in_
 * _Install all dependencies with 'npm install' command._
 * _Start the application with 'npm start'._
 * _In browser, navigate to localhost:7844._
