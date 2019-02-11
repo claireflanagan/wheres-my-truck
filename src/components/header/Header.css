@@ -1,22 +1,56 @@
 body {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: top center;
+    background-image: url(https://res.cloudinary.com/dfgcomb18/image/upload/v1549764732/dude%20wheres%20my%20truck/bkgnd-mobile.jpg);
 }
 
-  .header {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
+.header {
     text-decoration: none;
-    color: #397c15;
-    /* border-bottom: 1px solid #397c15; */
-    box-shadow: 0 1px 5px grey;    
+    max-width: 480px;
+    margin: auto;
+    padding: 20px;
+
     h1 {
-      margin: 8vw 7vw 1vw 1vw;
-      font-size: 7vw;
-      font-family: 'Dokdo', cursive;
+        font-size: 4rem;
+        font-family: 'Encode Sans Condensed', sans-serif;
+        font-weight: 900;
+        text-transform: uppercase;
+        text-align: left;
+        letter-spacing: 1px;
+        color: #3D3736;
+        max-width: 220px;
+        display: inline-block;
+        margin: 0;
     }
+
+    span {
+        font-weight: 400;
+        font-size: 2rem;
+    }
+
     img {
-      height: 22vw;
+        vertical-align: baseline;
+        margin-right: 10px;
     }
-  }
+}
+
+
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+    body {
+        background-image: url(https://res.cloudinary.com/dfgcomb18/image/upload/v1549764669/dude%20wheres%20my%20truck/bkgnd.jpg);
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {}
