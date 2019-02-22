@@ -1,19 +1,20 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
 import { ROUTES } from '../../routes/routes';
 import Header from '../header/Header';
 import styles from '../home/Home.css';
+import { privateRoute } from '../../containers/auth/privateRoute';
 
-export default function App() {
+export default privateRoute(function App() {
   return (
     <Router>
       <div>
-        <Header/>
+        <Header />
         <nav className={styles.mainNav}>
           {/* <NavLink to="/">Home</NavLink> */}
         </nav>
         <Switch>
+          <Route component={ROUTES.AUTH_CALLBACK.Component} path={ROUTES.AUTH_CALLBACK.path} />
           <Route component={ROUTES.MAINTENANCE_LIST.Component} path={ROUTES.MAINTENANCE_LIST.path} />
           <Route component={ROUTES.IMAGEDISPLAY.Component} path={ROUTES.IMAGEDISPLAY.path} />
           <Route component={ROUTES.TRUCKSTABLE.Component} path={ROUTES.TRUCKSTABLE.path} />
@@ -26,4 +27,4 @@ export default function App() {
       </div>
     </Router>
   );
-}
+});

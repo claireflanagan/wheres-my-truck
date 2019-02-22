@@ -5,6 +5,7 @@ import AllMaintenances from '../containers/maintenences/TruckMaintenancesContain
 import TrucksList from '../containers/trucks/TrucksListContainer';
 import AddTruck from '../containers/trucks/AddTruckContainer';
 import Home from '../components/home/Home';
+import Callback from '../containers/auth/Callback';
 
 
 export const ROUTES = {
@@ -12,6 +13,10 @@ export const ROUTES = {
     path: '/',
     Component: Home,
     linkTo: () => '/'
+  },
+  AUTH_CALLBACK: {
+    path: '/callback',
+    Component: Callback
   },
   TRUCK: {
     path: '/trucks/:id',
