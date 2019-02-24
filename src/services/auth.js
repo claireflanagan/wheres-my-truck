@@ -12,6 +12,12 @@ export const login = () => {
   authService.authorize();
 };
 
+export const logout = () => {
+  authService.logout({
+    returnTo: `${window.location.protocol}//${window.location.host}/`
+  });
+};
+
 export const handleAuthorization = () => {
   return new Promise((resolve, reject) => {
     authService.parseHash((err, result) => {

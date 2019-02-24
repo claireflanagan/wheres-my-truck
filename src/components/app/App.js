@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { ROUTES } from '../../routes/routes';
-import Header from '../header/Header';
 import styles from '../home/Home.css';
 import { privateRoute } from '../../containers/auth/privateRoute';
+import Header from '../../containers/header/Header';
 
 export default privateRoute(function App() {
   return (
