@@ -7,7 +7,7 @@
     "test": "jest",
     "test:watch": "npm run test -- --watch",
     "build": "webpack --mode production",
-    "start": "webpack-dev-server --hot --mode development"
+    "start": "webpack-dev-server --hot --mode development --devtool eval-source-map"
   },
   "repository": {
     "type": "git",

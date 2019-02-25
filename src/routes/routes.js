@@ -4,8 +4,9 @@ import ImageDisplay from '../containers/trucks/ImageDisplayContainer';
 import AllMaintenances from '../containers/maintenences/TruckMaintenancesContainer';
 import TrucksList from '../containers/trucks/TrucksListContainer';
 import AddTruck from '../containers/trucks/AddTruckContainer';
-import Home from '../components/home/Home';
+import Home from '../containers/home/Home';
 import Callback from '../containers/auth/Callback';
+import InviteUser from '../containers/admin/InviteUser';
 
 
 export const ROUTES = {
@@ -47,6 +48,11 @@ export const ROUTES = {
     path: '/trucks/addTruck',
     Component: AddTruck,
     linkTo: () => '/trucks/addTruck'
+  },
+  INVITE_USERS: {
+    path: '/admin/invite',
+    Component: InviteUser,
+    linkTo: () => '/admin/invite'
   }
 
 };
