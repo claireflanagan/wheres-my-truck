@@ -1,3 +1,4 @@
+import TruckCheckoutForm from '../components/trip/TruckCheckoutForm';
 import Truck from '../containers/trucks/TruckContainer';
 import TrucksTable from '../containers/trucks/TrucksTableContainer';
 import ImageDisplay from '../containers/trucks/ImageDisplayContainer';
@@ -47,6 +48,11 @@ export const ROUTES = {
     path: '/trucks/addTruck',
     Component: AddTruck,
     linkTo: () => '/trucks/addTruck'
+  },
+  TRUCK_CHECKOUT_FORM: {
+    path: '/trip/truckCheckoutForm',
+    Component: TruckCheckoutForm,
+    linkTo: () => '/trip/truckCheckoutForm'
   }
 
 };

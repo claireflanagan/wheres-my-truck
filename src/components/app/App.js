@@ -4,6 +4,7 @@ import { ROUTES } from '../../routes/routes';
 import styles from '../home/Home.css';
 import { privateRoute } from '../../containers/auth/privateRoute';
 import Header from '../../containers/header/Header';
+import TruckCheckoutForm from '../trip/TruckCheckoutForm';
 
 export default privateRoute(function App() {
   return (
@@ -15,6 +16,7 @@ export default privateRoute(function App() {
         </nav>
         <Switch>
           <Route component={ROUTES.AUTH_CALLBACK.Component} path={ROUTES.AUTH_CALLBACK.path} />
+          <Route component={ROUTES.TRUCK_CHECKOUT_FORM.Component} path={ROUTES.TRUCK_CHECKOUT_FORM.path} />
           <Route component={ROUTES.MAINTENANCE_LIST.Component} path={ROUTES.MAINTENANCE_LIST.path} />
           <Route component={ROUTES.IMAGEDISPLAY.Component} path={ROUTES.IMAGEDISPLAY.path} />
           <Route component={ROUTES.TRUCKSTABLE.Component} path={ROUTES.TRUCKSTABLE.path} />
