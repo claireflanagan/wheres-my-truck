@@ -1,9 +1,12 @@
 import  React, { Fragment, Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { ROUTES } from '../../routes/routes';
+import styles from './TruckCheckoutForm.css';
+
 
 class TruckCheckoutForm extends Component {
   state = {
-    userId: 'not really a string', //how do this one? userSchema
+    //userId:  //how do this one? userSchema
     startDate: '',
     endDate: '',
     tripPurpose: '',
@@ -19,8 +22,9 @@ class TruckCheckoutForm extends Component {
     event.preventDefault();
     const trip = this.state;
     console.log('sup, truck trip handleSubmit?');
-    this.props.onSubmit(trip)
-      .then (('newTrip?')); //newTrip?????!!
+    this.onSubmit(trip)
+      .then((newTrip) => this.props.history.push(ROUTES.TRUCK.linkTo(newTrip.id)));
+
   };
 
   render() {
@@ -36,30 +40,30 @@ class TruckCheckoutForm extends Component {
     return (
       <Fragment>
         <h1>Truck Checkout Form</h1>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit}  className={styles.form}>
 
           <p>
             <label>Checkout Date:</label>
-            <input name="startDate" type="text" value={startDate} onChange={this.handleChange}/>
+            <input name="startDate" type="date" value={startDate} onChange={this.handleChange} required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"/>
           </p>
 
           <p>
-            <label>Return Date:</label>
-            <input name="endDate" type="text" value={endDate} onChange={this.handleChange}/>
+            <label>Anticipated Return Date:</label>
+            <input name="endDate" type="date" value={endDate} onChange={this.handleChange} required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"/>
           </p>
 
           <p>
             <label>Trip Purpose:</label>
-            <input name="tripPurpose" type="text" value={tripPurpose} onChange={this.handleChange}/>
+            <input name="tripPurpose" type="text" value={tripPurpose} onChange={this.handleChange} required/>
           </p>
 
           <p>
             <label>Pickup Location:</label>
-            <input name="gotLocation" type="text" value={gotLocation} onChange={this.handleChange}/>
+            <input name="gotLocation" type="text" value={gotLocation} onChange={this.handleChange} required/>
           </p>
 
           <p>
-            <label>Return Location:</label>
+            <label>Anticipated Return Location:</label>
             <input name="endLocation" type="text" value={endLocation} onChange={this.handleChange}/>
           </p>
 

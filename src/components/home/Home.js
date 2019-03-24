@@ -18,6 +18,11 @@ export default function Home() {
         <i className="fas fa-plus"> </i>
         <span>Add New Truck</span>
       </Link> 
+
+      <Link to = {ROUTES.TRUCK_CHECKOUT_FORM.linkTo()}> 
+        <span>Truck Checkout Form</span>
+      </Link> 
+
     </div>
   );
 }

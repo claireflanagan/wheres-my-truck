@@ -4,7 +4,7 @@ import { ROUTES } from '../../routes/routes';
 import styles from '../home/Home.css';
 import { privateRoute } from '../../containers/auth/privateRoute';
 import Header from '../../containers/header/Header';
-import TruckCheckoutForm from '../trip/TruckCheckoutForm';
+//import TruckCheckoutForm from '../trip/TruckCheckoutForm';
 
 export default privateRoute(function App() {
   return (
