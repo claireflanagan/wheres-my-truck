@@ -9,11 +9,6 @@ const authService = new WebAuth({
   scope: 'openid'
 });
 
-
-export const signup = email => {
-  return post('/api/admin/invite', { email });
-};
-
 export const login = () => {
   authService.authorize();
 };
@@ -28,7 +23,7 @@ export const handleAuthorization = () => {
   return new Promise((resolve, reject) => {
     authService.parseHash((err, result) => {
       if(result && result.accessToken && result.idToken) {
-        return get('/api/admin', result.idToken)
+        return get('/api/admin/role', result.idToken)
           .then(({ role }) => {
             resolve({ token: result.idToken, role });
           });

@@ -1,10 +1,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getToken } from '../../selectors/auth';
-import { login } from '../../services/auth';
+import { getToken } from '../selectors/auth';
+import { login } from '../services/auth';
+import roles from './roles';
 
-export const privateRoute = Component => {
+export const privateRoute = (Component, role = roles.USER) => {
   class PrivateRouteContainer extends PureComponent {
     static propTypes = {
       token: PropTypes.string

@@ -7,6 +7,7 @@ import AddTruck from '../containers/trucks/AddTruckContainer';
 import Home from '../containers/home/Home';
 import Callback from '../containers/auth/Callback';
 import InviteUser from '../containers/admin/InviteUser';
+import AdminUsersList from '../containers/admin/AdminUsersList';
 
 
 export const ROUTES = {
@@ -53,6 +54,11 @@ export const ROUTES = {
     path: '/admin/invite',
     Component: InviteUser,
     linkTo: () => '/admin/invite'
+  },
+  ALL_USERS: {
+    path: '/admin/users',
+    Component: AdminUsersList,
+    linkTo: () => '/admin/users'
   }
 
 };

@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { inviteUser, clearInvitedUser } from '../../actions/auth';
-import { getInvitedUser, getInviteError, getInviteLoading } from '../../selectors/auth';
+import { inviteUser, clearInvitedUser } from '../../actions/admin';
+import { getInvitedUser, getInviteError, getInviteLoading } from '../../selectors/admin';
+import styles from './InviteUser.css';
 
 class InviteUser extends PureComponent {
   static propTypes = {
@@ -40,16 +41,20 @@ class InviteUser extends PureComponent {
     const { loading, error } = this.props;
     const { email } = this.state;
     return (
-      <>
+      <form className={styles.InviteUser} onSubmit={this.handleSubmit}>
         <h2>Invite a user</h2>
         <div>
           {error && <span>{error}</span>}
         </div>
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" name="email" value={email} onChange={this.handleChange} />
-          <button disabled={loading}>Invite</button>
-        </form>
-      </>
+        <input
+          type="text"
+          name="email"
+          placeholder="email"
+          value={email}
+          onChange={this.handleChange}
+        />
+        <button disabled={loading}>Invite</button>
+      </form>
     );
   }
 }

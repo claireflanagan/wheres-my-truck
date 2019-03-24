@@ -18,13 +18,18 @@ function Home({ role }) {
         <i className="fas fa-map-marker-alt" />
         <span>Where's my truck?</span >
       </Link>
-      <Link to={ROUTES.ADD_TRUCK.linkTo()} className={styles.add}>
+
+      {role === 'admin' && <Link to={ROUTES.ADD_TRUCK.linkTo()} className={styles.add}>
         <i className="fas fa-plus" />
         <span>Add New Truck</span>
-      </Link>
+      </Link>}
       {role === 'admin' && <Link to={ROUTES.INVITE_USERS.linkTo()} className={styles.add}>
         <i className="fas fa-plus" />
         <span>Add New User</span>
+      </Link>}
+      {role === 'admin' && <Link to={ROUTES.ALL_USERS.linkTo()} className={styles.add}>
+        <i className="fas fa-plus" />
+        <span>Manage Users</span>
       </Link>}
     </div>
   );

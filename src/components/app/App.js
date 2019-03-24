@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { ROUTES } from '../../routes/routes';
-import { privateRoute } from '../../containers/auth/privateRoute';
+import { privateRoute } from '../../routes/privateRoute';
 import Header from '../../containers/header/Header';
 
 export default privateRoute(function App() {
@@ -18,6 +18,7 @@ export default privateRoute(function App() {
           <Route component={ROUTES.ADD_TRUCK.Component} path={ROUTES.ADD_TRUCK.path} />
           <Route component={ROUTES.TRUCK.Component} path={ROUTES.TRUCK.path} />
           <Route component={ROUTES.INVITE_USERS.Component} path={ROUTES.INVITE_USERS.path} />
+          <Route component={ROUTES.ALL_USERS.Component} path={ROUTES.ALL_USERS.path} />
           <Route exact component={ROUTES.HOME.Component} path={ROUTES.HOME.path} />
           <Redirect to={ROUTES.HOME.path} />
         </Switch>

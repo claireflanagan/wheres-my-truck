@@ -22,13 +22,9 @@ export const request = (url, method, body, token) => {
     });
 };
 
-export const get = (url, token) => {
-  return request(url, 'GET', null, token);
-};
-
-export const post = (url, body, token) => {
-  return request(url, 'POST', body, token);
-};
+export const post = (url, body, token) => request(url, 'POST', body, token);
+export const get = (url, token) => request(url, 'GET', null, token);
+export const put = (url, body, token) => request(url, 'PUT', body, token);
 
 //make post that takes a url and a body
 //fetch takes a url, {method you want to use and body} --- google search fetch javascript post
