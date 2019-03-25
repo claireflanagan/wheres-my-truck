@@ -1,13 +1,12 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
-  Route,
   Switch,
   Redirect
 } from 'react-router-dom';
-import { ROUTES, getRoutes } from '../../routes/routes';
 import { privateRoute } from '../../routes/privateRoute';
-import Header from '../../containers/header/Header';
+import Header from '../header/Header';
+import { getRoutes } from '../../routes/routes';
 
 export default privateRoute(function App() {
   return (
@@ -16,7 +15,6 @@ export default privateRoute(function App() {
         <Header />
         <Switch>
           {getRoutes()}
-          <Redirect to={ROUTES.HOME.path} />
         </Switch>
       </div>
     </Router>

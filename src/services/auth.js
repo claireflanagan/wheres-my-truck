@@ -1,34 +1,23 @@
-import { WebAuth } from 'auth0-js';
-import { post, get } from './request';
+import { app } from './firebase';
+import 'firebase/auth';
+import { usersCollection } from './collections';
 
-const authService = new WebAuth({
-  domain: process.env.AUTH0_DOMAIN,
-  clientID: process.env.AUTH0_CLIENT_ID,
-  redirectUri: process.env.AUTH0_REDIRECT_URL,
-  responseType: 'token id_token',
-  scope: 'openid'
-});
+export const auth = app.auth();
 
-export const login = () => {
-  authService.authorize();
+export const signin = (email, password) => {
+  auth.signInWithEmailAndPassword(email, password);
 };
 
-export const logout = () => {
-  authService.logout({
-    returnTo: `${window.location.protocol}//${window.location.host}/`
-  });
-};
+export const signout = () => auth.signOut();
 
-export const handleAuthorization = () => {
-  return new Promise((resolve, reject) => {
-    authService.parseHash((err, result) => {
-      if(result && result.accessToken && result.idToken) {
-        return get('/api/admin/role', result.idToken)
-          .then(({ role }) => {
-            resolve({ token: result.idToken, role });
-          });
-      }
-      return reject(err || 'Missing access token');
+export const subscribe = (userFn, rejectFn) => auth.onAuthStateChanged((user) => {
+  if(!user) {
+    return rejectFn();
+  }
+  usersCollection
+    .doc(user.uid)
+    .get()
+    .then(userDoc => {
+      return userFn(userDoc.data());
     });
-  });
-};
+});

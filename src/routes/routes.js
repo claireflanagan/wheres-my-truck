@@ -1,15 +1,14 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import Truck from '../containers/trucks/TruckContainer';
-import TrucksTable from '../containers/trucks/TrucksTableContainer';
-import ImageDisplay from '../containers/trucks/ImageDisplayContainer';
-import AllMaintenances from '../containers/maintenences/TruckMaintenancesContainer';
-import TrucksList from '../containers/trucks/TrucksListContainer';
-import AddTruck from '../containers/trucks/AddTruckContainer';
-import Home from '../containers/home/Home';
-import Callback from '../containers/auth/Callback';
-import InviteUser from '../containers/admin/InviteUser';
-import AdminUsersList from '../containers/admin/AdminUsersList';
+import TrucksList from '../components/trucks/TrucksList';
+import TruckDetail from '../components/truck/TruckDetail';
+import TrucksTable from '../components/trucks/TrucksTable';
+import ImageDisplay from '../components/truck/ImageDisplay';
+import MaintenancesList from '../components/maintenance/MaintenanceList';
+import Home from '../components/home/Home';
+import InviteUser from '../components/admin/InviteUser';
+import UsersList from '../components/admin/UsersList';
+import AddTruck from '../components/admin/AddTruck';
 
 export const ROUTES = {
   HOME: {
@@ -17,13 +16,9 @@ export const ROUTES = {
     Component: Home,
     linkTo: () => '/'
   },
-  AUTH_CALLBACK: {
-    path: '/callback',
-    Component: Callback
-  },
   TRUCK: {
     path: '/truck/:id',
-    Component: Truck,
+    Component: TruckDetail,
     linkTo: id => `/truck/${id}`
   },
   TRUCKSTABLE: {
@@ -37,19 +32,19 @@ export const ROUTES = {
     linkTo: () => '/trucks/list'
   },
   IMAGEDISPLAY: {
-    path: '/truck/:id/:imageType',
+    path: '/truck/:id/:imageType(registration|insurance)',
     Component: ImageDisplay,
-    linkTo: (id, imageType) => `/trucks/${id}/${imageType}`
+    linkTo: (id, imageType) => `/truck/${id}/${imageType}`
   },
   MAINTENANCE_LIST: {
     path: '/truck/:id/maintenanceList',
-    Component: AllMaintenances,
-    linkTo: id => `/trucks/${id}/maintenanceList`
+    Component: MaintenancesList,
+    linkTo: id => `/truck/${id}/maintenanceList`
   },
   ADD_TRUCK: {
-    path: '/trucks/addTruck',
+    path: '/admin/addTruck',
     Component: AddTruck,
-    linkTo: () => '/trucks/addTruck'
+    linkTo: () => '/admin/addTruck'
   },
   INVITE_USERS: {
     path: '/admin/invite',
@@ -58,7 +53,7 @@ export const ROUTES = {
   },
   ALL_USERS: {
     path: '/admin/users',
-    Component: AdminUsersList,
+    Component: UsersList,
     linkTo: () => '/admin/users'
   }
 };

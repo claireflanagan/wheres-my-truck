@@ -1,12 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../routes/routes';
-import { getRole } from '../../selectors/auth';
+import { useCurrentUser } from '../../hooks/useCurrentUser';
 import styles from './Home.css';
 
-function Home({ role }) {
+export default function Home() {
+  const user = useCurrentUser();
+  if(!user) return null;
+  const { role } = user;
+  console.log(user);
   return (
     <div className={styles.mainNav}>
       <Link to={ROUTES.TRUCKSLIST.linkTo()}>
@@ -33,13 +35,3 @@ function Home({ role }) {
     </div>
   );
 }
-
-Home.propTypes = {
-  role: PropTypes.string.isRequired
-};
-
-export default connect(
-  state => ({
-    role: getRole(state)
-  })
-)(Home);

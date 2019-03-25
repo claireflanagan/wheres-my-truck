@@ -1,28 +1,27 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { useFirebase } from '../../hooks/useFirebase';
+import { trucksCollection } from '../../services/collections';
 import Truck from '../truck/Truck';
 import styles from './TrucksList.css';
 
-export default class TruckList extends Component {
-  componentDidMount() {
-    this.props.getTrucks();
-  }
-
-  render() {
-    const { trucks } = this.props;
-    const trucksList = trucks.map(truck => {
-      return (
-        <li key={truck.id}>
-          <Truck name={truck.name} id={truck.id} />
-        </li>
-      );
-    });
+export default () => {
+  const trucks = useFirebase(trucksCollection, []);
+  const trucksList = trucks.map(truck => {
     return (
-      <>
-        <h1>Truck Information</h1>
-        <ul className={styles.trucksList}>
-          {trucksList}
-        </ul>
-      </>
+      <li key={truck.id}>
+        <Truck
+          id={truck.id}
+          name={truck.name}
+        />
+      </li>
     );
-  }
-}
+  });
+  return (
+    <>
+      <h1>Truck Information</h1>
+      <ul className={styles.trucksList}>
+        {trucksList}
+      </ul>
+    </>
+  );
+};
