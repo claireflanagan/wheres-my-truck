@@ -17,7 +17,7 @@ export default function Home() {
       </Link>
       <Link to={ROUTES.TRUCKSTABLE.linkTo()}>
         <i className="fas fa-map-marker-alt" />
-        <span>Where's my truck?</span >
+        <span>Where&apos;s my truck?</span >
       </Link>
 
       {role === 'admin' && <Link to={ROUTES.ADD_TRUCK.linkTo()} className={styles.add}>
