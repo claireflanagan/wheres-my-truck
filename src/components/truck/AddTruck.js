@@ -25,25 +25,23 @@ class AddTruck extends Component {
     handleSubmit = event => {
       event.preventDefault();
       const truck = this.state;
-      console.log('truckk');
       this.props.onSubmit(truck)
         .then((newTruck) => this.props.history.push(ROUTES.TRUCK.linkTo(newTruck.id)));
     };
 
     render() {
-      console.log('hi');
-      const { 
-        name, 
-        location, 
-        vin, 
-        plates, 
-        year, 
-        make, 
-        model, 
-        tireSize, 
-        boughtDate, 
-        registration, 
-        insurance 
+      const {
+        name,
+        location,
+        vin,
+        plates,
+        year,
+        make,
+        model,
+        tireSize,
+        boughtDate,
+        registration,
+        insurance
       } = this.state;
 
       return (

@@ -3,15 +3,14 @@ import styles from './TruckDetail.css';
 import { ROUTES } from '../../routes/routes';
 import { Link } from 'react-router-dom';
 
-  
 
-export default class TruckDetail extends Component { 
+
+export default class TruckDetail extends Component {
   componentDidMount() {
     this.props.getTruck(this.props.match.params.id);
   }
   render() {
     const { truck } = this.props;
-    console.log('truck4354', truck);
     return (
       <div>
         <div className={styles.truckLinks}>
@@ -20,7 +19,7 @@ export default class TruckDetail extends Component {
           <Link to={ROUTES.MAINTENANCE_LIST.linkTo(truck.id)}>Maintenance Records</Link>
         </div>
         <table className={styles.table}>
-          <thead> 
+          <thead>
             <tr>
               <th colSpan="2">{truck.name}</th>
             </tr>
@@ -60,5 +59,3 @@ export default class TruckDetail extends Component {
     );
   }
 }
-
-

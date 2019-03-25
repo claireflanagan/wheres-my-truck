@@ -10,7 +10,6 @@ export default function reducer(state = initialState, { type, payload }) {
     case GET_TRUCK:
       return { ...state, truck: payload }; //????
     case ADD_TRUCK:
-      console.log('payload', payload);
       return { ...state, truck: payload };
     default:
       return state;

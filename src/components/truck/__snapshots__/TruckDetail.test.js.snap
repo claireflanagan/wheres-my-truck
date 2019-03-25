@@ -21,7 +21,7 @@ exports[`TruckDetail component matches a snapshot 1`] = `
       replace={false}
       to="/trucks/a0/maintenanceList"
     >
-      Maintenance
+      Maintenance Records
     </Link>
   </div>
   <table
@@ -29,7 +29,9 @@ exports[`TruckDetail component matches a snapshot 1`] = `
   >
     <thead>
       <tr>
-        <th>
+        <th
+          colSpan="2"
+        >
           Truck 0
         </th>
       </tr>
@@ -37,43 +39,57 @@ exports[`TruckDetail component matches a snapshot 1`] = `
     <tbody>
       <tr>
         <td>
-          Year: 
+          Year:
+        </td>
+        <td>
           2018
         </td>
       </tr>
       <tr>
         <td>
-          Make: 
+          Make:
+        </td>
+        <td>
           Truck
         </td>
       </tr>
       <tr>
         <td>
-          Model: 
+          Model:
+        </td>
+        <td>
           Big Truck
         </td>
       </tr>
       <tr>
         <td>
-          Vin: 
+          Vin:
+        </td>
+        <td>
           1FTFS24Y8PHA25143
         </td>
       </tr>
       <tr>
         <td>
-          Plates: 
+          Plates:
+        </td>
+        <td>
           876ABC
         </td>
       </tr>
       <tr>
         <td>
-          Tire Size: 
+          Tire Size:
+        </td>
+        <td>
           20
         </td>
       </tr>
       <tr>
         <td>
-          Year Bought: 
+          Year Bought:
+        </td>
+        <td>
           2017-09-10
         </td>
       </tr>

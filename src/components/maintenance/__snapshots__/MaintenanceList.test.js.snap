@@ -6,7 +6,7 @@ exports[`MaintenanceList component matches a snapshot 1`] = `
     Truck 0
   </h1>
   <table
-    className="maintTable"
+    className="table threeColumns"
   >
     <thead>
       <th>
@@ -23,15 +23,11 @@ exports[`MaintenanceList component matches a snapshot 1`] = `
       <tr
         key="0"
       >
-        <td>
-          2018-10-31
-        </td>
+        <td />
         <td>
           oil change
         </td>
-        <td>
-          this was hard!
-        </td>
+        <td />
       </tr>
     </tbody>
   </table>

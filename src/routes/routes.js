@@ -1,3 +1,5 @@
+import React from 'react';
+import { Route } from 'react-router-dom';
 import Truck from '../containers/trucks/TruckContainer';
 import TrucksTable from '../containers/trucks/TrucksTableContainer';
 import ImageDisplay from '../containers/trucks/ImageDisplayContainer';
@@ -8,7 +10,6 @@ import Home from '../containers/home/Home';
 import Callback from '../containers/auth/Callback';
 import InviteUser from '../containers/admin/InviteUser';
 import AdminUsersList from '../containers/admin/AdminUsersList';
-
 
 export const ROUTES = {
   HOME: {
@@ -21,9 +22,9 @@ export const ROUTES = {
     Component: Callback
   },
   TRUCK: {
-    path: '/trucks/:id',
+    path: '/truck/:id',
     Component: Truck,
-    linkTo: id => `/trucks/${id}`
+    linkTo: id => `/truck/${id}`
   },
   TRUCKSTABLE: {
     path: '/trucks/table',
@@ -36,12 +37,12 @@ export const ROUTES = {
     linkTo: () => '/trucks/list'
   },
   IMAGEDISPLAY: {
-    path: '/trucks/:id/:imageType',
+    path: '/truck/:id/:imageType',
     Component: ImageDisplay,
     linkTo: (id, imageType) => `/trucks/${id}/${imageType}`
   },
   MAINTENANCE_LIST: {
-    path: '/trucks/:id/maintenanceList',
+    path: '/truck/:id/maintenanceList',
     Component: AllMaintenances,
     linkTo: id => `/trucks/${id}/maintenanceList`
   },
@@ -60,5 +61,15 @@ export const ROUTES = {
     Component: AdminUsersList,
     linkTo: () => '/admin/users'
   }
+};
 
+export const getRoutes = () => {
+  return Object.values(ROUTES).map(route => {
+    return <Route
+      exact
+      key={route.path}
+      path={route.path}
+      component={route.Component}
+    />;
+  });
 };

@@ -6,10 +6,9 @@ export default class TruckList extends Component {
   componentDidMount() {
     this.props.getTrucks();
   }
-  
+
   render() {
     const { trucks } = this.props;
-    console.log('trucks', trucks);
     const trucksList = trucks.map(truck => {
       return (
         <li key={truck.id}>
@@ -27,7 +26,3 @@ export default class TruckList extends Component {
     );
   }
 }
-
-
-
-

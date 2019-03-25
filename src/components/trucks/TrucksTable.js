@@ -7,14 +7,13 @@ export default class TruckDetail extends Component {
   }
   render() {
     const trucks = this.props.trucks;
-    console.log('trucks in table', trucks);
     const trucksTable = trucks.map(truck => {
       return (
-        <Fragment key={truck.id}> 
-          <tr>            
+        <Fragment key={truck.id}>
+          <tr>
             <td>{truck.name}</td>
             <td>{truck.location}</td>
-          </tr>         
+          </tr>
         </Fragment>
       );
     });

@@ -10,10 +10,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(truck) {
     const action = addTruckPromise(truck);
-    console.log('working addTruck!', truck);
     dispatch(action);
     return action.payload;
-  } 
+  }
 });
 
 export default connect(
