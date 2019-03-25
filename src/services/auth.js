@@ -1,4 +1,5 @@
 import { WebAuth } from 'auth0-js';
+import { post, get } from './request';
 
 const authService = new WebAuth({
   domain: process.env.AUTH0_DOMAIN,
@@ -22,7 +23,10 @@ export const handleAuthorization = () => {
   return new Promise((resolve, reject) => {
     authService.parseHash((err, result) => {
       if(result && result.accessToken && result.idToken) {
-        return resolve(result.idToken);
+        return get('/api/admin/role', result.idToken)
+          .then(({ role }) => {
+            resolve({ token: result.idToken, role });
+          });
       }
       return reject(err || 'Missing access token');
     });

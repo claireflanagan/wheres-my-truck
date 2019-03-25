@@ -1,0 +1,11 @@
+.InviteUser {
+  text-align: center;
+
+  input {
+    padding: 0.4em;
+  }
+
+  button {
+    padding: 0.4em
+  }
+}

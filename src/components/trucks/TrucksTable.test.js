@@ -2,6 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import TrucksTable from './TrucksTable';
 
+jest.mock('../../services/auth.js');
+
 describe('TruckTable component', () => {
   const trucks = [
     {
@@ -21,8 +23,11 @@ describe('TruckTable component', () => {
   ];
   it('matches a snapshot', () => {
     expect(true);
-    const wrapper = shallow(<TrucksTable
-      trucks={trucks}/>);
+    const wrapper = shallow(
+      <TrucksTable
+        trucks={trucks}
+        getTrucks={jest.fn()}
+      />);
     expect(wrapper).toMatchSnapshot();
   });
 });

@@ -10,9 +10,6 @@ module.exports = {
     filename: 'bundle.[hash].js',
     publicPath: '/'
   },
-  // mode (will eventually be cmd line arg in package.json scripts)
-  mode: 'development',
-  devtool: 'inline-source-map',
   devServer: {
     port: 7846,
     historyApiFallback: true,

@@ -31,10 +31,9 @@ export const getTrucks = () => {
 export const getTruck = id => {
   return get(`/api/trucks/${id}`)
     .then(parseTruck);
-}; 
+};
 
 export const addTruck = truck => {
-  console.log('truck here', truck);
   return post('/api/trucks', truck)
     .then(parseTruck);
 };

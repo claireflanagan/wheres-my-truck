@@ -9,7 +9,6 @@ export default class MaintenancesList extends Component {
   render() {
     const { maintenances, truck } = this.props;
     // if(!maintenances || !truck) return null;
-    console.log('maintenances', maintenances);
     const tableRows = maintenances.map((maintenance, i) => {
       return (
         <tr key={i}>
@@ -20,8 +19,8 @@ export default class MaintenancesList extends Component {
       );
     });
     return (
-      <Fragment>  
-        <h1>{truck.name}</h1> 
+      <Fragment>
+        <h1>{truck.name}</h1>
         <table className={`${styles.table} ${styles.threeColumns}`}>
           <thead>
             <th>Date</th>
@@ -30,10 +29,10 @@ export default class MaintenancesList extends Component {
           </thead>
           <tbody>
             {tableRows}
-          </tbody>          
+          </tbody>
         </table>
       </Fragment>
-     
+
     );
   }
 

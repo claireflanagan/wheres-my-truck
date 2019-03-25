@@ -1,6 +1,8 @@
 import { fetchTruckPromise, GET_TRUCK } from './trucks';
 
 jest.mock('../services/truckApi');
+jest.mock('../services/auth.js');
+
 
 describe('get truck', () => {
   it('can get a truck', () => {
