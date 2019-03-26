@@ -4,7 +4,7 @@ import { trucksCollection } from '../../services/collections';
 import tableStyles from '../truck/TruckDetail.css';
 
 export default function TrucksTable() {
-  const trucks = useFirebase(trucksCollection);
+  const trucks = useFirebase(trucksCollection, []);
 
   const trucksTable = trucks.map(truck => {
     return (

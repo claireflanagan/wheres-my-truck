@@ -8,7 +8,7 @@ export default function Home() {
   const user = useCurrentUser();
   if(!user) return null;
   const { role } = user;
-  console.log(user);
+  
   return (
     <div className={styles.mainNav}>
       <Link to={ROUTES.TRUCKSLIST.linkTo()}>

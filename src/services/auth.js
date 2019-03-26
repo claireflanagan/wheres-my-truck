@@ -4,20 +4,16 @@ import { usersCollection } from './collections';
 
 export const auth = app.auth();
 
-export const signin = (email, password) => {
-  auth.signInWithEmailAndPassword(email, password);
-};
+export const signin = (email, password) => auth.signInWithEmailAndPassword(email, password);
 
 export const signout = () => auth.signOut();
 
 export const subscribe = (userFn, rejectFn) => auth.onAuthStateChanged((user) => {
-  if(!user) {
-    return rejectFn();
-  }
+  if(!user) return rejectFn && rejectFn();
   usersCollection
-    .doc(user.uid)
+    .where('email', '==', user.email)
     .get()
     .then(userDoc => {
-      return userFn(userDoc.data());
+      return userFn && userFn(userDoc.docs[0] && userDoc.docs[0].data());
     });
 });

@@ -6,7 +6,6 @@ import { maintenancesCollection, trucksCollection } from '../../services/collect
 export default function MaintenancesList({ match }) {
   const maintenances = useFirebase(maintenancesCollection.orderBy('reportedDate'), []);
   const truck = useFirebase(trucksCollection.doc(match.params.id), {});
-  console.log(maintenances);
 
   const tableRows = maintenances.map((maintenance, i) => {
     return (
