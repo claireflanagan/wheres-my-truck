@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 import { ROUTES } from '../../routes/routes';
 import { useCurrentUser } from '../../hooks/useCurrentUser';
 import styles from './Home.css';
+import Loading from '../Loading';
 
 export default function Home() {
   const user = useCurrentUser();
-  if(!user) return null;
+  if(!user) return <Loading />;
   const { role } = user;
-  
+
   return (
     <div className={styles.mainNav}>
       <Link to={ROUTES.TRUCKSLIST.linkTo()}>

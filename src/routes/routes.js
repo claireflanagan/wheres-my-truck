@@ -6,8 +6,8 @@ import TrucksTable from '../components/trucks/TrucksTable';
 import ImageDisplay from '../components/truck/ImageDisplay';
 import MaintenancesList from '../components/maintenance/MaintenanceList';
 import Home from '../components/home/Home';
-import InviteUser from '../components/admin/InviteUser';
-import UsersList from '../components/admin/UsersList';
+import InviteUser from '../components/admin/users/InviteUser';
+import UsersList from '../components/admin/users/UsersList';
 import AddTruck from '../components/admin/AddTruck';
 
 export const ROUTES = {

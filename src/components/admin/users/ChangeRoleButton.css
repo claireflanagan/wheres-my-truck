@@ -1,0 +1,10 @@
+.ChangeRoleButton {
+  padding: 0.4em;
+  border: none;
+  background-color: rgba(	103, 157, 105, 1);
+  color: #FFFFFF;
+
+  &:hover {
+    background-color: rgba(103, 157, 105, 0.9)
+  }
+}

@@ -11,12 +11,12 @@ import { getRoutes } from '../../routes/routes';
 export default privateRoute(function App() {
   return (
     <Router>
-      <div>
+      <>
         <Header />
         <Switch>
           {getRoutes()}
         </Switch>
-      </div>
+      </>
     </Router>
   );
 });

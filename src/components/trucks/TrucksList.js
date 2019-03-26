@@ -3,9 +3,12 @@ import { useFirebase } from '../../hooks/useFirebase';
 import { trucksCollection } from '../../services/collections';
 import Truck from '../truck/Truck';
 import styles from './TrucksList.css';
+import Loading from '../Loading';
 
 export default () => {
-  const trucks = useFirebase(trucksCollection, []);
+  const trucks = useFirebase(trucksCollection);
+  if(!trucks) return <Loading />;
+
   const trucksList = trucks.map(truck => {
     return (
       <li key={truck.id}>

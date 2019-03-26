@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { inviteUser } from '../../actions/admin';
+import { inviteUser } from '../../../actions/admin';
 
 export default function InviteUser() {
   const [email, setEmail] = useState('');

@@ -4,9 +4,12 @@ import { ROUTES } from '../../routes/routes';
 import { Link } from 'react-router-dom';
 import { useFirebase } from '../../hooks/useFirebase';
 import { trucksCollection } from '../../services/collections';
+import Loading from '../Loading';
 
 export default function TruckDetail({ match }) {
-  const truck = useFirebase(trucksCollection.doc(match.params.id), {});
+  const truck = useFirebase(trucksCollection.doc(match.params.id));
+  if(!truck) return <Loading />;
+
 
   return (
     <div>

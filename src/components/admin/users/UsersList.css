@@ -1,0 +1,13 @@
+.UsersList {
+  margin: auto;
+
+  tr {
+    padding: 1em;
+
+    background-color: #F8F8F8;
+
+    th, td {
+      padding: 1em;
+    }
+  }
+}

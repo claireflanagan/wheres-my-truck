@@ -2,9 +2,11 @@ import React, { Fragment } from 'react';
 import { useFirebase } from '../../hooks/useFirebase';
 import { trucksCollection } from '../../services/collections';
 import tableStyles from '../truck/TruckDetail.css';
+import Loading from '../Loading';
 
 export default function TrucksTable() {
-  const trucks = useFirebase(trucksCollection, []);
+  const trucks = useFirebase(trucksCollection);
+  if(!trucks) return <Loading />;
 
   const trucksTable = trucks.map(truck => {
     return (

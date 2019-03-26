@@ -2,10 +2,13 @@ import React, { Fragment } from 'react';
 import { useFirebase } from '../../hooks/useFirebase';
 import styles from '../truck/TruckDetail.css';
 import { maintenancesCollection, trucksCollection } from '../../services/collections';
+import Loading from '../Loading';
 
 export default function MaintenancesList({ match }) {
-  const maintenances = useFirebase(maintenancesCollection.orderBy('reportedDate'), []);
+  const maintenances = useFirebase(maintenancesCollection.orderBy('reportedDate'), null);
   const truck = useFirebase(trucksCollection.doc(match.params.id), {});
+
+  if(!maintenances) return <Loading />;
 
   const tableRows = maintenances.map((maintenance, i) => {
     return (

@@ -8,12 +8,14 @@ export const signin = (email, password) => auth.signInWithEmailAndPassword(email
 
 export const signout = () => auth.signOut();
 
-export const subscribe = (userFn, rejectFn) => auth.onAuthStateChanged((user) => {
-  if(!user) return rejectFn && rejectFn();
+export const subscribe = (userFn, rejectFn) => auth.onAuthStateChanged((authUser) => {
+  if(!authUser) return rejectFn && rejectFn();
   usersCollection
-    .where('email', '==', user.email)
+    .where('email', '==', authUser.email)
     .get()
     .then(userDoc => {
-      return userFn && userFn(userDoc.docs[0] && userDoc.docs[0].data());
+      const user = userDoc.docs[0];
+      if(!authUser) return rejectFn && rejectFn();
+      return userFn && userFn({ ...user.data(), id: user.id });
     });
 });

@@ -22,34 +22,35 @@ async function seed() {
     }))
     .map(addTruck));
 
-  const issueIds = await Promise.all([...Array(100)].map(() => ({
-    reportedDate: chance.date({ year: 2018 }),
-    user: chance.string({ length: 10 }),
-    description: chance.paragraph(),
-    resolvedDate: chance.pickone([chance.date({ year: 2019 }), null]),
-    truck: chance.pickone(truckIds)
-  }))
-    .map(createIssue));
+  // const issueIds = await Promise.all([...Array(100)].map(() => ({
+  //   reportedDate: chance.date({ year: 2018 }),
+  //   user: chance.string({ length: 10 }),
+  //   description: chance.paragraph(),
+  //   resolvedDate: chance.pickone([chance.date({ year: 2019 }), null]),
+  //   truck: chance.pickone(truckIds)
+  // }))
+  //   .map(createIssue));
 
-  await Promise.all([...Array(100)]
-    .map(() => ({
-      startDate: chance.date({ year: 2018 }),
-      user: chance.string({ length: 10 }),
-      truck: chance.pickone(truckIds),
-      levelOfUrgency: chance.pickone(['Very Urgent', 'Moderately Urgent', 'Not Urgent', 'Unknown']),
-      type: chance.pickone(['Routine', 'Corrective']),
-      reportedDate: chance.date({ year: 2019 }),
-      descriptionOfMaintenancePerformed: {
-        description: chance.paragraph(),
-        receipt: chance.word(),
-        cost: chance.floating({ fixed: 2, min: 0 }),
-        garage: chance.string()
-      },
-      issueOpen: true,
-      issue: chance.pickone(issueIds)
-    }))
-    .map(addMaintenance));
+  // await Promise.all([...Array(100)]
+  //   .map(() => ({
+  //     startDate: chance.date({ year: 2018 }),
+  //     user: chance.string({ length: 10 }),
+  //     truck: chance.pickone(truckIds),
+  //     levelOfUrgency: chance.pickone(['Very Urgent', 'Moderately Urgent', 'Not Urgent', 'Unknown']),
+  //     type: chance.pickone(['Routine', 'Corrective']),
+  //     reportedDate: chance.date({ year: 2019 }),
+  //     descriptionOfMaintenancePerformed: {
+  //       description: chance.paragraph(),
+  //       receipt: chance.word(),
+  //       cost: chance.floating({ fixed: 2, min: 0 }),
+  //       garage: chance.string()
+  //     },
+  //     issueOpen: true,
+  //     issue: chance.pickone(issueIds)
+  //   }))
+  //   .map(addMaintenance));
 }
 
 seed()
-  .then(() => console.log('done'));
+  .then(() => console.log('done'))
+  .catch(console.error);
