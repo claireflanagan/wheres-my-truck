@@ -3,7 +3,7 @@ import { useFirebase } from '../../hooks/useFirebase';
 import { trucksCollection } from '../../services/collections';
 import Truck from '../truck/Truck';
 import styles from './TrucksList.css';
-import Loading from '../Loading';
+import Loading from '../commons/Loading';
 
 export default () => {
   const trucks = useFirebase(trucksCollection);

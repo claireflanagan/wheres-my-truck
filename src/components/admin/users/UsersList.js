@@ -5,7 +5,7 @@ import DeleteUserButton from './DeleteUserButton';
 import { useCurrentUser } from '../../../hooks/useCurrentUser';
 import ChangeRoleButton from './ChangeRoleButton';
 import styles from './UsersList.css';
-import Loading from '../../Loading';
+import Loading from '../../commons/Loading';
 
 export default function UsersList() {
   const currentUser = useCurrentUser() || {};

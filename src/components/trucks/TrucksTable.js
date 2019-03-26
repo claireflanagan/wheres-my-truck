@@ -1,37 +1,26 @@
 import React, { Fragment } from 'react';
 import { useFirebase } from '../../hooks/useFirebase';
 import { trucksCollection } from '../../services/collections';
+import Loading from '../commons/Loading';
 import tableStyles from '../truck/TruckDetail.css';
-import Loading from '../Loading';
+import Table from '../commons/Table';
 
 export default function TrucksTable() {
   const trucks = useFirebase(trucksCollection);
   if(!trucks) return <Loading />;
 
-  const trucksTable = trucks.map(truck => {
-    return (
-      <Fragment key={truck.id}>
-        <tr>
-          <td>{truck.name}</td>
-          <td>{truck.location}</td>
-        </tr>
-      </Fragment>
-    );
-  });
+  const headers = [
+    { display: 'Truck:', key: 'name' },
+    { display: 'Location', key: 'location' }
+  ];
+
   return (
     <>
-      <h1>Where's my truck?</h1>
-      <table className={tableStyles.table}>
-        <thead>
-          <tr>
-            <th className={tableStyles.tableHeader}>Truck:</th>
-            <th className={tableStyles.tableHeader}>Location:</th>
-          </tr>
-        </thead>
-        <tbody>
-          {trucksTable}
-        </tbody>
-      </table>
+      <h1>Where&apos;s my truck?</h1>
+      <Table
+        headers={headers}
+        rows={trucks}
+      />
     </>
   );
 }

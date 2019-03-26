@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ROUTES } from '../../routes/routes';
 import { useCurrentUser } from '../../hooks/useCurrentUser';
 import styles from './Home.css';
-import Loading from '../Loading';
+import Loading from '../commons/Loading';
 
 export default function Home() {
   const user = useCurrentUser();

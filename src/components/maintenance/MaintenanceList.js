@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { useFirebase } from '../../hooks/useFirebase';
-import styles from '../truck/TruckDetail.css';
 import { maintenancesCollection, trucksCollection } from '../../services/collections';
-import Loading from '../Loading';
+import Loading from '../commons/Loading';
+import Table from '../commons/Table';
 
 export default function MaintenancesList({ match }) {
   const maintenances = useFirebase(maintenancesCollection.orderBy('reportedDate'), null);
@@ -10,30 +10,24 @@ export default function MaintenancesList({ match }) {
 
   if(!maintenances) return <Loading />;
 
-  const tableRows = maintenances.map((maintenance, i) => {
-    return (
-      <tr key={i}>
-        <td>{maintenance.reportedDate.toDate().toISOString()}</td>
-        <td>{maintenance.type}</td>
-        <td>{maintenance.issueDescription}</td>
-      </tr>
-    );
-  });
-  return (
-    <Fragment>
-      <h1>{truck.name}</h1>
-      <table className={`${styles.table} ${styles.threeColumns}`}>
-        <thead>
-          <th>Date</th>
-          <th>Type</th>
-          <th>Notes</th>
-        </thead>
-        <tbody>
-          {tableRows}
-        </tbody>
-      </table>
-    </Fragment>
+  const rows = maintenances.map(maint => ({
+    ...maint,
+    reportedDate: maint.reportedDate.toDate().toISOString()
+  }));
 
+  const headers = [
+    { display: 'Date', key: 'reportedDate' },
+    { display: 'Type', key: 'type' },
+    { display: 'Notes', key: 'issueDescription' }
+  ];
+  return (
+    <>
+      <h1>{truck.name}</h1>
+      <Table
+        headers={headers}
+        rows={rows}
+      />
+    </>
   );
 
 }

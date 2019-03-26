@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import roles from './roles';
-import { subscribe, signin } from '../services/auth';
+import { subscribe } from '../services/auth';
 import Login from '../components/login/Login';
-import Loading from '../components/Loading';
+import Loading from '../components/commons/Loading';
 
 export const privateRoute = (Component, role = roles.USER) => {
   class PrivateRoute extends PureComponent {
@@ -24,8 +24,8 @@ export const privateRoute = (Component, role = roles.USER) => {
     }
 
     render() {
-      if (this.state.loading) return <Loading />;
-      if (!this.state.user) return <Login />;
+      if(this.state.loading) return <Loading />;
+      if(!this.state.user) return <Login />;
       return <Component {...this.props} />;
     }
   }

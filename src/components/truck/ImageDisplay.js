@@ -2,7 +2,7 @@ import React from 'react';
 import { useFirebase } from '../../hooks/useFirebase';
 import { trucksCollection } from '../../services/collections';
 import styles from './ImageDisplay.css';
-import Loading from '../Loading';
+import Loading from '../commons/Loading';
 
 const ImageDisplay = ({ match }) => {
   const truck = useFirebase(trucksCollection.doc(match.params.id));
