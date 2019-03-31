@@ -8,11 +8,11 @@ export const addTruck = truck => {
 
   return trucksCollection.add(truckToAdd)
     .then(snap => snap.get())
-    .then(truck => truck.id)
-    .then(id => {
-      return Promise.all([
-        truckRegistration.child(id).put(truck.registrationImg),
-        truckInsurance.child(id).put(truck.insuranceImg)
-      ]);
-    });
+    .then(truck => truck.id);
+  // .then(id => {
+  //   return Promise.all([
+  //     truckRegistration.child(id).put(truck.registrationImg),
+  //     truckInsurance.child(id).put(truck.insuranceImg)
+  //   ]);
+  // });
 };

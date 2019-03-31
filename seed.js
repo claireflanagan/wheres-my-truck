@@ -1,7 +1,8 @@
 import { Chance } from 'chance';
 import { addTruck } from './src/actions/trucks';
-import { createIssue } from './src/actions/issues';
-import { addMaintenance } from './src/actions/maintenances';
+import { createTruckCheck } from './src/actions/truckCheck';
+// import { createIssue } from './src/actions/issues';
+// import { addMaintenance } from './src/actions/maintenances';
 
 const chance = Chance();
 
@@ -21,6 +22,60 @@ async function seed() {
       insurance: 'https://firebasestorage.googleapis.com/v0/b/dudewheresmytruck-f2b38.appspot.com/o/insurance%2Fins.png?alt=media&token=5bc37a9d-e9de-42be-9813-fb70924342b0'
     }))
     .map(addTruck));
+
+  const truckCheckIds = await Promise.all([...Array(100)]
+    .map(() => ({
+      date: chance.date(),
+      user: chance.name(),
+      truckId: chance.pickone(truckIds),
+      inService: chance.bool(),
+      motorOil: {
+        ok: chance.bool(),
+        notes: chance.sentence()
+      },
+      coolant: {
+        ok: chance.bool(),
+        notes: chance.sentence()
+      },
+      brakeFluid: {
+        ok: chance.bool(),
+        notes: chance.sentence()
+      },
+      powerSteeringFluid: {
+        ok: chance.bool(),
+        notes: chance.sentence()
+      },
+      fourWheelDrive: {
+        ok: chance.bool(),
+        notes: chance.sentence()
+      },
+      batteryCables: {
+        ok: chance.bool(),
+        notes: chance.sentence()
+      },
+      lights: {
+        ok: chance.bool(),
+        notes: chance.sentence()
+      },
+      acAndHeat: {
+        ok: chance.bool(),
+        notes: chance.sentence()
+      },
+      insurance: {
+        ok: chance.bool(),
+        notes: chance.sentence()
+      },
+      registration: {
+        ok: chance.bool(),
+        notes: chance.sentence()
+      },
+      lpTags: {
+        ok: chance.bool(),
+        notes: chance.sentence()
+      }
+    }))
+    .map(createTruckCheck));
+
 
   // const issueIds = await Promise.all([...Array(100)].map(() => ({
   //   reportedDate: chance.date({ year: 2018 }),
