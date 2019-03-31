@@ -17,7 +17,7 @@ export default function TruckDetail({ match }) {
         <hgroup>
           <h2 className={styles.name}>{truck.name}</h2>
           <h3>{truck.year} {truck.make} {truck.model}</h3>
-          <h3>{truck.plates}</h3>
+          <h3>plate: {truck.plates}</h3>
         </hgroup>
         <span className={`${styles.use} ${truck.inUse ? styles.ride : styles.free}`} >
           {truck.inUse ? 'ride' : 'free'}

@@ -16,8 +16,18 @@ class AddTruck extends Component {
     tireSize: '',
     boughtDate: '',
     registration: '',
-    insurance: ''
+    registrationImg: '',
+    insurance: '',
+    insuranceImg: ''
   };
+
+  handleFileChange = ({ target }) => {
+    this.setState({
+      [target.name]: target.value,
+      [`${target.name}Img`]: target.files[0]
+    });
+
+  }
 
   handleChange = ({ target }) => {
     this.setState({ [target.name]: target.value });
@@ -87,11 +97,11 @@ class AddTruck extends Component {
           </p>
           <p>
             <label>Proof of Registration:</label>
-            <input name="registration" type="file" accept=".jpg, .png, .svg, .gif" value={registration} onChange={this.handleChange} />
+            <input name="registration" type="file" accept=".jpg, .png, .svg, .gif" value={registration} onChange={this.handleFileChange} />
           </p>
           <p>
             <label>Proof of Insurance:</label>
-            <input name="insurance" type="file" accept=".jpg, .png, .svg, .gif" value={insurance} onChange={this.handleChange} />
+            <input name="insurance" type="file" accept=".jpg, .png, .svg, .gif" value={insurance} onChange={this.handleFileChange} />
           </p>
           <button type="submit">Save</button>
         </form>

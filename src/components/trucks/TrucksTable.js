@@ -1,8 +1,7 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { useFirebase } from '../../hooks/useFirebase';
 import { trucksCollection } from '../../services/collections';
 import Loading from '../commons/Loading';
-import tableStyles from '../truck/TruckDetail.css';
 import Table from '../commons/Table';
 
 export default function TrucksTable() {
