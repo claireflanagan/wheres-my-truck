@@ -8,7 +8,8 @@
     "test:watch": "npm run test -- --watch",
     "build": "webpack --mode production",
     "start": "webpack-dev-server --hot --mode development --devtool eval-source-map",
-    "deploy": "firebase deploy"
+    "deploy:all": "firebase deploy",
+    "deploy": "firebase deploy --only hosting"
   },
   "repository": {
     "type": "git",
