@@ -1,31 +1,34 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { getToken } from '../selectors/auth';
-import { login } from '../services/auth';
 import roles from './roles';
+import { subscribe } from '../services/auth';
+import Login from '../components/login/Login';
+import Loading from '../components/commons/Loading';
 
 export const privateRoute = (Component, role = roles.USER) => {
-  class PrivateRouteContainer extends PureComponent {
-    static propTypes = {
-      token: PropTypes.string
-    };
-
-    needsAuth = () => !this.props.token && window.location.pathname !== '/callback';
+  class PrivateRoute extends PureComponent {
+    state = {
+      user: null,
+      loading: true
+    }
 
     componentDidMount() {
-      if(this.needsAuth()) login();
+      this.unsubscribe = subscribe((user) => {
+        this.setState({ loading: false, user });
+      }, () => {
+        this.setState({ loading: false });
+      });
+    }
+
+    componentWillUnmount() {
+      this.unsubscribe && this.unsubscribe();
     }
 
     render() {
-      if(this.needsAuth()) return <h1>LOADING</h1>;
+      if(this.state.loading) return <Loading />;
+      if(!this.state.user) return <Login />;
       return <Component {...this.props} />;
     }
   }
 
-  return connect(
-    state => ({
-      token: getToken(state)
-    })
-  )(PrivateRouteContainer);
+  return PrivateRoute;
 };

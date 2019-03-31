@@ -1,29 +1,18 @@
-import { getTrucks, getTruck, addTruck } from '../services/truckApi';
+import { trucksCollection } from '../services/collections';
+import { truckRegistration, truckInsurance } from '../services/storage';
 
-export const TRUCKS_LOAD_START = 'TRUCKS_LOAD_START';
-export const TRUCKS_LOAD_END = 'TRUCKS_LOAD_END';
+export const addTruck = truck => {
+  const truckToAdd = { ...truck };
+  delete truckToAdd.registrationImg;
+  delete truckToAdd.insuranceImg;
 
-export const UPDATE_TRUCKS = 'UPDATE_TRUCKS'; //getTRucks????
-export const fetchTrucksPromise = () => ({
-  type: UPDATE_TRUCKS,
-  loadStart: TRUCKS_LOAD_START,
-  loadEnd: TRUCKS_LOAD_END,
-  payload: getTrucks()
-});
-
-
-export const GET_TRUCK = 'GET_TRUCK';
-export const fetchTruckPromise = (id) => ({
-  type: GET_TRUCK,
-  loadStart: TRUCKS_LOAD_START,
-  loadEnd: TRUCKS_LOAD_END,
-  payload: getTruck(id)
-});
-
-export const ADD_TRUCK = 'ADD_TRUCK';
-export const addTruckPromise = (truck) => ({
-  type: ADD_TRUCK,
-  loadStart: TRUCKS_LOAD_START,
-  loadEnd: TRUCKS_LOAD_END,
-  payload: addTruck(truck)
-});
+  return trucksCollection.add(truckToAdd)
+    .then(snap => snap.get())
+    .then(truck => truck.id)
+    .then(id => {
+      return Promise.all([
+        truckRegistration.child(id).put(truck.registrationImg),
+        truckInsurance.child(id).put(truck.insuranceImg)
+      ]);
+    });
+};

@@ -1,0 +1,37 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth.uid != null;
+
+    }
+
+    function hasRole(role) {
+      return isSignedIn() &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == role;
+    }
+
+    function isAdmin() {
+      return hasRole('admin');
+    }
+
+    match /{document=**} {
+      allow read, write: if isSignedIn();
+    }
+
+    match /trucks/{truckId} {
+      allow write: if isAdmin();
+    }
+
+    match /maintenances/{maintenanceId} {
+      allow write: if isAdmin();
+    }
+
+    match /issues/{issueId} {
+      allow write: if isAdmin();
+    }
+
+    match /users/{userId} {
+      allow write: if isAdmin() || request.auth.uid == userId;
+    }
+  }
+}
