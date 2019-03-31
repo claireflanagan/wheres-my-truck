@@ -11,7 +11,8 @@ class TruckCheckoutForm extends Component {
     endDate: '',
     tripPurpose: '',
     gotLocation: '',
-    endLocation: ''
+    endLocation: '',
+    oilIsOk: ''
   };
 
   handleChange = ({ target }) => {
@@ -34,7 +35,8 @@ class TruckCheckoutForm extends Component {
       endDate,
       tripPurpose,
       gotLocation,
-      endLocation
+      endLocation,
+      checkOil
     } = this.state;
 
     return (
@@ -66,6 +68,19 @@ class TruckCheckoutForm extends Component {
             <label>Anticipated Return Location:</label>
             <input name="endLocation" type="text" value={endLocation} onChange={this.handleChange}/>
           </p>
+
+          <p>
+            <label>Fluids:</label>
+            <label></label>
+            <select name="checkOil" type="checkbox" value={checkOil} onChange={this.handleChange}>
+              <option value="" disabled>Select An Option</option>
+              <option value="ok">OK</option>
+              <option value="notOk">Not OK</option>
+            </select>
+
+          </p>
+
+
 
           <button type="submit">Submit</button>
 
