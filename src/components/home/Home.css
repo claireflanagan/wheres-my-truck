@@ -1,50 +1,50 @@
 body {
-    font-family: 'Encode Sans Condensed', sans-serif;
+  font-family: 'Encode Sans Condensed', sans-serif;
 }
 
 h1 {
-    text-align: center;
-    font-size: 6vw;
+  text-align: center;
+  font-size: 6vw;
 }
 
 .mainNav {
-    text-align: left;
-    margin-top: 4vh;
+  text-align: left;
+  margin-top: 4vh;
 
-    a {
-        display: block;
-        background: rgba(255, 255, 255, .5);
-        width: 90%;
-        padding: 25px;
-        border-radius: 4px;
-        margin: 1vh auto;
-        text-decoration: none;
-        color: #3D3736;
-        font-size: 2.8rem;
-        font-family: 'Encode Sans Condensed', sans-serif;
-        font-weight: 400;
-        box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
-        transition: all ease-in .3s;
-        margin-bottom: 30px;
+  a {
+      display: block;
+      background: rgba(255, 255, 255, .5);
+      width: 90%;
+      padding: 25px;
+      border-radius: 4px;
+      margin: 1vh auto;
+      text-decoration: none;
+      color: #3D3736;
+      font-size: 2.8rem;
+      font-family: 'Encode Sans Condensed', sans-serif;
+      font-weight: 400;
+      box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
+      transition: all ease-in .3s;
+      margin-bottom: 30px;
 
-        &:hover {
-            background-color: #fff;
-            text-decoration: none;
-        }
-    }
+      &:hover {
+          background-color: #fff;
+          text-decoration: none;
+      }
+  }
 
-    span {
-        padding-left: 20px;
-    }
+  span {
+      padding-left: 20px;
+  }
 
-    .add {
-        background: rgba(103, 157, 105, .8);
-        color: white;
+  .add {
+      background: rgba(103, 157, 105, .8);
+      color: white;
 
-        &:hover {
-            background: rgba(103, 157, 105, 1);
-        }
-    }
+      &:hover {
+          background: rgba(103, 157, 105, 1);
+      }
+  }
 }
 
 /* Small devices (landscape phones, 576px and up) */
@@ -52,35 +52,35 @@ h1 {
 
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
 @media (min-width: 768px) {
-    body {
-        background-image: url(https://res.cloudinary.com/dfgcomb18/image/upload/v1549764669/dude%20wheres%20my%20truck/bkgnd.jpg);
-    }
+  body {
+      background-image: url(https://res.cloudinary.com/dfgcomb18/image/upload/v1549764669/dude%20wheres%20my%20truck/bkgnd.jpg);
+  }
 }
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-    .mainNav {
-        max-width: 1200px;
-        padding: 20px;
-        margin: auto;
+  .mainNav {
+      max-width: 1200px;
+      padding: 20px;
+      margin: auto;
 
-        a {
-            width: 32%;
-            display: inline-block;
-            text-align: center;
-            min-height: 300px;
+      a {
+          width: 32%;
+          display: inline-block;
+          text-align: center;
+          min-height: 300px;
 
-            &:nth-child(2) {
-                margin: auto 2%;
-            }
+          &:nth-child(2) {
+              margin: auto 2%;
+          }
 
-        }
+      }
 
-        span {
-            display: block;
-            padding-left: 0;
-        }
-    }
+      span {
+          display: block;
+          padding-left: 0;
+      }
+  }
 }
 
 /* Extra large devices (large desktops, 1200px and up) */

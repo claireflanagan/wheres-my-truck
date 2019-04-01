@@ -1,12 +1,14 @@
-import Truck from '../containers/trucks/TruckContainer';
-import TrucksTable from '../containers/trucks/TrucksTableContainer';
-import ImageDisplay from '../containers/trucks/ImageDisplayContainer';
-import AllMaintenances from '../containers/maintenences/TruckMaintenancesContainer';
-import TrucksList from '../containers/trucks/TrucksListContainer';
-import AddTruck from '../containers/trucks/AddTruckContainer';
+import React from 'react';
+import { Route } from 'react-router-dom';
+import TrucksList from '../components/trucks/TrucksList';
+import TruckDetail from '../components/truck/TruckDetail';
+import TrucksTable from '../components/trucks/TrucksTable';
+import ImageDisplay from '../components/truck/ImageDisplay';
+import MaintenancesList from '../components/maintenance/MaintenanceList';
 import Home from '../components/home/Home';
-import Callback from '../containers/auth/Callback';
-
+import InviteUser from '../components/admin/users/InviteUser';
+import UsersList from '../components/admin/users/UsersList';
+import AddTruck from '../components/admin/AddTruck';
 
 export const ROUTES = {
   HOME: {
@@ -14,14 +16,10 @@ export const ROUTES = {
     Component: Home,
     linkTo: () => '/'
   },
-  AUTH_CALLBACK: {
-    path: '/callback',
-    Component: Callback
-  },
   TRUCK: {
-    path: '/trucks/:id',
-    Component: Truck,
-    linkTo: id => `/trucks/${id}`
+    path: '/truck/:id',
+    Component: TruckDetail,
+    linkTo: id => `/truck/${id}`
   },
   TRUCKSTABLE: {
     path: '/trucks/table',
@@ -34,19 +32,39 @@ export const ROUTES = {
     linkTo: () => '/trucks/list'
   },
   IMAGEDISPLAY: {
-    path: '/trucks/:id/:imageType',
+    path: '/truck/:id/:imageType(registration|insurance)',
     Component: ImageDisplay,
-    linkTo: (id, imageType) => `/trucks/${id}/${imageType}`
+    linkTo: (id, imageType) => `/truck/${id}/${imageType}`
   },
   MAINTENANCE_LIST: {
-    path: '/trucks/:id/maintenanceList',
-    Component: AllMaintenances,
-    linkTo: id => `/trucks/${id}/maintenanceList`
+    path: '/truck/:id/maintenanceList',
+    Component: MaintenancesList,
+    linkTo: id => `/truck/${id}/maintenanceList`
   },
   ADD_TRUCK: {
-    path: '/trucks/addTruck',
+    path: '/admin/addTruck',
     Component: AddTruck,
-    linkTo: () => '/trucks/addTruck'
+    linkTo: () => '/admin/addTruck'
+  },
+  INVITE_USERS: {
+    path: '/admin/invite',
+    Component: InviteUser,
+    linkTo: () => '/admin/invite'
+  },
+  ALL_USERS: {
+    path: '/admin/users',
+    Component: UsersList,
+    linkTo: () => '/admin/users'
   }
+};
 
+export const getRoutes = () => {
+  return Object.values(ROUTES).map(route => {
+    return <Route
+      exact
+      key={route.path}
+      path={route.path}
+      component={route.Component}
+    />;
+  });
 };

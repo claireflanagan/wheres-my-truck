@@ -1,14 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TruckList component matches a snapshot 1`] = `
-<ul>
-  <li
-    key="a0"
+<Fragment>
+  <h1>
+    Truck Information
+  </h1>
+  <ul
+    className="trucksList"
   >
-    <Truck
-      id="a0"
-      name="Truck 0"
-    />
-  </li>
-</ul>
+    <li
+      key="a0"
+    >
+      <Truck
+        id="a0"
+        name="Truck 0"
+      />
+    </li>
+  </ul>
+</Fragment>
 `;

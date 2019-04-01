@@ -1,40 +1,33 @@
-import React, { Component, Fragment } from 'react';
-import styles from '../truck/TruckDetail.css';
+import React from 'react';
+import { useFirebase } from '../../hooks/useFirebase';
+import { maintenancesCollection, trucksCollection } from '../../services/collections';
+import Loading from '../commons/Loading';
+import Table from '../commons/Table';
 
-export default class MaintenancesList extends Component {
-  componentDidMount() {
-    this.props.getMaintenances(this.props.match.params.id);
-  }
+export default function MaintenancesList({ match }) {
+  const maintenances = useFirebase(maintenancesCollection.orderBy('reportedDate'), null);
+  const truck = useFirebase(trucksCollection.doc(match.params.id), {});
 
-  render() {
-    const { maintenances, truck } = this.props;
-    // if(!maintenances || !truck) return null;
-    console.log('maintenances', maintenances);
-    const tableRows = maintenances.map((maintenance, i) => {
-      return (
-        <tr key={i}>
-          <td>{maintenance.dateReported}</td>
-          <td>{maintenance.type}</td>
-          <td>{maintenance.issueDescription}</td>
-        </tr>
-      );
-    });
-    return (
-      <Fragment>  
-        <h1>{truck.name}</h1> 
-        <table className={`${styles.table} ${styles.threeColumns}`}>
-          <thead>
-            <th>Date</th>
-            <th>Type</th>
-            <th>Notes</th>
-          </thead>
-          <tbody>
-            {tableRows}
-          </tbody>          
-        </table>
-      </Fragment>
-     
-    );
-  }
+  if(!maintenances) return <Loading />;
+
+  const rows = maintenances.map(maint => ({
+    ...maint,
+    reportedDate: maint.reportedDate.toDate().toISOString()
+  }));
+
+  const headers = [
+    { display: 'Date', key: 'reportedDate' },
+    { display: 'Type', key: 'type' },
+    { display: 'Notes', key: 'issueDescription' }
+  ];
+  return (
+    <>
+      <h1>{truck.name}</h1>
+      <Table
+        headers={headers}
+        rows={rows}
+      />
+    </>
+  );
 
 }

@@ -2,6 +2,7 @@
 
 exports[`ImageDisplay component matches a snapshot 1`] = `
 <img
+  className="refImage"
   src="https://www.dmv.ca.gov/imageserver/dmv/images/vr/regcard_w_arrow2.jpg"
 />
 `;

@@ -1,0 +1,10 @@
+.DeleteUserButton {
+  padding: 0.4em;
+  border: none;
+  background-color: rgba(237, 67, 55, 1);
+  color: #FFFFFF;
+
+  &:hover {
+    background-color: rgba(237, 67, 55, 0.9);
+  }
+}

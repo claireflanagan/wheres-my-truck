@@ -1,81 +1,75 @@
-
-.truckLinks {
-  display: flex;
-  justify-content: space-between;
-  margin: 4vw 5% -3%;
-a {
-  display: block;
-  padding-top: 5vw;
-  text-align: center;
+.TruckDetail {
+  margin: 1em;
+  padding: 1em;
   background: #F8F8F8;
-  width: 90%;
-  border: 1px solid #DCDCDC;
-  border-radius: 3px;
-  margin: 1vh auto;
-  text-decoration: none;
-  color: black;
-  &:nth-child(even) {
-    margin-left: 3%;
-    margin-right: 3%;
-  }
-  &:last-child {
-    padding-top: 3vw;
-    padding-bottom: 2vw;
-  }
-}
-}
-  
-.table {
-  border-collapse: collapse;
-  margin: 5% auto;
-  max-width: 375px;
-  width: 90%;
-  th{
-    border-bottom: 2px solid #DCDCDC;
-    border-top: 2px solid #DCDCDC;
-    font-size: 23px;
-    font-weight: 500;
-    padding: 5%;
-    text-align: center;
-    vertical-align: middle;
-    &.tableHeader {
-      text-align: left;
-    }
-    &:last-child {
-    border-right: none;
-    }
-  }
-  td {
-    background: #FFFFFF;
-    padding: 15px 20px;
-    text-align:left;
-    vertical-align: middle;
-    font-weight: 300;
-    font-size: 18px;
-    border-right: 1px solid #DCDCDC;
-    &:last-child {
-      border-right: 0px;
-    }
-  }
-  tr {
-    border-top: 1px solid #DCDCDC;
-    border-bottom: 1px solid #DCDCDC;
-    font-size: 16px;
-    font-weight: normal;
-    &:first-child {
-      border-top: none;
-    }
-    &:last-child {
-    border-bottom: none;
-    }
-    &:nth-child(odd) td {
-    background: #F8F8F8;
-    }
-  }
-  &.threeColumns {
-    td{
-      font-size: 15px;
-    }
-  }
-}
 
+  @media screen and (min-width: 1200px) {
+    max-width: 75em;
+    margin: auto;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+
+    h2 {
+      margin: 0;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 1em;
+    }
+
+    .use {
+      display: inline-block;
+      max-height: 30px;
+      margin: 1em;
+      padding: 0.4em;
+      border-radius: 0.4em;
+      color: #FFFFFF;
+      font-size: 1.4rem;
+      vertical-align: top;
+    }
+
+    .free {
+      background-color: #679D69;
+    }
+
+    .ride {
+      background-color: #679b9d;
+    }
+  }
+
+  .truckLinks {
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width: 900px) {
+      flex-direction: row;
+    }
+
+    a {
+      display: block;
+      width: 100%;
+      margin: 0.6rem 0;
+      padding: 3em;
+      border: 1px solid #DCDCDC;
+      border-radius: 0.2em;
+
+      background: #F8F8F8;
+      color: black;
+
+      font-size: 1.4em;
+      text-decoration: none;
+      text-align: center;
+
+      @media screen and (min-width: 900px) {
+        margin: 1rem 0.6rem;
+      }
+    }
+  }
+
+
+}

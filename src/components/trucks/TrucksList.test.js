@@ -3,6 +3,8 @@ import { shallow } from 'enzyme';
 import TrucksList from './TrucksList';
 
 jest.mock('../../routes/routes');
+jest.mock('../../services/auth.js');
+
 describe('TruckList component', () => {
   const trucks = [
     {

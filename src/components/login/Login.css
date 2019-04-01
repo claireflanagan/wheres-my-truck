@@ -1,0 +1,62 @@
+.Login {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .error {
+    color: #3D3736;
+    font-size: 1.2em;
+  }
+
+  input {
+    display: block;
+    min-width: 300px;
+    margin: 1em 0;
+    padding: 0.4em;
+
+    font-size: 1.2em;
+  }
+
+  button {
+    display: block;
+    width: 100%;
+    margin: 1em 0;
+    padding: 0.4em;
+    border: none;
+
+    background-color: #679D69;
+    color: #FFFFFF;
+
+    font-weight: 700;
+    font-size: 1.2em;
+  }
+
+  button.loading {
+    background-color: #99BE7F;
+    cursor: wait;
+    &::after {
+      content: '';
+      animation: loading 2s linear 1s infinite ;
+    }
+  }
+
+  @keyframes loading {
+    0% {
+      content: '';
+    }
+
+    33% {
+      content: '.'
+    }
+
+    66% {
+      content: '..';
+    }
+
+    100% {
+      content: '...';
+    }
+  }
+}
