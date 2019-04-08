@@ -7,36 +7,61 @@ body {
     background-image: url(https://res.cloudinary.com/dfgcomb18/image/upload/v1549764732/dude%20wheres%20my%20truck/bkgnd-mobile.jpg);
 }
 
-.header {
-    text-decoration: none;
-    max-width: 480px;
-    margin: auto;
-    padding: 20px;
 
-    h1 {
-        font-size: 4rem;
-        font-family: 'Encode Sans Condensed', sans-serif;
-        font-weight: 900;
-        text-transform: uppercase;
-        text-align: left;
-        letter-spacing: 1px;
-        color: #3D3736;
-        max-width: 220px;
-        display: inline-block;
-        margin: 0;
+@media (min-width: 0px) {
+    .header {
+        text-decoration: none;
+        margin: 0px auto 40px auto;
+        padding: 5px 10px;
+        background: rgba(255, 255, 255, .8);
+
+        h1 {
+            font-size: 1.5rem;
+            font-family: 'Encode Sans Condensed', sans-serif;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-align: left;
+            letter-spacing: 1px;
+            color: #3D3736;
+            max-width: 170px;
+            display: inline-block;
+            margin: 0;
+        }
+
+        span {
+            font-weight: 400;
+            font-size: 1rem;
+        }
+
+        img {
+            vertical-align: baseline;
+            margin-right: 10px;
+            width: 70px;
+        }
+
+        button {
+            border: solid 1px #3D3736;
+            background: transparent;
+            border-radius: 46px;
+            padding: 8px 10px;
+            float: right;
+            text-transform: uppercase;
+            font-size: .7rem;
+            color: #3D3736;
+            letter-spacing: 1px;
+            margin-top: 25px;
+            cursor: pointer;
+            transition: all ease .3s;
+            
+            &:hover {
+                color: white;
+                background-color: #3D3736;
+            }
+        }
+
     }
 
-    span {
-        font-weight: 400;
-        font-size: 2rem;
-    }
-
-    img {
-        vertical-align: baseline;
-        margin-right: 10px;
-    }
 }
-
 
 
 /* Small devices (landscape phones, 576px and up) */
@@ -46,6 +71,13 @@ body {
 @media (min-width: 768px) {
     body {
         background-image: url(https://res.cloudinary.com/dfgcomb18/image/upload/v1549764669/dude%20wheres%20my%20truck/bkgnd.jpg);
+    }
+
+    .header {
+        button {
+            padding: 8px 19px;
+
+        }
     }
 }
 

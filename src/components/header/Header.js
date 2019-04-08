@@ -11,7 +11,7 @@ export default function Header() {
         <img src="https://res.cloudinary.com/dfgcomb18/image/upload/v1549764837/dude%20wheres%20my%20truck/logo.png" />
         <h1><span>Dude,</span><br />Where&apos;s My Truck?</h1>
       </Link>
-      <button onClick={signout}>Logout</button>
+      <button onClick={signout} className="logout">Logout &nbsp;<i class="fas fa-sign-out-alt"></i></button>
     </div>
   );
 }
