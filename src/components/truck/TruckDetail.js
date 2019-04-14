@@ -8,14 +8,12 @@ import Loading from '../commons/Loading';
 
 export default function TruckDetail({ match }) {
   const truck = useFirebase(trucksCollection.doc(match.params.id));
-  let truckCheck = useFirebase(truckChecksCollection.where('truckId', '==', match.params.id));
-  if(truckCheck) {
-    // Just grabbing first for now to check and see if it works
-    // Ultimately what we want is the latest one, not first
-    truckCheck = truckCheck[0];
-  }
-  // console.log('truckcheck', truckCheck[0]);
-  // const truckCheck = truckCheckArray[0];
+  let truckCheck = useFirebase(truckChecksCollection
+    .where('truckId', '==', match.params.id)
+    .orderBy('date', 'desc')
+    .limit(1));
+  
+  if(truckCheck) truckCheck = truckCheck[0];
   if(!truck || !truckCheck) return <Loading />;
 
   return (
