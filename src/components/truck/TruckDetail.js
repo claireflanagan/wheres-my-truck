@@ -14,7 +14,7 @@ export default function TruckDetail({ match }) {
     .limit(1));
   
   if(truckCheck) truckCheck = truckCheck[0];
-  if(!truck || !truckCheck) return <Loading />;
+  else if(!truck) return <Loading />;
 
   return (
     <section className={styles.TruckDetail}>
