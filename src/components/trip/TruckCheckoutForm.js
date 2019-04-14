@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { ROUTES } from '../../routes/routes';
 import styles from './TruckCheckoutForm.css';
-
+import { createTrip } from '../../actions/trips';
 
 class TruckCheckoutForm extends Component {
   state = {
@@ -22,8 +22,9 @@ class TruckCheckoutForm extends Component {
     event.preventDefault();
     const trip = this.state;
     console.log('sup, truck trip handleSubmit?');
+    //line below not correct. "Object is not a function"
     createTrip(trip)
-      .then((id) => this.props.history.push(ROUTES.TRUCK.linkTo(.id)));
+      .then(id => this.props.history.push(ROUTES.TRUCK.linkTo(id)));
 
   };
 

@@ -4,13 +4,13 @@ import TrucksList from '../components/trucks/TrucksList';
 import TruckDetail from '../components/truck/TruckDetail';
 import TrucksTable from '../components/trucks/TrucksTable';
 import TruckCheckoutForm from '../components/trip/TruckCheckoutForm';
+import TripDetail from '../components/trip/TripDetail';
 import ImageDisplay from '../components/truck/ImageDisplay';
 import MaintenancesList from '../components/maintenance/MaintenanceList';
 import Home from '../components/home/Home';
 import InviteUser from '../components/admin/users/InviteUser';
 import UsersList from '../components/admin/users/UsersList';
 import AddTruck from '../components/admin/AddTruck';
-// create TripDetail component then import here
 
 export const ROUTES = {
   HOME: {
@@ -33,15 +33,16 @@ export const ROUTES = {
     Component: TrucksList,
     linkTo: () => '/trucks/list'
   },
-  TRIP: {
-    path: '/trip/:id',
-    Component: TripDetail,
-    linkTo: id => `/trip/${id}`
-  },
+
   TRUCKCHECKOUT: {
     path: '/trip/checkout',
     Component: TruckCheckoutForm,
     linkTo: () => '/trip/checkout'
+  },
+  TRIP: {
+    path: '/trip/:id',
+    Component: TripDetail,
+    linkTo: id => `/trip/${id}`
   },
   IMAGEDISPLAY: {
     path: '/truck/:id/:imageType(registration|insurance)',
