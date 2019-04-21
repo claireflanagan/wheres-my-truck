@@ -29,7 +29,7 @@ export default function TruckDetail({ match }) {
     registration: 'Registration'   
   };
 
-  if(truckCheck) {
+  if(truckCheck && truckCheck.length) {
     truckCheck = truckCheck[0];
     const truckCheckKeys = Object.keys(truckCheck);
     
@@ -75,7 +75,7 @@ export default function TruckDetail({ match }) {
         <dd>{truck.tireSize}</dd>
         <dt>Bought Date</dt>
         <dd>{truck.boughtDate.toDate().toDateString()}</dd>
-        {truckCheck && 
+        {(truckCheck && truckCheck.length) &&
           <div>
             <h2>Truck Check Info</h2>
             <dt>Date of Last Truck Check</dt>
