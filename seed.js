@@ -5,9 +5,11 @@ import { createTruckCheck } from './src/actions/truckCheck';
 // import { addMaintenance } from './src/actions/maintenances';
 
 const chance = Chance();
+let truckIds = [];
+let truckCheckIds = [];
 
 async function seed() {
-  const truckIds = await Promise.all([...Array(10)]
+  truckIds = await Promise.all([...Array(10)]
     .map(() => ({
       name: chance.name(),
       location: chance.address(),
@@ -23,57 +25,62 @@ async function seed() {
     }))
     .map(addTruck));
 
-  const truckCheckIds = await Promise.all([...Array(100)]
-    .map(() => ({
-      date: chance.date(),
-      user: chance.name(),
-      truckId: chance.pickone(truckIds),
-      inService: chance.bool(),
-      motorOil: {
-        ok: chance.bool(),
-        notes: chance.sentence()
-      },
-      coolant: {
-        ok: chance.bool(),
-        notes: chance.sentence()
-      },
-      brakeFluid: {
-        ok: chance.bool(),
-        notes: chance.sentence()
-      },
-      powerSteeringFluid: {
-        ok: chance.bool(),
-        notes: chance.sentence()
-      },
-      fourWheelDrive: {
-        ok: chance.bool(),
-        notes: chance.sentence()
-      },
-      batteryCables: {
-        ok: chance.bool(),
-        notes: chance.sentence()
-      },
-      lights: {
-        ok: chance.bool(),
-        notes: chance.sentence()
-      },
-      acAndHeat: {
-        ok: chance.bool(),
-        notes: chance.sentence()
-      },
-      insurance: {
-        ok: chance.bool(),
-        notes: chance.sentence()
-      },
-      registration: {
-        ok: chance.bool(),
-        notes: chance.sentence()
-      },
-      lpTags: {
-        ok: chance.bool(),
-        notes: chance.sentence()
-      }
-    }))
+  truckCheckIds = await Promise.all([...Array(10)]
+    .map(() => {
+      const truckIdsCopy = truckIds.slice();
+      const truckCheck = {
+        date: chance.date(),
+        user: chance.name(),
+        truckId: chance.pickone(truckIdsCopy),
+        inService: chance.bool(),
+        motorOil: {
+          ok: chance.bool(),
+          notes: chance.sentence()
+        },
+        coolant: {
+          ok: chance.bool(),
+          notes: chance.sentence()
+        },
+        brakeFluid: {
+          ok: chance.bool(),
+          notes: chance.sentence()
+        },
+        powerSteeringFluid: {
+          ok: chance.bool(),
+          notes: chance.sentence()
+        },
+        fourWheelDrive: {
+          ok: chance.bool(),
+          notes: chance.sentence()
+        },
+        batteryCables: {
+          ok: chance.bool(),
+          notes: chance.sentence()
+        },
+        lights: {
+          ok: chance.bool(),
+          notes: chance.sentence()
+        },
+        acAndHeat: {
+          ok: chance.bool(),
+          notes: chance.sentence()
+        },
+        insurance: {
+          ok: chance.bool(),
+          notes: chance.sentence()
+        },
+        registration: {
+          ok: chance.bool(),
+          notes: chance.sentence()
+        },
+        lpTags: {
+          ok: chance.bool(),
+          notes: chance.sentence()
+        }
+      };
+      truckIdsCopy.splice(truckIdsCopy.indexOf(truckCheck.truckId), 1);
+      return truckCheck;
+    })
     .map(createTruckCheck));
 
 

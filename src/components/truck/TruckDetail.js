@@ -13,8 +13,40 @@ export default function TruckDetail({ match }) {
     .orderBy('date', 'desc')
     .limit(1));
   
-  if(truckCheck) truckCheck = truckCheck[0];
+  let truckCheckDetail;
+  const nameDict = {
+    acAndHeat: 'AC and Heat',
+    batteryCables: 'Battery Cables',
+    brakeFluid: 'Brake Fluid',
+    coolant: 'Coolant',
+    date: 'Date of Last Check',
+    fourWheelDrive: 'Four Wheel Drive',
+    insurance: 'Insurance',
+    lights: 'Lights',
+    lpTags: 'LP Tags',
+    motorOil: 'Motor Oil',
+    powerSteeringFluid: 'Power Steering Fluid',
+    registration: 'Registration'   
+  };
+
+  if(truckCheck) {
+    truckCheck = truckCheck[0];
+    const truckCheckKeys = Object.keys(truckCheck);
+    
+    truckCheckDetail = truckCheckKeys
+      .filter((item) => truckCheck[item].notes)
+      .map((item, i) => {
+        return (
+          <div key={i}>      
+            <dt>{nameDict[item]} - {truckCheck[item].ok ? 'OK' : 'Not OK'}</dt>
+            <dd>Notes: {truckCheck[item].notes}</dd>
+          </div>  
+        );
+      });
+  }
   else if(!truck) return <Loading />;
+
+
 
   return (
     <section className={styles.TruckDetail}>
@@ -22,7 +54,8 @@ export default function TruckDetail({ match }) {
         <hgroup>
           <h2 className={styles.name}>{truck.name}</h2>
           <h3>{truck.year} {truck.make} {truck.model}</h3>
-          <h3>plate: {truck.plates}</h3>
+          <h3><span>Plates:</span> {truck.plates}</h3>
+          <h3><span>Last reported location:</span> {truck.location}</h3>
         </hgroup>
         <span className={`${styles.use} ${truck.inUse ? styles.ride : styles.free}`} >
           {truck.inUse ? 'in use' : 'free'}
@@ -32,40 +65,22 @@ export default function TruckDetail({ match }) {
       <div className={styles.truckLinks}>
         <Link to={ROUTES.IMAGEDISPLAY.linkTo(truck.id, 'registration')}>Registration</Link>
         <Link to={ROUTES.IMAGEDISPLAY.linkTo(truck.id, 'insurance')}>Insurance</Link>
-        <Link to={ROUTES.MAINTENANCE_LIST.linkTo(truck.id)}>Maintenance Records</Link>
+        {/* <Link to={ROUTES.MAINTENANCE_LIST.linkTo(truck.id)}>Maintenance Records</Link> */}
       </div>
       <dl>
-        <dt>Last reported location</dt>
-        <dd>{truck.location}</dd>
+        <h2>General Info</h2>
         <dt>Vin</dt>
         <dd>{truck.vin}</dd>
         <dt>Tire Size</dt>
         <dd>{truck.tireSize}</dd>
         <dt>Bought Date</dt>
-        <dd>{truck.boughtDate.toDate().toISOString()}</dd>
+        <dd>{truck.boughtDate.toDate().toDateString()}</dd>
         {truckCheck && 
           <div>
-            <dt>TruckCheck</dt>
-            <dd>Date of check: {truckCheck.date.toDate().toISOString()}</dd>
-            <dt>AC and Heat</dt>
-            <dd>Status: {truckCheck.acAndHeat.ok ? 'OK' : 'Not OK'}</dd>
-            <dd>Notes: {truckCheck.acAndHeat.notes}</dd>
-            <dt>Battery Cables</dt>
-            <dd>Status: {truckCheck.batteryCables.ok ? 'OK' : 'Not OK'}</dd>
-            <dd>Notes: {truckCheck.batteryCables.notes}</dd>
-            <dt>Brake Fluid</dt>
-            <dd>Status: {truckCheck.brakeFluid.ok ? 'OK' : 'Not OK'}</dd>
-            <dd>Notes: {truckCheck.brakeFluid.notes}</dd>
-            <dt>Coolant</dt>
-            <dd>Status: {truckCheck.coolant.ok ? 'OK' : 'Not OK'}</dd>
-            <dd>Notes: {truckCheck.coolant.notes}</dd>
-            <dt>Four Wheel Drive</dt>
-            <dt>Lights</dt>
-            <dt>Lp Tags</dt>
-            <dt>Motor Oil</dt>
-            <dt>Power Steering Fluid</dt>
-            <dt>Insurance</dt>
-            <dt>Registration</dt>
+            <h2>Truck Check Info</h2>
+            <dt>Date of Last Truck Check</dt>
+            <dd>{truckCheck.date.toDate().toDateString()}</dd>
+            {truckCheckDetail.map(detail => (detail))}
           </div>
         }
       </dl>
