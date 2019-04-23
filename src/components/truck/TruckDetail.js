@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useFirebase } from '../../hooks/useFirebase';
 import { trucksCollection } from '../../services/collections';
 import Loading from '../commons/Loading';
-import { app } from '../../services/firebase';
+// import { app } from '../../services/firebase';
 
 export default function TruckDetail({ match }) {
   const truck = useFirebase(trucksCollection.doc(match.params.id));
