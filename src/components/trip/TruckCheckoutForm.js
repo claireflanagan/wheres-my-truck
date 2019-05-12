@@ -20,7 +20,12 @@ class TruckCheckoutForm extends Component {
     truckChecksCollection.limit(1).get()
       .then(snap => {
         snap.forEach(doc => {
-          this.setState({ truckCheckRef: Object.keys(doc.data()) });
+          const data = doc.data();
+          const truckAttributes = Object.keys(data).reduce((arr, key) => {
+            const subObj = { name: key, ...data[key] };
+            return arr.concat(subObj);
+          }, []);
+          this.setState({ truckCheckRef: truckAttributes.filter(attribute => attribute.label !== undefined) });
         });
       });
   }
@@ -44,7 +49,6 @@ class TruckCheckoutForm extends Component {
       tripPurpose,
       gotLocation,
       endLocation,
-      checkOil,
       truckCheckRef
     } = this.state;
 
@@ -107,25 +111,16 @@ class TruckCheckoutForm extends Component {
               onChange={this.handleChange}/>
           </p>
 
-          <p>
-            <label>Fluids:</label>
-            <label></label>
-            <select name="checkOil" type="checkbox" value={checkOil} onChange={this.handleChange}>
-              <option value="" disabled>Select An Option</option>
-              <option value="ok">OK</option>
-              <option value="notOk">Not OK</option>
-            </select>
-          </p>
-
           {truckCheckRef &&
             truckCheckRef.map(attribute => (
-              <div key={attribute}>
-                <label>{attribute}:</label>
-                <select name={attribute} onChange={this.handleChange}>
-                  <option value="" disabled>Select An Option</option>
-                  <option value="ok">OK</option>
-                  <option value="notOk">Not OK</option>
-                </select>
+              <div className="refs" key={attribute.label}>
+                <p>{attribute.label}:</p>
+                <div>
+                  <input type="radio" id={attribute.name} name={attribute.name} value="ok"/>
+                  <label htmlFor={attribute.name}>Ok</label>
+                  <input type="radio" id={attribute.name} name={attribute.name} value="notOk"/>
+                  <label htmlFor={attribute.name}>Not ok</label>
+                </div>
               </div>
             ))
           }
