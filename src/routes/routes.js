@@ -3,6 +3,8 @@ import { Route } from 'react-router-dom';
 import TrucksList from '../components/trucks/TrucksList';
 import TruckDetail from '../components/truck/TruckDetail';
 import TrucksTable from '../components/trucks/TrucksTable';
+import TruckCheckoutForm from '../components/trip/TruckCheckoutForm';
+import TripDetail from '../components/trip/TripDetail';
 import ImageDisplay from '../components/truck/ImageDisplay';
 import MaintenancesList from '../components/maintenance/MaintenanceList';
 import Home from '../components/home/Home';
@@ -30,6 +32,17 @@ export const ROUTES = {
     path: '/trucks/list',
     Component: TrucksList,
     linkTo: () => '/trucks/list'
+  },
+
+  TRUCKCHECKOUT: {
+    path: '/trip/checkout',
+    Component: TruckCheckoutForm,
+    linkTo: () => '/trip/checkout'
+  },
+  TRIP: {
+    path: '/trip/:id',
+    Component: TripDetail,
+    linkTo: id => `/trip/${id}`
   },
   IMAGEDISPLAY: {
     path: '/truck/:id/:imageType(registration|insurance)',

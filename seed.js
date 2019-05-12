@@ -1,8 +1,10 @@
 import { Chance } from 'chance';
 import { addTruck } from './src/actions/trucks';
+import { createTrip } from './src/actions/trips';
 import { createTruckCheck } from './src/actions/truckCheck';
 // import { createIssue } from './src/actions/issues';
 // import { addMaintenance } from './src/actions/maintenances';
+
 
 const chance = Chance();
 let truckIds = [];
@@ -24,6 +26,18 @@ async function seed() {
       insurance: 'https://firebasestorage.googleapis.com/v0/b/dudewheresmytruck-f2b38.appspot.com/o/insurance%2Fins.png?alt=media&token=5bc37a9d-e9de-42be-9813-fb70924342b0'
     }))
     .map(addTruck));
+
+  const tripIds = await Promise.all([...Array(3)]
+    .map(() => ({
+      startDate: chance.date({ year: 2018 }),
+      endDate: chance.date({ year: 2019 }),
+      user: chance.string({ length: 10 }),
+      //truck: chance.pickone(truckIds),
+      purpose: chance.sentence({ words: 5 }),
+      pickupLocation: chance.address(),
+      returnLocation: chance.address()
+    }))
+    .map(createTrip));
 
   truckCheckIds = await Promise.all([...Array(10)]
     .map(() => {
@@ -82,7 +96,6 @@ async function seed() {
       return truckCheck;
     })
     .map(createTruckCheck));
-
 
   // const issueIds = await Promise.all([...Array(100)].map(() => ({
   //   reportedDate: chance.date({ year: 2018 }),

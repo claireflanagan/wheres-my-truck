@@ -20,6 +20,11 @@ export default function Home() {
         <i className="fas fa-map-marker-alt" />
         <span>Where&apos;s my truck?</span >
       </Link>
+      <Link to={ROUTES.TRUCKCHECKOUT.linkTo()}>
+        <i className="fas fa-minus" />
+        <span>Truck Checkout Form</span >
+      </Link>
+
 
       {role === 'admin' && <Link to={ROUTES.ADD_TRUCK.linkTo()} className={styles.add}>
         <i className="fas fa-plus" />
