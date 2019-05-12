@@ -56,7 +56,7 @@ export default function TruckDetail({ match }) {
           <h3><span>Last reported location:</span> {truck.location}</h3>
         </hgroup>
         <span className={`${styles.use} ${truck.inUse ? styles.ride : styles.free}`} >
-          {truck.inUse ? 'in use' : 'free'}
+          {truck.inUse ? 'in use' : 'available'}
         </span>
       </header>
 
