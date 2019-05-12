@@ -19,6 +19,11 @@
     font-size: 1.2em;
   }
 
+  form {
+    background: rgba(255,255,255, 0.5);
+    padding: 10px 20px;
+  }
+
   button {
     display: block;
     width: 100%;
