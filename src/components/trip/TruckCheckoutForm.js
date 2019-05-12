@@ -13,15 +13,14 @@ class TruckCheckoutForm extends Component {
     gotLocation: '',
     endLocation: '',
     oilIsOk: '',
-    truckCheckRef: ''
+    truckCheckRef: []
   };
   
   componentDidMount() {
     truckChecksCollection.limit(1).get()
       .then(snap => {
         snap.forEach(doc => {
-          console.log('doc', doc.data());
-          this.setState({ truckCheckRef: doc.data() });
+          this.setState({ truckCheckRef: Object.keys(doc.data()) });
         });
       });
   }
@@ -119,7 +118,16 @@ class TruckCheckoutForm extends Component {
           </p>
 
           {truckCheckRef &&
-            <p>yo</p>
+            truckCheckRef.map(attribute => (
+              <div key={attribute}>
+                <label>{attribute}:</label>
+                <select name={attribute} onChange={this.handleChange}>
+                  <option value="" disabled>Select An Option</option>
+                  <option value="ok">OK</option>
+                  <option value="notOk">Not OK</option>
+                </select>
+              </div>
+            ))
           }
 
           <button type="submit">Submit</button>
