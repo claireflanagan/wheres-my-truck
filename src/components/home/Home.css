@@ -74,6 +74,10 @@ h1 {
               margin: auto 2%;
           }
 
+          &:nth-child(5) {
+              margin: auto 2%;
+          }
+
       }
 
       span {

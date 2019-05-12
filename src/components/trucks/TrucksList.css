@@ -1,15 +1,17 @@
 
   .trucksList {
     text-align: center;
-    margin: 2% auto;
+    margin: 5% auto;
     padding: 0;
     list-style-type: none;
     li {
       padding: 0;
       margin: 0;
-      background: #F8F8F8;
-      width: 90%;
+      background: rgba(255,255,255, 0.6);
+      width: 70%;
       margin: auto;
+      border-radius: 4px;
+      font-size: 1.5em;
       a {
         color: black;
         border-radius: 4px;
@@ -20,7 +22,7 @@
         text-decoration: none;
       }
       &:hover {
-        background-color: #DCDCDC;
+        background-color: rgba(255,255,255, 0.9);
       }
     }  
   }

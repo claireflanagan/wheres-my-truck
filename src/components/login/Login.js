@@ -27,6 +27,7 @@ export default function Login() {
         {error.message}
       </div>}
       <form onSubmit={handleSubmit}>
+        <h1>Log In</h1>
         <input type="text" placeholder="email" onChange={updateEmail} />
         <input type="password" placeholder="password" onChange={updatePassword} />
         <button
