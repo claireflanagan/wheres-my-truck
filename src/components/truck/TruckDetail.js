@@ -41,7 +41,7 @@ export default function TruckDetail({ match }) {
             <dt>{nameDict[item]} - {truckCheck[item].ok ? 'OK' : 'Not OK'}</dt>
             <dd>Notes: {truckCheck[item].notes}</dd>
           </div>  
-        );
+        ); 
       });
   }
   else if(!truck) return <Loading />;
@@ -61,8 +61,8 @@ export default function TruckDetail({ match }) {
       </header>
 
       <div className={styles.truckLinks}>
-        <Link to={ROUTES.IMAGEDISPLAY.linkTo(truck.id, 'registration')}>Registration</Link>
-        <Link to={ROUTES.IMAGEDISPLAY.linkTo(truck.id, 'insurance')}>Insurance</Link>
+        {truck.registration && <Link to={ROUTES.IMAGEDISPLAY.linkTo(truck.id, 'registration')}>Registration</Link>}
+        {truck.insurance && <Link to={ROUTES.IMAGEDISPLAY.linkTo(truck.id, 'insurance')}>Insurance</Link>}
         {/* <Link to={ROUTES.MAINTENANCE_LIST.linkTo(truck.id)}>Maintenance Records</Link> */}
       </div>
       <dl>
@@ -72,7 +72,7 @@ export default function TruckDetail({ match }) {
         <dt>Tire Size</dt>
         <dd>{truck.tireSize}</dd>
         <dt>Bought Date</dt>
-        <dd>{truck.boughtDate.toDate().toDateString()}</dd>
+        <dd>{new Date(truck.boughtDate).toDateString()}</dd>
         {truckCheckDetail &&
           <div>
             <h2>Truck Check Info</h2>
