@@ -62,7 +62,7 @@ export default function TruckDetail({ match }) {
           <h3><span>Plates:</span> {truck.plates}</h3>
           <h3><span>Last reported location:</span> {truck.location}</h3>
         </hgroup>
-        {role === 'admin' && <span><Link to={ROUTES.EDIT_TRUCK.linkTo()}>Edit Truck</Link></span>}
+        {role === 'admin' && <span><Link to={ROUTES.EDIT_TRUCK.linkTo(match.params.id)}>Edit Truck</Link></span>}
         <span className={`${styles.use} ${truck.inUse ? styles.ride : styles.free}`} >
           {truck.inUse ? 'in use' : 'available'}
         </span>
