@@ -12,8 +12,8 @@ export default function Footer() {
         <span>Home</span>
       </Link>
       <Link to={ROUTES.TRUCKSLIST.linkTo()}>
-        <i className="fas fa-map-marker-alt" />
-        <span>Where</span>
+        <i className="fas fa-info-circle" />
+        <span>Trucks</span>
       </Link>
       <Link to={ROUTES.TRUCKCHECKOUT.linkTo()}>
         <i className="fas fa-truck-pickup" />
