@@ -1,0 +1,32 @@
+
+.footer {
+  text-decoration: none;
+  width: 100%;
+  margin: auto;
+  padding: 10px;
+  background-color: white;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  border-top: 1px solid #3D3736;
+
+ span {
+      font-size: 2rem;
+      font-family: 'Encode Sans Condensed', sans-serif;
+      font-weight: 700;  
+      color: #3D3736;
+      margin-right: 6px;
+  }
+  
+  i {
+    color: #3D3736;
+    margin-left: 6px;
+  }
+
+
+
+  
+}
+
+
+

@@ -21,7 +21,7 @@ export default function Home() {
         <span>Where&apos;s my truck?</span >
       </Link>
       <Link to={ROUTES.TRUCKCHECKOUT.linkTo()}>
-        <i className="fas fa-minus" />
+        <i className="fas fa-truck-pickup" />
         <span>Truck Checkout Form</span >
       </Link>
 
@@ -31,11 +31,11 @@ export default function Home() {
         <span>Add New Truck</span>
       </Link>}
       {role === 'admin' && <Link to={ROUTES.INVITE_USERS.linkTo()} className={styles.add}>
-        <i className="fas fa-plus" />
+        <i className="fas fa-user-plus" />
         <span>Add New User</span>
       </Link>}
       {role === 'admin' && <Link to={ROUTES.ALL_USERS.linkTo()} className={styles.add}>
-        <i className="fas fa-plus" />
+        <i className="fas fa-user-edit" />
         <span>Manage Users</span>
       </Link>}
     </div>

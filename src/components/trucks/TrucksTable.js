@@ -10,7 +10,7 @@ export default function TrucksTable() {
 
   const headers = [
     { display: 'Truck:', key: 'name' },
-    { display: 'Location', key: 'location' }
+    { display: 'Location:', key: 'location' }
   ];
 
   return (
