@@ -41,7 +41,7 @@ export default function TruckDetail({ match }) {
             <dt>{nameDict[item]} - {truckCheck[item].ok ? 'OK' : 'Not OK'}</dt>
             <dd>Notes: {truckCheck[item].notes}</dd>
           </div>  
-        );
+        ); 
       });
   }
   else if(!truck) return <Loading />;
@@ -72,7 +72,7 @@ export default function TruckDetail({ match }) {
         <dt>Tire Size</dt>
         <dd>{truck.tireSize}</dd>
         <dt>Bought Date</dt>
-        <dd>{truck.boughtDate.toDate().toDateString()}</dd>
+        <dd>{new Date(truck.boughtDate).toDateString()}</dd>
         {truckCheckDetail &&
           <div>
             <h2>Truck Check Info</h2>
