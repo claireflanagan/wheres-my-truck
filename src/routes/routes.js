@@ -11,6 +11,7 @@ import Home from '../components/home/Home';
 import InviteUser from '../components/admin/users/InviteUser';
 import UsersList from '../components/admin/users/UsersList';
 import AddTruck from '../components/admin/AddTruck';
+import TruckForm from '../components/admin/TruckForm';
 
 export const ROUTES = {
   HOME: {
@@ -58,6 +59,11 @@ export const ROUTES = {
     path: '/admin/addTruck',
     Component: AddTruck,
     linkTo: () => '/admin/addTruck'
+  },
+  EDIT_TRUCK: {
+    path: '/truck/:id/edit',
+    Component: TruckForm,
+    linkTo: id => `/truck/${id}/edit`
   },
   INVITE_USERS: {
     path: '/admin/invite',

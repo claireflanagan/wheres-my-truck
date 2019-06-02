@@ -9,8 +9,10 @@ import Loading from '../commons/Loading';
 
 export default function TruckDetail({ match }) {
   const user = useCurrentUser();
-  
-  console.log('user', user);
+  let role;
+  if(user !== null) {
+    role = user.role;
+  }
   
   const truck = useFirebase(trucksCollection.doc(match.params.id));
   let truckCheck = useFirebase(truckChecksCollection
@@ -60,6 +62,7 @@ export default function TruckDetail({ match }) {
           <h3><span>Plates:</span> {truck.plates}</h3>
           <h3><span>Last reported location:</span> {truck.location}</h3>
         </hgroup>
+        {role === 'admin' && <span><Link to={ROUTES.EDIT_TRUCK.linkTo()}>Edit Truck</Link></span>}
         <span className={`${styles.use} ${truck.inUse ? styles.ride : styles.free}`} >
           {truck.inUse ? 'in use' : 'available'}
         </span>
