@@ -2,11 +2,16 @@ import React from 'react';
 import styles from './TruckDetail.css';
 import { ROUTES } from '../../routes/routes';
 import { Link } from 'react-router-dom';
+import { useCurrentUser } from '../../hooks/useCurrentUser';
 import { useFirebase } from '../../hooks/useFirebase';
 import { trucksCollection, truckChecksCollection } from '../../services/collections';
 import Loading from '../commons/Loading';
 
 export default function TruckDetail({ match }) {
+  const user = useCurrentUser();
+  
+  console.log('user', user);
+  
   const truck = useFirebase(trucksCollection.doc(match.params.id));
   let truckCheck = useFirebase(truckChecksCollection
     .where('truckId', '==', match.params.id)
