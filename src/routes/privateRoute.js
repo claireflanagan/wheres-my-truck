@@ -15,7 +15,7 @@ export const privateRoute = (Component, role = roles.USER) => {
       this.unsubscribe = subscribe((user) => {
         this.setState({ loading: false, user });
       }, () => {
-        this.setState({ loading: false });
+        this.setState({ loading: false, user: null });
       });
     }
 
