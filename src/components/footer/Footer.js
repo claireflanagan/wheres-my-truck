@@ -7,22 +7,18 @@ import styles from './Footer.css';
 export default function Footer() {
   return (
     <div className={styles.footer}>
-      <Link to={ROUTES.HOME.linkTo()}>
-        <i className="fas fa-home" />
-        <span>Home</span>
+      <Link to={ROUTES.HOME.linkTo()} className={styles.navlink}> 
+        <span><i className="fas fa-home" />Home</span>
       </Link>
-      <Link to={ROUTES.TRUCKSLIST.linkTo()}>
-        <i className="fas fa-info-circle" />
-        <span>Trucks</span>
+      <Link to={ROUTES.TRUCKSLIST.linkTo()} className={styles.navlink}>
+        <span><i className="fas fa-info-circle" />Trucks</span>
       </Link>
-      <Link to={ROUTES.TRUCKCHECKOUT.linkTo()}>
-        <i className="fas fa-truck-pickup" />
-        <span>Checkout</span>
+      <Link to={ROUTES.TRUCKCHECKOUT.linkTo()} className={styles.navlink}>
+        <span><i className="fas fa-truck-pickup" />Checkout</span>
       </Link>
-      <Link to={signout}>
-        <i className="fas fa-sign-out-alt" />
-        <span>Logout</span>
-      </Link>
+      <button onClick={signout} className={styles.navlink}>
+        <span><i className="fas fa-sign-out-alt" />Logout</span>
+      </button>
     </div>
   );
 }

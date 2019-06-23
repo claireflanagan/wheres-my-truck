@@ -1,32 +1,36 @@
-
 .footer {
+  display: flex;
+  justify-content: space-around;
   text-decoration: none;
   width: 100%;
-  margin: auto;
-  padding: 10px;
-  background-color: white;
   position: fixed;
   left: 0px;
   bottom: 0px;
+  background-color: rgba(255, 255, 255, 0.95);
+  font-family: 'Encode Sans Condensed', sans-serif;
+  font-weight: 600;  
   border-top: 1px solid #3D3736;
-
- span {
-      font-size: 2rem;
-      font-family: 'Encode Sans Condensed', sans-serif;
-      font-weight: 700;  
-      color: #3D3736;
-      margin-right: 6px;
-  }
-  
-  i {
-    color: #3D3736;
-    margin-left: 6px;
+ 
+  button {
+    border: none;
   }
 
+  @media (max-width: 800px) {
+    font-size: 2.2rem;
+    .navlink {
+      padding: 5px;
+    }
+  }
 
-
-  
+  @media (min-width: 801px) {
+    font-size: 3rem;
+    .navlink:hover {
+      border-radius: 5px;
+      background-color: yellow;
+    }
+    .navlink {
+      padding: 8px;
+      margin: 4px;
+    }
+  }
 }
-
-
-

@@ -1,8 +1,7 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
-  Switch,
-  Redirect
+  Switch
 } from 'react-router-dom';
 import { privateRoute } from '../../routes/privateRoute';
 import Header from '../header/Header';
