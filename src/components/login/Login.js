@@ -31,7 +31,12 @@ export default function Login() {
         {error.message}
       </div>}
       <form onSubmit={handleSubmit}>
+<<<<<<< HEAD
         <input type="text" placeholder="email" onChange={updateEmail} autoFocus />
+=======
+        <h1>Log In</h1>
+        <input type="text" placeholder="email" onChange={updateEmail} />
+>>>>>>> 54030f43d1382d790e219357a7c232b38a3fd95c
         <input type="password" placeholder="password" onChange={updatePassword} />
         <button
           disabled={loading}

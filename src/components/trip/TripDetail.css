@@ -1,0 +1,25 @@
+.TripDetail {
+  margin: 1em;
+  padding: 1em;
+  background: #F8F8F8;
+
+  @media screen and (min-width: 1200px) {
+    max-width: 75em;
+    margin: auto;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+
+    h2 {
+      margin: 0;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 1em;
+    }
+  }
+}

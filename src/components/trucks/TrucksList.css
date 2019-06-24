@@ -1,6 +1,7 @@
 /* Large devices (desktops, 0px and up) */
 @media (min-width: 0px) {
 
+<<<<<<< HEAD
     h1 {
         font-family: 'Encode Sans Condensed', sans-serif;
 
@@ -52,3 +53,37 @@
         }
     }
 }
+=======
+  .trucksList {
+    text-align: center;
+    margin: 5% auto;
+    padding: 0;
+    list-style-type: none;
+    li {
+      padding: 0;
+      margin: 0;
+      background: rgba(255,255,255, 0.6);
+      width: 70%;
+      margin: auto;
+      border-radius: 4px;
+      font-size: 1.5em;
+      a {
+        color: black;
+        border-radius: 4px;
+        display: block;
+        border: 1px solid #397c15;
+        padding: 2vh;
+        margin-bottom: 2vh;
+        text-decoration: none;
+      }
+      &:hover {
+        background-color: rgba(255,255,255, 0.9);
+      }
+    }  
+  }
+
+/* .menuLink {
+    text-decoration: none;
+    color: black;
+} */
+>>>>>>> 54030f43d1382d790e219357a7c232b38a3fd95c

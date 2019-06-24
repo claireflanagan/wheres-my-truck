@@ -4,6 +4,7 @@ section.Login {
 
 
 .Login {
+<<<<<<< HEAD
     display: flex;
     height: 100vh;
     flex-direction: column;
@@ -42,6 +43,53 @@ section.Login {
     form {
         width:90%;
         max-width: 400px;
+=======
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .error {
+    color: #3D3736;
+    font-size: 1.2em;
+  }
+
+  input {
+    display: block;
+    min-width: 300px;
+    margin: 1em 0;
+    padding: 0.4em;
+
+    font-size: 1.2em;
+  }
+
+  form {
+    background: rgba(255,255,255, 0.5);
+    padding: 10px 20px;
+  }
+
+  button {
+    display: block;
+    width: 100%;
+    margin: 1em 0;
+    padding: 0.4em;
+    border: none;
+
+    background-color: #679D69;
+    color: #FFFFFF;
+
+    font-weight: 700;
+    font-size: 1.2em;
+  }
+
+  button.loading {
+    background-color: #99BE7F;
+    cursor: wait;
+    &::after {
+      content: '';
+      animation: loading 2s linear 1s infinite ;
+>>>>>>> 54030f43d1382d790e219357a7c232b38a3fd95c
     }
 
     .error {

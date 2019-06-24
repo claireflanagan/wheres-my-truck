@@ -65,6 +65,7 @@ h1 {
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
+<<<<<<< HEAD
     .mainNav {
         max-width: 1200px;
         padding: 20px;
@@ -92,6 +93,34 @@ h1 {
             padding-left: 0;
         }
     }
+=======
+  .mainNav {
+      max-width: 1200px;
+      padding: 20px;
+      margin: auto;
+
+      a {
+          width: 32%;
+          display: inline-block;
+          text-align: center;
+          min-height: 300px;
+
+          &:nth-child(2) {
+              margin: auto 2%;
+          }
+
+          &:nth-child(5) {
+              margin: auto 2%;
+          }
+
+      }
+
+      span {
+          display: block;
+          padding-left: 0;
+      }
+  }
+>>>>>>> 54030f43d1382d790e219357a7c232b38a3fd95c
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
