@@ -55,7 +55,6 @@ class TruckCheckoutForm extends Component {
 
   handleClick = ({ target }) => {
     const name = target.id;
-    console.log(target.id);
     this.setState(prevState => ({
       [`${name}Comment`]: !prevState[`${name}Comment`]
     }));
@@ -131,7 +130,7 @@ class TruckCheckoutForm extends Component {
                 onChange={this.handleChange}/>
             </p>
           </div>
-
+          <h3>Vehicle Check:</h3>
           {truckCheckRef &&
             truckCheckRef.map(attribute => (
               <div className={styles.refs} key={attribute.label}>

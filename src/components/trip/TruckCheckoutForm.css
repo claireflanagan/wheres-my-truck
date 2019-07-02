@@ -61,6 +61,11 @@
     margin: 2px 2px 2px -2px;
   }
 
+  h3 {
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: 28px;
+  }
   /* .innerFlex {
     display: flex-end;
     wrap: wrap;
