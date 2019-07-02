@@ -12,7 +12,6 @@ class TruckCheckoutForm extends Component {
     tripPurpose: '',
     gotLocation: '',
     endLocation: '',
-    oilIsOk: '',
     truckCheckRef: [],
     brakeFluidComment: true,
     coolantComment: false,
@@ -26,7 +25,7 @@ class TruckCheckoutForm extends Component {
     motorOilComment: false,
     powerSteeringFluidComment: false,
     registrationComment: false
-  };
+  }
   
   componentDidMount() {
     truckChecksCollection.limit(1).get()
@@ -44,21 +43,21 @@ class TruckCheckoutForm extends Component {
 
   handleChange = ({ target }) => {
     this.setState({ [target.name]: target.value });
-  };
+  }
 
   handleSubmit = event => {
     event.preventDefault();
     const trip = this.state;
     createTrip(trip)
       .then(id => this.props.history.push(ROUTES.TRUCK.linkTo(id)));
-  };
+  }
 
   handleClick = ({ target }) => {
     const name = target.id;
     this.setState(prevState => ({
       [`${name}Comment`]: !prevState[`${name}Comment`]
     }));
-  };
+  }
 
   render() {
     const {
@@ -136,17 +135,14 @@ class TruckCheckoutForm extends Component {
               <div className={styles.refs} key={attribute.label}>
                 <p className={styles.radioButtonCategoryLabel}>{attribute.label}:</p>
                 <div className={styles.radioButtonContainer}>
-                  
                   <label className={styles.radioLabel + ' ' + styles.ok} htmlFor={`${attribute.name}ok`}>
                     <input className={styles.radioButton} type="radio" id={`${attribute.name}ok`} name={attribute.name} value="ok"/>
                     <i className="far fa-check-circle"></i>
                   </label>
-                  
                   <label className={styles.radioLabel + ' ' + styles.notOk} htmlFor={`${attribute.name}notOk`}>
                     <input className={styles.radioButton} type="radio" id={`${attribute.name}notOk`} name={attribute.name} value="notOk"/>
                     <i className="far fa-times-circle"></i>
                   </label>
-
                   <label className={styles.radioLabel}  htmlFor={`${attribute.name}Comments`} aria-label="comments"></label>
                   { this.state[`${attribute.name}Comment`] ?
                     <span>
@@ -159,7 +155,6 @@ class TruckCheckoutForm extends Component {
               </div>
             ))
           }
-
           <button type="submit">Submit</button>
         </form>
       </section>
