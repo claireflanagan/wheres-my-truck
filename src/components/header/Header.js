@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../routes/routes';
-import { signout } from '../../services/auth';
+//import { signout } from '../../services/auth';
 import styles from './Header.css';
 
 export default function Header() {
@@ -11,7 +11,6 @@ export default function Header() {
         <img src="https://res.cloudinary.com/dfgcomb18/image/upload/v1549764837/dude%20wheres%20my%20truck/logo.png" />
         <h1><span>Dude,</span><br />Where&apos;s My Truck?</h1>
       </Link>
-      <button onClick={signout}>Logout</button>
     </div>
   );
 }
