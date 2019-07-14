@@ -10,21 +10,24 @@ class TruckReturnForm extends Component {
     returnLocation: '',
     returnDate: '',
     truck: '',
-    trucksRef: []
+    trucksRef: null
   }
 
   componentDidMount() {
     trucksCollection.get()
       .then(snap => {
+        let trucksRef = [];
         snap.forEach(doc => {
           const id = doc.id;
           const data = doc.data();
           data.id = id;
-          
-          this.setState(prevState => {
-            trucksRef: prevState.trucksRef.push(data); 
-          });
+          console.log('data', data);
+          trucksRef.push(data);
         });
+        return trucksRef;
+      })
+      .then(trucksRef => {
+        this.setState({ trucksRef: trucksRef });
       });
   }
 
@@ -34,7 +37,7 @@ class TruckReturnForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const trip = this.state;
+    // const trip = this.state;
     // createTrip(trip)
     //   .then(id => this.props.history.push(ROUTES.TRUCK.linkTo(id)));
   }
@@ -43,22 +46,8 @@ class TruckReturnForm extends Component {
     const {
       returnDate,
       returnLocation,
-      truck,
       trucksRef
     } = this.state;
-
-    
-    let truckOptions = [];
-    if(trucksRef) {
-      console.log('hi');
-      for(let i = 0; i < 5; i++) {
-        console.log(trucksRef[i]);
-      }
-    }
-
-    // const truckOptions = trucksRef.map(truck => {
-    //   return <option value={truck.id} key={truck.id}> hiiiiiiii {truck.name} - {truck.plates}</option>;
-    // });
 
     return (
       <section>
@@ -72,11 +61,8 @@ class TruckReturnForm extends Component {
                 name="truck"
                 onChange={this.handleChange}
               >
-                {console.log('trucks', trucksRef)}
-
                 {trucksRef.map(truck => {
-                  console.log('truck', truck);
-                  return (<option value={truck.id} key={truck.id}> hiiiiiiii {truck.name} - {truck.plates}</option>);
+                  return (<option value={truck.id} key={truck.id}>{truck.make} - {truck.model} - {truck.plates}</option>);
                 })}
               </select>}
             </p>
