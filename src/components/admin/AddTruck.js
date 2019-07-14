@@ -37,7 +37,9 @@ class AddTruck extends Component {
     event.preventDefault();
     const truck = this.state;
     addTruck(truck)
-      .then(id => this.props.history.push(ROUTES.TRUCK.linkTo(id)));
+      .then(document => {
+        this.props.history.push(ROUTES.TRUCK.linkTo(document.id));
+      });
   };
 
   render() {
