@@ -24,6 +24,10 @@ export default function Home() {
         <i className="fas fa-truck-pickup" />
         <span>Truck Checkout Form</span >
       </Link>
+      <Link to={ROUTES.TRUCKRETURN.linkTo()}>
+        <i className="fas fa-truck-pickup" />
+        <span>Truck Return Form</span >
+      </Link>
 
 
       {role === 'admin' && <Link to={ROUTES.ADD_TRUCK.linkTo()} className={styles.add}>

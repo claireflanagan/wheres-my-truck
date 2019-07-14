@@ -13,7 +13,7 @@ class TruckCheckoutForm extends Component {
     gotLocation: '',
     endLocation: '',
     truckCheckRef: [],
-    brakeFluidComment: true,
+    brakeFluidComment: false,
     coolantComment: false,
     acAndHeatComment: false,
     batteryCablesComment: false,
@@ -30,6 +30,7 @@ class TruckCheckoutForm extends Component {
   componentDidMount() {
     truckChecksCollection.limit(1).get()
       .then(snap => {
+        console.log('hiii', snap);
         snap.forEach(doc => {
           const data = doc.data();
           const truckAttributes = Object.keys(data).reduce((arr, key) => {
