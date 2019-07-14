@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 // import { ROUTES } from '../../routes/routes';
 import styles from './TruckCheckoutForm.css';
+import { log } from 'util';
 import { trucksCollection } from '../../services/collections';
 
 class TruckReturnForm extends Component {
@@ -19,6 +20,7 @@ class TruckReturnForm extends Component {
           const id = doc.id;
           const data = doc.data();
           data.id = id;
+          
           this.setState(prevState => {
             trucksRef: prevState.trucksRef.push(data); 
           });
@@ -45,10 +47,18 @@ class TruckReturnForm extends Component {
       trucksRef
     } = this.state;
 
-    const truckOptions = trucksRef.map(truck => {
-      console.log('hiii', truck);
-      return <option value={truck.id} key={truck.id}> hiiiiiiii {truck.name} - {truck.plates}</option>;
-    });
+    
+    let truckOptions = [];
+    if(trucksRef) {
+      console.log('hi');
+      for(let i = 0; i < 5; i++) {
+        console.log(trucksRef[i]);
+      }
+    }
+
+    // const truckOptions = trucksRef.map(truck => {
+    //   return <option value={truck.id} key={truck.id}> hiiiiiiii {truck.name} - {truck.plates}</option>;
+    // });
 
     return (
       <section>
@@ -61,9 +71,13 @@ class TruckReturnForm extends Component {
               <select
                 name="truck"
                 onChange={this.handleChange}
-                required
               >
-                {truckOptions}
+                {console.log('trucks', trucksRef)}
+
+                {trucksRef.map(truck => {
+                  console.log('truck', truck);
+                  return (<option value={truck.id} key={truck.id}> hiiiiiiii {truck.name} - {truck.plates}</option>);
+                })}
               </select>}
             </p>
             <p>
