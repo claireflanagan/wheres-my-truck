@@ -3,6 +3,7 @@ import { useFirebase } from '../../hooks/useFirebase';
 import { trucksCollection } from '../../services/collections';
 import Loading from '../commons/Loading';
 import Table from '../commons/Table';
+//import styles from './TrucksTable.css';
 
 export default function TrucksTable() {
   const trucks = useFirebase(trucksCollection);
@@ -10,7 +11,7 @@ export default function TrucksTable() {
 
   const headers = [
     { display: 'Truck:', key: 'name' },
-    { display: 'Location', key: 'location' }
+    { display: 'Location:', key: 'location' }
   ];
 
   return (
