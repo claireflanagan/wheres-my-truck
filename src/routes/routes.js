@@ -56,14 +56,14 @@ export const ROUTES = {
     linkTo: id => `/truck/${id}/maintenanceList`
   },
   ADD_TRUCK: {
-    path: '/admin/addTruck',
+    path: '/admin/truck',
     Component: AddTruck,
-    linkTo: () => '/admin/addTruck'
+    linkTo: () => '/admin/truck'
   },
   EDIT_TRUCK: {
-    path: '/truck/:id/edit',
+    path: '/admin/truck/:id',
     Component: TruckForm,
-    linkTo: id => `/truck/${id}/edit`
+    linkTo: id => `/admin/truck/${id}`
   },
   INVITE_USERS: {
     path: '/admin/invite',
