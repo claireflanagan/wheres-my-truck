@@ -7,14 +7,13 @@
   border-radius: 5px;
   max-width: 800px;
   font-size: 1.7rem;
-
-  .largeInputs p input {
+  input, select {
       border-radius: 4px;
       width: 100%;
       border: 1px solid #ccc;
       padding: 10px;
       font-family: 'Helvetica', arial, sans-serif;
-      font-size: 20px;
+      font-size: 18px;
         label {
             display: block;
         }
@@ -121,12 +120,11 @@
   }
 
 
-
-
   textarea:focus,
   input:focus,
   input[type]:focus,
-  .uneditable-input:focus {
+  .uneditable-input:focus,
+  select:focus {
       border-color: #99BE7F;
       box-shadow: 0 1px 1px #99BE7F inset, 0 0 8px #99BE7F;
       outline: 0 none;

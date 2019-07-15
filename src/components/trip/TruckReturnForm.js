@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 // import { ROUTES } from '../../routes/routes';
 import styles from './TruckCheckoutForm.css';
-import { log } from 'util';
 import { trucksCollection } from '../../services/collections';
 
 class TruckReturnForm extends Component {
@@ -21,7 +20,6 @@ class TruckReturnForm extends Component {
           const id = doc.id;
           const data = doc.data();
           data.id = id;
-          console.log('data', data);
           trucksRef.push(data);
         });
         return trucksRef;
@@ -62,7 +60,7 @@ class TruckReturnForm extends Component {
                 onChange={this.handleChange}
               >
                 {trucksRef.map(truck => {
-                  return (<option value={truck.id} key={truck.id}>{truck.make} - {truck.model} - {truck.plates}</option>);
+                  return (<option value={truck.id} key={truck.id}>{truck.make}-{truck.model}-{truck.plates}</option>);
                 })}
               </select>}
             </p>
