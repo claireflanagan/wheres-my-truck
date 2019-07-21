@@ -19,13 +19,10 @@ class TruckCheckoutForm extends Component {
   componentDidMount() {
     vehicleChecksCollection.limit(1).get()
       .then(snap => {
-        console.log('sanp', snap);
         snap.forEach(doc => {
           const data = doc.data();
-          console.log('data', data);
           const checkAttributes = Object.keys(data).reduce((arr, key) => {
             const subObj = { name: key, ...data[key] };
-            console.log('subobj', subObj);
             return arr.concat(subObj);
           }, []);
           this.setState({ vehicleCheckRef: checkAttributes.filter(attribute => attribute.ok !== undefined) });
@@ -38,12 +35,11 @@ class TruckCheckoutForm extends Component {
 
     for(let i = 0; i < vehicleCheckRef.length; i++) {
       let attribute = vehicleCheckRef[i];
-      let comment = attribute.comment;
-      console.log('comment', comment);
+      let name = attribute.name;
+      attribute.comment = target.value;
 
-      if(attribute.name === target.name) {
-        console.log('name match', attribute.name);
-        this.setState({ [target.name]: target.value });
+      if(name === target.name) {
+        this.setState({ vehicleCheckRef: [...vehicleCheckRef] });
       }
     }
   }
