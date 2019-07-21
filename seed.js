@@ -42,7 +42,7 @@ async function seed() {
   truckCheckIds = await Promise.all([...Array(10)]
     .map(() => {
       const truckIdsCopy = truckIds.slice();
-      const truckCheck = {
+      const vehicleCheck = {
         date: chance.date(),
         user: chance.name(),
         truckId: chance.pickone(truckIdsCopy),
@@ -92,8 +92,8 @@ async function seed() {
           notes: chance.sentence()
         }
       };
-      truckIdsCopy.splice(truckIdsCopy.indexOf(truckCheck.truckId), 1);
-      return truckCheck;
+      truckIdsCopy.splice(truckIdsCopy.indexOf(vehicleCheck.truckId), 1);
+      return vehicleCheck;
     })
     .map(createTruckCheck));
 

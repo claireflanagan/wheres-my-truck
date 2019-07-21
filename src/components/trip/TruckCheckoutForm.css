@@ -47,12 +47,12 @@
   }
 
   .radioLabel {
-      margin-right: 30px;
+      margin-right: 5vw;
   }
 
   .comments {
     font-size: 15px;
-    width: 102%;
+    width: 40vw;
     display: flex;
     border-radius: 4px;
     border: 1px solid #ccc;

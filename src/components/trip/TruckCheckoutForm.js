@@ -3,7 +3,8 @@ import { withRouter } from 'react-router-dom';
 import { ROUTES } from '../../routes/routes';
 import styles from './TruckCheckoutForm.css';
 import { createTrip } from '../../actions/trips';
-import { truckChecksCollection } from '../../services/collections';
+import { vehicleChecksCollection } from '../../services/collections';
+import VehicleCheckItem from './VehicleCheckItem';
 
 class TruckCheckoutForm extends Component {
   state = {
@@ -12,53 +13,61 @@ class TruckCheckoutForm extends Component {
     tripPurpose: '',
     gotLocation: '',
     endLocation: '',
-    truckCheckRef: [],
-    brakeFluidComment: false,
-    coolantComment: false,
-    acAndHeatComment: false,
-    batteryCablesComment: false,
-    breakFluidComment: false,
-    fourWheelDriveComment: false,
-    insuranceComment: false,
-    lightsComment: false,
-    lpTagsComment: false,
-    motorOilComment: false,
-    powerSteeringFluidComment: false,
-    registrationComment: false
+    vehicleCheckRef: []
   }
   
   componentDidMount() {
-    truckChecksCollection.limit(1).get()
+    vehicleChecksCollection.limit(1).get()
       .then(snap => {
-        console.log('hiii', snap);
+        console.log('sanp', snap);
         snap.forEach(doc => {
           const data = doc.data();
-          const truckAttributes = Object.keys(data).reduce((arr, key) => {
+          console.log('data', data);
+          const checkAttributes = Object.keys(data).reduce((arr, key) => {
             const subObj = { name: key, ...data[key] };
+            console.log('subobj', subObj);
             return arr.concat(subObj);
           }, []);
-          this.setState({ truckCheckRef: truckAttributes.filter(attribute => attribute.label !== undefined) });
+          this.setState({ vehicleCheckRef: checkAttributes.filter(attribute => attribute.ok !== undefined) });
         });
       });
   }
 
-  handleChange = ({ target }) => {
-    this.setState({ [target.name]: target.value });
+  handleComment = ({ target }) => {
+    const { vehicleCheckRef } = this.state;
+
+    for(let i = 0; i < vehicleCheckRef.length; i++) {
+      let attribute = vehicleCheckRef[i];
+      let comment = attribute.comment;
+      console.log('comment', comment);
+
+      if(attribute.name === target.name) {
+        console.log('name match', attribute.name);
+        this.setState({ [target.name]: target.value });
+      }
+    }
   }
 
   handleSubmit = event => {
     event.preventDefault();
-    const trip = this.state;
+    const trip = {
+      startDate: this.state.startDate,
+      endDate: this.state.endDate,
+      tripPurpose: this.state.tripPurpose,
+      gotLocation: this.state.gotLocation,
+      endLocation: this.state.endLocation
+    };
+
+    // const vehicleCheck = {
+    //   brakeFluid:
+    // }
+
     createTrip(trip)
       .then(id => this.props.history.push(ROUTES.TRUCK.linkTo(id)));
+    
+    // createTruck()
   }
 
-  handleClick = ({ target }) => {
-    const name = target.id;
-    this.setState(prevState => ({
-      [`${name}Comment`]: !prevState[`${name}Comment`]
-    }));
-  }
 
   render() {
     const {
@@ -67,9 +76,10 @@ class TruckCheckoutForm extends Component {
       tripPurpose,
       gotLocation,
       endLocation,
-      truckCheckRef
+      vehicleCheckRef
     } = this.state;
 
+    console.log('vcr', vehicleCheckRef);
     return (
       <section>
         <h1>Truck Checkout Form</h1>
@@ -129,31 +139,17 @@ class TruckCheckoutForm extends Component {
                 value={endLocation}
                 onChange={this.handleChange}/>
             </p>
+
           </div>
+
           <h3>Vehicle Check:</h3>
-          {truckCheckRef &&
-            truckCheckRef.map(attribute => (
-              <div className={styles.refs} key={attribute.label}>
-                <p className={styles.radioButtonCategoryLabel}>{attribute.label}:</p>
-                <div className={styles.radioButtonContainer}>
-                  <label className={styles.radioLabel + ' ' + styles.ok} htmlFor={`${attribute.name}ok`}>
-                    <input className={styles.radioButton} type="radio" id={`${attribute.name}ok`} name={attribute.name} value="ok"/>
-                    <i className="far fa-check-circle"></i>
-                  </label>
-                  <label className={styles.radioLabel + ' ' + styles.notOk} htmlFor={`${attribute.name}notOk`}>
-                    <input className={styles.radioButton} type="radio" id={`${attribute.name}notOk`} name={attribute.name} value="notOk"/>
-                    <i className="far fa-times-circle"></i>
-                  </label>
-                  <label className={styles.radioLabel}  htmlFor={`${attribute.name}Comments`} aria-label="comments"></label>
-                  { this.state[`${attribute.name}Comment`] ?
-                    <span>
-                      <i className="far fa-minus-square" onClick={this.handleClick} id={`${attribute.name}`}></i>
-                      <input className={styles.comments} type="text" id={`${attribute.name}Comment`} name={`${attribute.name}`} placeholder="Additional Comments?"/>
-                    </span>
-                    : <i className="far fa-plus-square" onClick={this.handleClick} id={`${attribute.name}`}></i>
-                  }
-                </div>
-              </div>
+          {vehicleCheckRef &&
+            vehicleCheckRef.map(attribute => (
+              <VehicleCheckItem 
+                attribute={attribute} 
+                key={attribute.name}
+                onComment={this.handleComment}
+              />
             ))
           }
           <button type="submit">Submit</button>

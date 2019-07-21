@@ -3,12 +3,12 @@ import styles from './TruckDetail.css';
 import { ROUTES } from '../../routes/routes';
 import { Link } from 'react-router-dom';
 import { useFirebase } from '../../hooks/useFirebase';
-import { trucksCollection, truckChecksCollection } from '../../services/collections';
+import { trucksCollection, vehicleChecksCollection } from '../../services/collections';
 import Loading from '../commons/Loading';
 
 export default function TruckDetail({ match }) {
   const truck = useFirebase(trucksCollection.doc(match.params.id));
-  let truckCheck = useFirebase(truckChecksCollection
+  let truckCheck = useFirebase(vehicleChecksCollection
     .where('truckId', '==', match.params.id)
     .orderBy('date', 'desc')
     .limit(1));

@@ -3,12 +3,15 @@ import { withRouter } from 'react-router-dom';
 // import { ROUTES } from '../../routes/routes';
 import styles from './TruckCheckoutForm.css';
 import { trucksCollection } from '../../services/collections';
+import { useFirebase } from '../../hooks/useFirebase';
+import { tripsCollection } from '../../services/collections';
 
 class TruckReturnForm extends Component {
   state = {
     returnLocation: '',
     returnDate: '',
     truck: '',
+    notes: '',
     trucksRef: null
   }
 
@@ -35,6 +38,8 @@ class TruckReturnForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    const trip = useFirebase(tripsCollection.doc(this.state.truck));
+    console.log('trip', trip);
     // const trip = this.state;
     // createTrip(trip)
     //   .then(id => this.props.history.push(ROUTES.TRUCK.linkTo(id)));
@@ -44,7 +49,8 @@ class TruckReturnForm extends Component {
     const {
       returnDate,
       returnLocation,
-      trucksRef
+      trucksRef,
+      notes
     } = this.state;
 
     return (
@@ -81,6 +87,14 @@ class TruckReturnForm extends Component {
                 name="returnLocation"
                 type="text"
                 value={returnLocation}
+                onChange={this.handleChange}/>
+            </p>
+            <p>
+              <label>Notes:</label>
+              <input
+                name="notes"
+                type="text"
+                value={notes}
                 onChange={this.handleChange}/>
             </p>
 
