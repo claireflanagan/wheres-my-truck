@@ -38,10 +38,8 @@ class TruckCheckoutForm extends Component {
     for(let i = 0; i < vehicleCheckRef.length; i++) {
       let attribute = vehicleCheckRef[i];
       let name = target.name.split('-')[0];
-      console.log(name);
 
       if(name === attribute.name) {
-        console.log('name match', name);
         if(!vehicleCheckCopy[name]) vehicleCheckCopy[name] = {};
         if(target.type === 'text') vehicleCheckCopy[name]['comment'] = target.value;
         else if(target.type === 'radio') vehicleCheckCopy[name]['ok'] = target.value;
