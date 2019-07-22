@@ -13,19 +13,17 @@ class TruckCheckoutForm extends Component {
     tripPurpose: '',
     gotLocation: '',
     endLocation: '',
-    vehicleCheckRef: []
+    vehicleCheckRef: [],
+    vehicleCheck: {}
   }
   
   componentDidMount() {
     vehicleChecksCollection.limit(1).get()
       .then(snap => {
-        console.log('sanp', snap);
         snap.forEach(doc => {
           const data = doc.data();
-          console.log('data', data);
           const checkAttributes = Object.keys(data).reduce((arr, key) => {
             const subObj = { name: key, ...data[key] };
-            console.log('subobj', subObj);
             return arr.concat(subObj);
           }, []);
           this.setState({ vehicleCheckRef: checkAttributes.filter(attribute => attribute.ok !== undefined) });
@@ -34,16 +32,19 @@ class TruckCheckoutForm extends Component {
   }
 
   handleComment = ({ target }) => {
-    const { vehicleCheckRef } = this.state;
+    const { vehicleCheckRef, vehicleCheck } = this.state;
+    let vehicleCheckCopy = Object.assign({}, vehicleCheck);
 
     for(let i = 0; i < vehicleCheckRef.length; i++) {
       let attribute = vehicleCheckRef[i];
-      let comment = attribute.comment;
-      console.log('comment', comment);
+      let name = target.name.split('-')[0];
+      console.log(name);
 
-      if(attribute.name === target.name) {
-        console.log('name match', attribute.name);
-        this.setState({ [target.name]: target.value });
+      if(name === attribute.name) {
+        console.log('name match', name);
+        if(target.type = "text") vehicleCheckCopy[name] = { comment: target.value }
+        else if(target.type = "radio") vehicleCheckCopy[name] = { ok: target.value }
+        this.setState({ vehicleCheck: vehicleCheckCopy });
       }
     }
   }
