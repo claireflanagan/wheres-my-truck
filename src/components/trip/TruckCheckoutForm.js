@@ -42,8 +42,9 @@ class TruckCheckoutForm extends Component {
 
       if(name === attribute.name) {
         console.log('name match', name);
-        if(target.type = "text") vehicleCheckCopy[name] = { comment: target.value }
-        else if(target.type = "radio") vehicleCheckCopy[name] = { ok: target.value }
+        if(!vehicleCheckCopy[name]) vehicleCheckCopy[name] = {};
+        if(target.type === 'text') vehicleCheckCopy[name]['comment'] = target.value;
+        else if(target.type === 'radio') vehicleCheckCopy[name]['ok'] = target.value;
         this.setState({ vehicleCheck: vehicleCheckCopy });
       }
     }
@@ -80,7 +81,6 @@ class TruckCheckoutForm extends Component {
       vehicleCheckRef
     } = this.state;
 
-    console.log('vcr', vehicleCheckRef);
     return (
       <section>
         <h1>Truck Checkout Form</h1>

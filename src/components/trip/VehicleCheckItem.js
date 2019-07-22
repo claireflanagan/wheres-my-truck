@@ -47,12 +47,26 @@ class VehicleCheckItem extends Component {
         <div className={styles.radioButtonContainer}>
 
           <label className={styles.radioLabel + ' ' + styles.ok} htmlFor={`${attribute.name}ok`}>
-            <input className={styles.radioButton} type="radio" id={`${attribute.name}ok`} name={`${attribute.name}-ok`} value="true" onChange={this.handleToggle} checked={ok === 'true'}/>
+            <input 
+              className={styles.radioButton} 
+              type="radio" 
+              id={`${attribute.name}ok`} 
+              name={`${attribute.name}-ok`} 
+              value="true" 
+              onChange={(event) => {this.handleToggle(event); onComment(event); }} 
+              checked={ok === 'true'}/>
             <i className="far fa-check-circle"></i>
           </label>
 
           <label className={styles.radioLabel + ' ' + styles.notOk} htmlFor={`${attribute.name}notOk`}>
-            <input className={styles.radioButton} type="radio" id={`${attribute.name}notOk`} name={`${attribute.name}-ok`} value="false" onChange={this.handleToggle} checked={ok === 'false'}/>
+            <input 
+              className={styles.radioButton} 
+              type="radio" 
+              id={`${attribute.name}notOk`} 
+              name={`${attribute.name}-ok`} 
+              value="false" 
+              onChange={(event) => {this.handleToggle(event); onComment(event); }} 
+              checked={ok === 'false'}/>
             <i className="far fa-times-circle"></i>
           </label>
 
@@ -60,7 +74,12 @@ class VehicleCheckItem extends Component {
           { viewComment ?
             <span>
               <i className="far fa-minus-square" onClick={this.handleClick} id={`${attribute.name}`}></i>
-            <input className={styles.comments} type="text" id={`${attribute.name}Comment`} name={`${attribute.name}-comment`} placeholder="Comments?" onInput={this.handleChange} onChange={onComment}/>
+              <input 
+                className={styles.comments} 
+                type="text" id={`${attribute.name}Comment`} 
+                name={`${attribute.name}-comment`} 
+                placeholder="Comments?" 
+                onInput={(event) => {this.handleChange(event); onComment(event); }}/>
             </span>
             : <i className="far fa-plus-square" onClick={this.handleClick} id={`${attribute.name}`}></i>
           }
