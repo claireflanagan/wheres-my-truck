@@ -71,11 +71,12 @@ class TruckCheckoutForm extends Component {
       endDate: this.state.endDate,
       tripPurpose: this.state.tripPurpose,
       gotLocation: this.state.gotLocation,
-      endLocation: this.state.endLocation
+      endLocation: this.state.endLocation,
+      user: ''
     };
 
     const vehicleCheck = {
-      truckid: '',
+      truckid: this.state.truckid,
       user: '',
       date: new Date(),
       ...this.state.vehicleCheck
