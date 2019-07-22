@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { ROUTES } from '../../routes/routes';
 import styles from './TruckCheckoutForm.css';
 import { createTrip } from '../../actions/trips';
-import { vehicleChecksCollection } from '../../services/collections';
+import { vehicleChecksCollection, trucksCollection } from '../../services/collections';
 import VehicleCheckItem from './VehicleCheckItem';
 
 class TruckCheckoutForm extends Component {
@@ -13,7 +13,8 @@ class TruckCheckoutForm extends Component {
     tripPurpose: '',
     gotLocation: '',
     endLocation: '',
-    vehicleCheckRef: [],
+    vehicleCheckRef: null,
+    trucksRef: null,
     vehicleCheck: {}
   }
   
@@ -28,6 +29,21 @@ class TruckCheckoutForm extends Component {
           }, []);
           this.setState({ vehicleCheckRef: checkAttributes.filter(attribute => attribute.ok !== undefined) });
         });
+      });
+
+    trucksCollection.get()
+      .then(snap => {
+        let trucksRef = [];
+        snap.forEach(doc => {
+          const id = doc.id;
+          const data = doc.data();
+          data.id = id;
+          trucksRef.push(data);
+        });
+        return trucksRef;
+      })
+      .then(trucksRef => {
+        this.setState({ trucksRef: trucksRef });
       });
   }
 
@@ -69,7 +85,8 @@ class TruckCheckoutForm extends Component {
       tripPurpose,
       gotLocation,
       endLocation,
-      vehicleCheckRef
+      vehicleCheckRef,
+      trucksRef
     } = this.state;
 
     return (
@@ -77,6 +94,18 @@ class TruckCheckoutForm extends Component {
         <h1>Truck Checkout Form</h1>
         <form onSubmit={this.handleSubmit}  className={styles.form}>
           <div className={styles.largeInputs}>
+            <p>
+              <label>Truck:</label>
+              {trucksRef &&
+              <select
+                name="truck"
+                onChange={this.handleChange}>
+                {trucksRef.map(truck => {
+                  return <option value={truck.id} key={truck.id}>{truck.make}-{truck.model}-{truck.plates}</option>;
+                })}
+              </select>}
+            </p>
+
             <p>
               <label>Checkout Date:</label>
               <input

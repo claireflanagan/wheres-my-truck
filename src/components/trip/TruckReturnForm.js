@@ -63,8 +63,7 @@ class TruckReturnForm extends Component {
               {trucksRef &&
               <select
                 name="truck"
-                onChange={this.handleChange}
-              >
+                onChange={this.handleChange}>
                 {trucksRef.map(truck => {
                   return (<option value={truck.id} key={truck.id}>{truck.make}-{truck.model}-{truck.plates}</option>);
                 })}
