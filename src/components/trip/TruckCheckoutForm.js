@@ -3,6 +3,8 @@ import { withRouter } from 'react-router-dom';
 import { ROUTES } from '../../routes/routes';
 import styles from './TruckCheckoutForm.css';
 import { createTrip } from '../../actions/trips';
+import { createVehicleCheck } from '../../actions/vehicleCheck';
+import { updateTruckLocation } from '../../actions/trucks';
 import { vehicleChecksCollection, trucksCollection } from '../../services/collections';
 import VehicleCheckItem from './VehicleCheckItem';
 
@@ -13,6 +15,7 @@ class TruckCheckoutForm extends Component {
     tripPurpose: '',
     gotLocation: '',
     endLocation: '',
+    truckid: '',
     vehicleCheckRef: null,
     trucksRef: null,
     vehicleCheck: {}
@@ -57,6 +60,10 @@ class TruckCheckoutForm extends Component {
     this.setState({ vehicleCheck });
   }
 
+  handleChange = ({ target }) => {
+    this.setState({ [target.name]: target.value });
+  }
+
   handleSubmit = event => {
     event.preventDefault();
     const trip = {
@@ -67,14 +74,18 @@ class TruckCheckoutForm extends Component {
       endLocation: this.state.endLocation
     };
 
-    // const vehicleCheck = {
-    //   brakeFluid:
-    // }
+    const vehicleCheck = {
+      truckid: '',
+      user: '',
+      date: new Date(),
+      ...this.state.vehicleCheck
+    };
 
+    createVehicleCheck(vehicleCheck);
+    updateTruckLocation(this.state.truckid, 'In Use');
     createTrip(trip)
-      .then(id => this.props.history.push(ROUTES.TRUCK.linkTo(id)));
+      .then(() => this.props.history.push(ROUTES.HOME.linkTo()));
     
-    // createTruck()
   }
 
 
@@ -98,7 +109,7 @@ class TruckCheckoutForm extends Component {
               <label>Truck:</label>
               {trucksRef &&
               <select
-                name="truck"
+                name="truckid"
                 onChange={this.handleChange}>
                 {trucksRef.map(truck => {
                   return <option value={truck.id} key={truck.id}>{truck.make}-{truck.model}-{truck.plates}</option>;
