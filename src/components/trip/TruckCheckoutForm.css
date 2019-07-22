@@ -53,6 +53,7 @@
   .comments {
     font-size: 15px;
     width: 40vw;
+    max-width: 375px;
     display: flex;
     border-radius: 4px;
     border: 1px solid #ccc;
