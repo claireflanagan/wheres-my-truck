@@ -4,8 +4,7 @@ import styles from './TruckCheckoutForm.css';
 class VehicleCheckItem extends Component {
   state = {
     viewComment: false,
-    ok: null,
-    comment: ''
+    ok: null
   }
 
   handleToggle = ({ target }) => {
@@ -20,12 +19,8 @@ class VehicleCheckItem extends Component {
     }));
   }
 
-  handleChange = ({ target }) => {
-    this.setState({ comment: target.value });
-  }
-
   render() {
-    const { attribute, onComment } = this.props;
+    const { attribute, onChange } = this.props;
     const { viewComment, ok } = this.state;
     const nameDict = {
       acAndHeat: 'AC and Heat',
@@ -53,7 +48,7 @@ class VehicleCheckItem extends Component {
               id={`${attribute.name}ok`} 
               name={`${attribute.name}-ok`} 
               value="true" 
-              onChange={(event) => {this.handleToggle(event); onComment(event); }} 
+              onChange={(event) => {this.handleToggle(event); onChange(event); }} 
               checked={ok === 'true'}/>
             <i className="far fa-check-circle"></i>
           </label>
@@ -65,7 +60,7 @@ class VehicleCheckItem extends Component {
               id={`${attribute.name}notOk`} 
               name={`${attribute.name}-ok`} 
               value="false" 
-              onChange={(event) => {this.handleToggle(event); onComment(event); }} 
+              onChange={(event) => {this.handleToggle(event); onChange(event); }} 
               checked={ok === 'false'}/>
             <i className="far fa-times-circle"></i>
           </label>
@@ -79,7 +74,7 @@ class VehicleCheckItem extends Component {
                 type="text" id={`${attribute.name}Comment`} 
                 name={`${attribute.name}-comment`} 
                 placeholder="Comments?" 
-                onInput={(event) => {this.handleChange(event); onComment(event); }}/>
+                onInput={onChange}/>
             </span>
             : <i className="far fa-plus-square" onClick={this.handleClick} id={`${attribute.name}`}></i>
           }

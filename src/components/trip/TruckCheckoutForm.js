@@ -31,21 +31,14 @@ class TruckCheckoutForm extends Component {
       });
   }
 
-  handleComment = ({ target }) => {
-    const { vehicleCheckRef, vehicleCheck } = this.state;
-    let vehicleCheckCopy = Object.assign({}, vehicleCheck);
+  handleVehicleCheckChange = ({ target }) => {
+    let vehicleCheck = Object.assign({}, this.state.vehicleCheck);
+    let name = target.name.split('-')[0];
 
-    for(let i = 0; i < vehicleCheckRef.length; i++) {
-      let attribute = vehicleCheckRef[i];
-      let name = target.name.split('-')[0];
-
-      if(name === attribute.name) {
-        if(!vehicleCheckCopy[name]) vehicleCheckCopy[name] = {};
-        if(target.type === 'text') vehicleCheckCopy[name]['comment'] = target.value;
-        else if(target.type === 'radio') vehicleCheckCopy[name]['ok'] = target.value;
-        this.setState({ vehicleCheck: vehicleCheckCopy });
-      }
-    }
+    if(!vehicleCheck[name]) vehicleCheck[name] = {};
+    if(target.type === 'text') vehicleCheck[name]['comment'] = target.value;
+    else if(target.type === 'radio') vehicleCheck[name]['ok'] = target.value;
+    this.setState({ vehicleCheck });
   }
 
   handleSubmit = event => {
@@ -147,7 +140,7 @@ class TruckCheckoutForm extends Component {
               <VehicleCheckItem 
                 attribute={attribute} 
                 key={attribute.name}
-                onComment={this.handleComment}
+                onChange={this.handleVehicleCheckChange}
               />
             ))
           }
