@@ -35,9 +35,9 @@ export const ROUTES = {
     linkTo: () => '/trucks/list'
   },
   TRUCKCHECKOUT: {
-    path: '/trip/checkout',
+    path: '/trip/checkout/:user',
     Component: TruckCheckoutForm,
-    linkTo: () => '/trip/checkout'
+    linkTo: user => `/trip/checkout/${user}`
   },
   TRUCKRETURN: {
     path: '/trip/return',

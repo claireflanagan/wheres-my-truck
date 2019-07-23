@@ -18,7 +18,8 @@ class TruckCheckoutForm extends Component {
     truckid: '',
     vehicleCheckRef: null,
     trucksRef: null,
-    vehicleCheck: {}
+    vehicleCheck: {},
+    user: null
   }
   
   componentDidMount() {
@@ -48,6 +49,8 @@ class TruckCheckoutForm extends Component {
       .then(trucksRef => {
         this.setState({ trucksRef: trucksRef });
       });
+
+    this.setState({ user: this.props.match.params.user });
   }
 
   handleVehicleCheckChange = ({ target }) => {
@@ -66,27 +69,38 @@ class TruckCheckoutForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    const { 
+      truckid, 
+      user, 
+      vehicleCheck, 
+      startDate, 
+      endDate, 
+      tripPurpose, 
+      gotLocation, 
+      endLocation
+    } = this.state;
+
     const trip = {
-      startDate: this.state.startDate,
-      endDate: this.state.endDate,
-      tripPurpose: this.state.tripPurpose,
-      gotLocation: this.state.gotLocation,
-      endLocation: this.state.endLocation,
-      user: ''
+      startDate: startDate,
+      endDate: endDate,
+      tripPurpose: tripPurpose,
+      gotLocation: gotLocation,
+      endLocation: endLocation,
+      user: user,
+      truck: truckid
     };
 
-    const vehicleCheck = {
-      truckid: this.state.truckid,
-      user: '',
+    const vehicleCheckObj = {
+      truckid: truckid,
+      user: user,
       date: new Date(),
-      ...this.state.vehicleCheck
+      ...vehicleCheck
     };
 
-    createVehicleCheck(vehicleCheck);
-    updateTruckLocation(this.state.truckid, 'In Use');
+    createVehicleCheck(vehicleCheckObj);
+    updateTruckLocation(truckid, 'In Use');
     createTrip(trip)
-      .then(() => this.props.history.push(ROUTES.HOME.linkTo()));
-    
+      .then(() => this.props.history.push(ROUTES.HOME.linkTo()));    
   }
 
 
