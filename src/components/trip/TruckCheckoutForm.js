@@ -87,7 +87,8 @@ class TruckCheckoutForm extends Component {
       gotLocation: gotLocation,
       endLocation: endLocation,
       user: user,
-      truck: truckid
+      truck: truckid,
+      active: true
     };
 
     const vehicleCheckObj = {
