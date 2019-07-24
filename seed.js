@@ -20,6 +20,7 @@ async function seed() {
       year: chance.year(),
       make: chance.animal(),
       model: chance.animal(),
+      active: true,
       tireSize: chance.integer({ min: 1, max: 30 }),
       boughtDate: chance.date({ year: 2017 }),
       registration: 'https://firebasestorage.googleapis.com/v0/b/dudewheresmytruck-f2b38.appspot.com/o/registration%2Fdmv.gif?alt=media&token=6ac7d745-2c3b-44f1-9116-5cdc76b19337',
@@ -33,9 +34,11 @@ async function seed() {
       endDate: chance.date({ year: 2019 }),
       user: chance.string({ length: 10 }),
       //truck: chance.pickone(truckIds),
-      purpose: chance.sentence({ words: 5 }),
+      tripPurpose: chance.sentence({ words: 5 }),
       pickupLocation: chance.address(),
-      returnLocation: chance.address()
+      returnLocation: chance.address(),
+      truckid: 'truckid', //fix
+      active: chance.bool()
     }))
     .map(createTrip));
 
@@ -46,7 +49,6 @@ async function seed() {
         date: chance.date(),
         user: chance.name(),
         truckId: chance.pickone(truckIdsCopy),
-        inService: chance.bool(),
         motorOil: {
           ok: chance.bool(),
           notes: chance.sentence()

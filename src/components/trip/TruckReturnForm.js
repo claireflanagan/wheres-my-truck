@@ -46,7 +46,7 @@ class TruckReturnForm extends Component {
 
     const updatedTrip = {
       endDate: this.state.returnDate,
-      endLocation: this.state.returnLocation,
+      returnLocation: this.state.returnLocation,
       active: false,
       notes: this.state.notes,
       ...this.state.trip

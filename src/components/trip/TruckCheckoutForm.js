@@ -13,8 +13,8 @@ class TruckCheckoutForm extends Component {
     startDate: '',
     endDate: '',
     tripPurpose: '',
-    gotLocation: '',
-    endLocation: '',
+    pickupLocation: '',
+    returnLocation: '',
     truckid: '',
     vehicleCheckRef: null,
     trucksRef: null,
@@ -76,18 +76,18 @@ class TruckCheckoutForm extends Component {
       startDate, 
       endDate, 
       tripPurpose, 
-      gotLocation, 
-      endLocation
+      pickupLocation, 
+      returnLocation
     } = this.state;
 
     const trip = {
       startDate: startDate,
       endDate: endDate,
       tripPurpose: tripPurpose,
-      gotLocation: gotLocation,
-      endLocation: endLocation,
+      pickupLocation: pickupLocation,
+      returnLocation: returnLocation,
       user: user,
-      truck: truckid,
+      truckid: truckid,
       active: true
     };
 
@@ -110,8 +110,8 @@ class TruckCheckoutForm extends Component {
       startDate,
       endDate,
       tripPurpose,
-      gotLocation,
-      endLocation,
+      pickupLocation,
+      returnLocation,
       vehicleCheckRef,
       trucksRef
     } = this.state;
@@ -171,9 +171,9 @@ class TruckCheckoutForm extends Component {
             <p>
               <label>Pickup Location:</label>
               <input
-                name="gotLocation"
+                name="pickupLocation"
                 type="text"
-                value={gotLocation}
+                value={pickupLocation}
                 onChange={this.handleChange}
                 required
               />
@@ -182,9 +182,9 @@ class TruckCheckoutForm extends Component {
             <p>
               <label>Anticipated Return Location:</label>
               <input
-                name="endLocation"
+                name="returnLocation"
                 type="text"
-                value={endLocation}
+                value={returnLocation}
                 onChange={this.handleChange}/>
             </p>
 
