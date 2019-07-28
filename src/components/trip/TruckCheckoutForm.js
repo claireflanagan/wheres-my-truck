@@ -17,7 +17,7 @@ class TruckCheckoutForm extends Component {
     returnLocation: '',
     truckId: '',
     vehicleCheckRef: null,
-    trucksRef: null,
+    trucksList: null,
     vehicleCheck: {},
     user: null
   }
@@ -37,17 +37,17 @@ class TruckCheckoutForm extends Component {
 
     trucksCollection.get()
       .then(snap => {
-        let trucksRef = [];
+        let trucksList = [];
         snap.forEach(doc => {
           const id = doc.id;
           const data = doc.data();
           data.id = id;
-          trucksRef.push(data);
+          trucksList.push(data);
         });
-        return trucksRef;
+        return trucksList;
       })
-      .then(trucksRef => {
-        this.setState({ trucksRef: trucksRef });
+      .then(trucksList => {
+        this.setState({ trucksList: trucksList });
       });
 
     this.setState({ user: this.props.match.params.user });
@@ -113,7 +113,7 @@ class TruckCheckoutForm extends Component {
       pickupLocation,
       returnLocation,
       vehicleCheckRef,
-      trucksRef,
+      trucksList,
       truckId
     } = this.state;
 
@@ -124,14 +124,14 @@ class TruckCheckoutForm extends Component {
           <div className={styles.largeInputs}>
             <p>
               <label>Truck:</label>
-              {trucksRef &&
+              {trucksList &&
               <select
                 required
                 name="truckId"
                 defaultValue={truckId}
                 onChange={this.handleChange}>
                 <option value=''></option> 
-                {trucksRef.map(truck => {
+                {trucksList.map(truck => {
                   return <option value={truck.id} key={truck.id}>{truck.make}-{truck.model}-{truck.plates}</option>;
                 })}
               </select>}
