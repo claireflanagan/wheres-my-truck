@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../routes/routes';
-//import { signout } from '../../services/auth';
 import styles from './Header.css';
 
 export default function Header() {

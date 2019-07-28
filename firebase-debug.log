@@ -1,0 +1,60 @@
+[debug] [2019-07-14T21:21:41.238Z] ----------------------------------------------------------------------
+[debug] [2019-07-14T21:21:41.240Z] Command:       /usr/local/bin/node /Users/rehmsy/.npm-globals/bin/firebase database:update /seed.json dudewheresmytruck
+[debug] [2019-07-14T21:21:41.240Z] CLI Version:   7.1.0
+[debug] [2019-07-14T21:21:41.240Z] Platform:      darwin
+[debug] [2019-07-14T21:21:41.240Z] Node Version:  v11.2.0
+[debug] [2019-07-14T21:21:41.241Z] Time:          Sun Jul 14 2019 14:21:41 GMT-0700 (Pacific Daylight Time)
+[debug] [2019-07-14T21:21:41.241Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-07-14T21:21:41.248Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-07-14T21:21:41.248Z] > authorizing via signed-in user
+[debug] [2019-07-14T21:21:41.248Z] [iam] checking project dudewheresmytruck-f2b38 for permissions ["firebase.projects.get","firebasedatabase.instances.update"]
+[debug] [2019-07-14T21:21:41.250Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/dudewheresmytruck-f2b38:testIamPermissions  
+
+[debug] [2019-07-14T21:21:41.778Z] <<< HTTP RESPONSE 200
+[debug] [2019-07-14T21:21:41.780Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/dudewheresmytruck-f2b38  
+ 
+[debug] [2019-07-14T21:21:41.968Z] <<< HTTP RESPONSE 200
+[debug] [2019-07-14T21:21:46.792Z] Error: ENOENT: no such file or directory, open 'dudewheresmytruck'
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2019-07-14T21:22:38.634Z] ----------------------------------------------------------------------
+[debug] [2019-07-14T21:22:38.636Z] Command:       /usr/local/bin/node /Users/rehmsy/.npm-globals/bin/firebase database:push /seed.json dudewheresmytruck
+[debug] [2019-07-14T21:22:38.636Z] CLI Version:   7.1.0
+[debug] [2019-07-14T21:22:38.636Z] Platform:      darwin
+[debug] [2019-07-14T21:22:38.637Z] Node Version:  v11.2.0
+[debug] [2019-07-14T21:22:38.637Z] Time:          Sun Jul 14 2019 14:22:38 GMT-0700 (Pacific Daylight Time)
+[debug] [2019-07-14T21:22:38.637Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-07-14T21:22:38.644Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-07-14T21:22:38.644Z] > authorizing via signed-in user
+[debug] [2019-07-14T21:22:38.644Z] [iam] checking project dudewheresmytruck-f2b38 for permissions ["firebase.projects.get","firebasedatabase.instances.update"]
+[debug] [2019-07-14T21:22:38.645Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/dudewheresmytruck-f2b38:testIamPermissions  
+
+[debug] [2019-07-14T21:22:38.885Z] <<< HTTP RESPONSE 200
+[debug] [2019-07-14T21:22:38.887Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/dudewheresmytruck-f2b38  
+ 
+[debug] [2019-07-14T21:22:39.087Z] <<< HTTP RESPONSE 200
+[debug] [2019-07-14T21:22:39.092Z] Error: ENOENT: no such file or directory, open 'dudewheresmytruck'
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2019-07-14T21:25:55.466Z] ----------------------------------------------------------------------
+[debug] [2019-07-14T21:25:55.468Z] Command:       /usr/local/bin/node /Users/rehmsy/.npm-globals/bin/firebase database:push /seed.js dudewheresmytruck
+[debug] [2019-07-14T21:25:55.468Z] CLI Version:   7.1.0
+[debug] [2019-07-14T21:25:55.468Z] Platform:      darwin
+[debug] [2019-07-14T21:25:55.468Z] Node Version:  v11.2.0
+[debug] [2019-07-14T21:25:55.468Z] Time:          Sun Jul 14 2019 14:25:55 GMT-0700 (Pacific Daylight Time)
+[debug] [2019-07-14T21:25:55.468Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-07-14T21:25:55.475Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-07-14T21:25:55.476Z] > authorizing via signed-in user
+[debug] [2019-07-14T21:25:55.476Z] [iam] checking project dudewheresmytruck-f2b38 for permissions ["firebase.projects.get","firebasedatabase.instances.update"]
+[debug] [2019-07-14T21:25:55.477Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/dudewheresmytruck-f2b38:testIamPermissions  
+
+[debug] [2019-07-14T21:25:55.755Z] <<< HTTP RESPONSE 200
+[debug] [2019-07-14T21:25:55.757Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/dudewheresmytruck-f2b38  
+ 
+[debug] [2019-07-14T21:25:55.974Z] <<< HTTP RESPONSE 200
+[debug] [2019-07-14T21:25:55.980Z] Error: ENOENT: no such file or directory, open 'dudewheresmytruck'
+[error] 
+[error] Error: An unexpected error has occurred.
