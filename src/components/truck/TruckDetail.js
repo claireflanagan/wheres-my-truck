@@ -72,7 +72,10 @@ export default function TruckDetail({ match }) {
         <dt>Tire Size</dt>
         <dd>{truck.tireSize}</dd>
         <dt>Bought Date</dt>
-        <dd>{new Date(truck.boughtDate).toDateString()}</dd>
+        {(typeof truck.boughtDate === 'object')
+          ? <dd>{new Date(Date.now(truck.boughtDate)).toDateString()}</dd>
+          : <dd>{new Date(truck.boughtDate).toDateString()}</dd>
+        }
         {vehicleCheckDetail &&
           <div>
             <h2>Truck Check Info</h2>
