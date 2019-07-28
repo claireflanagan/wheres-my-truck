@@ -165,4 +165,9 @@
     background-color: #5d8d5f;
   }
 
+  .error {
+    color: red;
+    text-align: center;
+  }
+
 

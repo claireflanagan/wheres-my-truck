@@ -43,6 +43,7 @@ class VehicleCheckItem extends Component {
 
           <label className={styles.radioLabel + ' ' + styles.ok} htmlFor={`${attribute.name}ok`}>
             <input 
+              required
               className={styles.radioButton} 
               type="radio" 
               id={`${attribute.name}ok`} 

@@ -15,7 +15,7 @@ class TruckCheckoutForm extends Component {
     tripPurpose: '',
     pickupLocation: '',
     returnLocation: '',
-    truckid: '',
+    truckId: '',
     vehicleCheckRef: null,
     trucksRef: null,
     vehicleCheck: {},
@@ -70,7 +70,7 @@ class TruckCheckoutForm extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const { 
-      truckid, 
+      truckId, 
       user, 
       vehicleCheck, 
       startDate, 
@@ -87,19 +87,19 @@ class TruckCheckoutForm extends Component {
       pickupLocation: pickupLocation,
       returnLocation: returnLocation,
       user: user,
-      truckid: truckid,
+      truckId: truckId,
       active: true
     };
 
     const vehicleCheckObj = {
-      truckid: truckid,
+      truckId: truckId,
       user: user,
       date: new Date(),
       ...vehicleCheck
     };
 
     createVehicleCheck(vehicleCheckObj);
-    updateTruckLocation(truckid, 'In Use');
+    updateTruckLocation(truckId, 'In Use');
     createTrip(trip)
       .then(() => this.props.history.push(ROUTES.HOME.linkTo()));    
   }
@@ -113,7 +113,8 @@ class TruckCheckoutForm extends Component {
       pickupLocation,
       returnLocation,
       vehicleCheckRef,
-      trucksRef
+      trucksRef,
+      truckId
     } = this.state;
 
     return (
@@ -125,8 +126,11 @@ class TruckCheckoutForm extends Component {
               <label>Truck:</label>
               {trucksRef &&
               <select
-                name="truckid"
+                required
+                name="truckId"
+                defaultValue={truckId}
                 onChange={this.handleChange}>
+                <option value=''></option> 
                 {trucksRef.map(truck => {
                   return <option value={truck.id} key={truck.id}>{truck.make}-{truck.model}-{truck.plates}</option>;
                 })}

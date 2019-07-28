@@ -12,10 +12,11 @@ class TruckReturnForm extends Component {
   state = {
     returnLocation: '',
     returnDate: '',
-    truckid: '',
+    truckId: '',
     notes: '',
-    trucksRef: null,
-    trip: {}
+    trucksList: null,
+    trip: {},
+    errorMessage: null
   }
 
   componentDidMount() {
@@ -23,18 +24,22 @@ class TruckReturnForm extends Component {
       .where('location', '==', 'In Use')
       .get()
       .then(snap => {
-        let trucksRef = [];
+        let trucksList = [];
         snap.forEach(doc => {
           const id = doc.id;
           const data = doc.data();
           data.id = id;
-          trucksRef.push(data);
+          trucksList.push(data);
         });
-        return trucksRef;
+        return trucksList;
       })
-      .then(trucksRef => {
-        this.setState({ trucksRef: trucksRef });
+      .then(trucksList => {
+        this.setState({ trucksList: trucksList });
+        if(trucksList.length === 0) {
+          this.setState({ errorMessage: 'There are no trucks currently checked out. You must checkout a truck before proceeding' });
+        }
       });
+    
   }
 
   handleChange = ({ target }) => {
@@ -44,17 +49,9 @@ class TruckReturnForm extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    const updatedTrip = {
-      endDate: this.state.returnDate,
-      returnLocation: this.state.returnLocation,
-      active: false,
-      notes: this.state.notes,
-      ...this.state.trip
-    };
-
     tripsCollection
       .where('active', '==', true)
-      .where('truck', '==', this.state.truckid)
+      .where('truckId', '==', this.state.truckId)
       .get()
       .then(snap => {
         let id = '';
@@ -62,16 +59,24 @@ class TruckReturnForm extends Component {
           id = doc.id;
           const data = doc.data();
           this.setState({ trip: data });
+          return id;
         });
         return id;
       }).catch(error => {
         console.log(error);
       })
-      .then(tripid => {
-        updateTrip(tripid, updatedTrip);
+      .then(tripId => {
+        const updatedTrip = {
+          endDate: this.state.returnDate,
+          returnLocation: this.state.returnLocation,
+          active: false,
+          notes: this.state.notes,
+          ...this.state.trip
+        };
+        updateTrip(tripId, updatedTrip);
       });
 
-    updateTruckLocation(this.state.truckid, this.state.returnLocation)
+    updateTruckLocation(this.state.truckId, this.state.returnLocation)
       .then(() => this.props.history.push(ROUTES.HOME.linkTo()));
   }
 
@@ -79,25 +84,28 @@ class TruckReturnForm extends Component {
     const {
       returnDate,
       returnLocation,
-      trucksRef,
+      trucksList,
       notes,
-      truckid
+      truckId,
+      errorMessage
     } = this.state;
 
     return (
       <section>
         <h1>Truck Return Form</h1>
         <form onSubmit={this.handleSubmit}  className={styles.form}>
+          {errorMessage && <h3 className={styles.error}>{errorMessage}</h3>}
           <div className={styles.largeInputs}> 
             <p>
               <label>Truck:</label>
-              {trucksRef &&
+              {trucksList &&
               <select
-                defaultValue={truckid}
-                name="truckid"
+                required
+                defaultValue={truckId}
+                name="truckId"
                 onChange={this.handleChange}>
                 <option value=''></option> 
-                {trucksRef.map(truck => {
+                {trucksList.map(truck => {
                   return (<option value={truck.id} key={truck.id}>{truck.make}-{truck.model}-{truck.plates}</option>);
                 })}
               </select>}
@@ -116,6 +124,7 @@ class TruckReturnForm extends Component {
             <p>
               <label>Return Location:</label>
               <input
+                required
                 name="returnLocation"
                 type="text"
                 value={returnLocation}
