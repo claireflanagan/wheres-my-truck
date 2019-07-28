@@ -8,6 +8,7 @@
     "test:watch": "npm run test -- --watch",
     "build": "webpack --mode production",
     "start": "webpack-dev-server --hot --mode development --devtool eval-source-map",
+    "seed": "babel-node seed.js",
     "deploy:all": "firebase deploy",
     "deploy": "firebase deploy --only hosting"
   },
@@ -71,7 +72,7 @@
   },
   "dependencies": {
     "auth0-js": "^9.10.0",
-    "bootstrap": "^4.2.1",
+    "bootstrap": "^4.3.1",
     "firebase": "^5.9.1",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",

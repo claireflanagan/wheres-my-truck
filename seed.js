@@ -33,7 +33,7 @@ async function seed() {
       startDate: chance.date({ year: 2018 }),
       endDate: chance.date({ year: 2019 }),
       user: chance.string({ length: 10 }),
-      //truck: chance.pickone(truckIds),
+      truckid: chance.pickone(truckIds).id,
       tripPurpose: chance.sentence({ words: 5 }),
       pickupLocation: chance.address(),
       returnLocation: chance.address(),
@@ -48,7 +48,7 @@ async function seed() {
       const vehicleCheck = {
         date: chance.date(),
         user: chance.name(),
-        truckId: chance.pickone(truckIdsCopy),
+        truckid: chance.pickone(truckIdsCopy).id,
         motorOil: {
           ok: chance.bool(),
           notes: chance.sentence()
@@ -130,4 +130,4 @@ async function seed() {
 
 seed()
   .then(() => console.log('done'))
-  .catch(console.error);
+  .catch('*** ERROR ***\n\n', console.error);
