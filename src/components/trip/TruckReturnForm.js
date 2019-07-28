@@ -3,20 +3,25 @@ import { withRouter } from 'react-router-dom';
 // import { ROUTES } from '../../routes/routes';
 import styles from './TruckCheckoutForm.css';
 import { trucksCollection } from '../../services/collections';
-import { useFirebase } from '../../hooks/useFirebase';
 import { tripsCollection } from '../../services/collections';
+import { updateTrip } from '../../actions/trips';
+import { updateTruckLocation } from '../../actions/trucks';
+import { ROUTES } from '../../routes/routes';
 
 class TruckReturnForm extends Component {
   state = {
     returnLocation: '',
     returnDate: '',
-    truck: '',
+    truckid: '',
     notes: '',
-    trucksRef: null
+    trucksRef: null,
+    trip: {}
   }
 
   componentDidMount() {
-    trucksCollection.get()
+    trucksCollection
+      .where('location', '==', 'In Use')
+      .get()
       .then(snap => {
         let trucksRef = [];
         snap.forEach(doc => {
@@ -38,11 +43,36 @@ class TruckReturnForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const trip = useFirebase(tripsCollection.doc(this.state.truck));
-    console.log('trip', trip);
-    // const trip = this.state;
-    // createTrip(trip)
-    //   .then(id => this.props.history.push(ROUTES.TRUCK.linkTo(id)));
+
+    const updatedTrip = {
+      endDate: this.state.returnDate,
+      returnLocation: this.state.returnLocation,
+      active: false,
+      notes: this.state.notes,
+      ...this.state.trip
+    };
+
+    tripsCollection
+      .where('active', '==', true)
+      .where('truck', '==', this.state.truckid)
+      .get()
+      .then(snap => {
+        let id = '';
+        snap.forEach(doc => {
+          id = doc.id;
+          const data = doc.data();
+          this.setState({ trip: data });
+        });
+        return id;
+      }).catch(error => {
+        console.log(error);
+      })
+      .then(tripid => {
+        updateTrip(tripid, updatedTrip);
+      });
+
+    updateTruckLocation(this.state.truckid, this.state.returnLocation)
+      .then(() => this.props.history.push(ROUTES.HOME.linkTo()));
   }
 
   render() {
@@ -50,7 +80,8 @@ class TruckReturnForm extends Component {
       returnDate,
       returnLocation,
       trucksRef,
-      notes
+      notes,
+      truckid
     } = this.state;
 
     return (
@@ -62,9 +93,10 @@ class TruckReturnForm extends Component {
               <label>Truck:</label>
               {trucksRef &&
               <select
-                name="truck"
-                onChange={this.handleChange}
-              >
+                defaultValue={truckid}
+                name="truckid"
+                onChange={this.handleChange}>
+                <option value=''></option> 
                 {trucksRef.map(truck => {
                   return (<option value={truck.id} key={truck.id}>{truck.make}-{truck.model}-{truck.plates}</option>);
                 })}

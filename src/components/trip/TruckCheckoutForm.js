@@ -3,7 +3,9 @@ import { withRouter } from 'react-router-dom';
 import { ROUTES } from '../../routes/routes';
 import styles from './TruckCheckoutForm.css';
 import { createTrip } from '../../actions/trips';
-import { vehicleChecksCollection } from '../../services/collections';
+import { createVehicleCheck } from '../../actions/vehicleCheck';
+import { updateTruckLocation } from '../../actions/trucks';
+import { vehicleChecksCollection, trucksCollection } from '../../services/collections';
 import VehicleCheckItem from './VehicleCheckItem';
 
 class TruckCheckoutForm extends Component {
@@ -11,9 +13,13 @@ class TruckCheckoutForm extends Component {
     startDate: '',
     endDate: '',
     tripPurpose: '',
-    gotLocation: '',
-    endLocation: '',
-    vehicleCheckRef: []
+    pickupLocation: '',
+    returnLocation: '',
+    truckid: '',
+    vehicleCheckRef: null,
+    trucksRef: null,
+    vehicleCheck: {},
+    user: null
   }
   
   componentDidMount() {
@@ -28,40 +34,74 @@ class TruckCheckoutForm extends Component {
           this.setState({ vehicleCheckRef: checkAttributes.filter(attribute => attribute.ok !== undefined) });
         });
       });
+
+    trucksCollection.get()
+      .then(snap => {
+        let trucksRef = [];
+        snap.forEach(doc => {
+          const id = doc.id;
+          const data = doc.data();
+          data.id = id;
+          trucksRef.push(data);
+        });
+        return trucksRef;
+      })
+      .then(trucksRef => {
+        this.setState({ trucksRef: trucksRef });
+      });
+
+    this.setState({ user: this.props.match.params.user });
   }
 
-  handleComment = ({ target }) => {
-    const { vehicleCheckRef } = this.state;
+  handleVehicleCheckChange = ({ target }) => {
+    let vehicleCheck = Object.assign({}, this.state.vehicleCheck);
+    let name = target.name.split('-')[0];
 
-    for(let i = 0; i < vehicleCheckRef.length; i++) {
-      let attribute = vehicleCheckRef[i];
-      let name = attribute.name;
-      attribute.comment = target.value;
+    if(!vehicleCheck[name]) vehicleCheck[name] = {};
+    if(target.type === 'text') vehicleCheck[name]['comment'] = target.value;
+    else if(target.type === 'radio') vehicleCheck[name]['ok'] = target.value;
+    this.setState({ vehicleCheck });
+  }
 
-      if(name === target.name) {
-        this.setState({ vehicleCheckRef: [...vehicleCheckRef] });
-      }
-    }
+  handleChange = ({ target }) => {
+    this.setState({ [target.name]: target.value });
   }
 
   handleSubmit = event => {
     event.preventDefault();
+    const { 
+      truckid, 
+      user, 
+      vehicleCheck, 
+      startDate, 
+      endDate, 
+      tripPurpose, 
+      pickupLocation, 
+      returnLocation
+    } = this.state;
+
     const trip = {
-      startDate: this.state.startDate,
-      endDate: this.state.endDate,
-      tripPurpose: this.state.tripPurpose,
-      gotLocation: this.state.gotLocation,
-      endLocation: this.state.endLocation
+      startDate: startDate,
+      endDate: endDate,
+      tripPurpose: tripPurpose,
+      pickupLocation: pickupLocation,
+      returnLocation: returnLocation,
+      user: user,
+      truckid: truckid,
+      active: true
     };
 
-    // const vehicleCheck = {
-    //   brakeFluid:
-    // }
+    const vehicleCheckObj = {
+      truckid: truckid,
+      user: user,
+      date: new Date(),
+      ...vehicleCheck
+    };
 
+    createVehicleCheck(vehicleCheckObj);
+    updateTruckLocation(truckid, 'In Use');
     createTrip(trip)
-      .then(id => this.props.history.push(ROUTES.TRUCK.linkTo(id)));
-    
-    // createTruck()
+      .then(() => this.props.history.push(ROUTES.HOME.linkTo()));    
   }
 
 
@@ -70,17 +110,29 @@ class TruckCheckoutForm extends Component {
       startDate,
       endDate,
       tripPurpose,
-      gotLocation,
-      endLocation,
-      vehicleCheckRef
+      pickupLocation,
+      returnLocation,
+      vehicleCheckRef,
+      trucksRef
     } = this.state;
 
-    console.log('vcr', vehicleCheckRef);
     return (
       <section>
         <h1>Truck Checkout Form</h1>
         <form onSubmit={this.handleSubmit}  className={styles.form}>
           <div className={styles.largeInputs}>
+            <p>
+              <label>Truck:</label>
+              {trucksRef &&
+              <select
+                name="truckid"
+                onChange={this.handleChange}>
+                {trucksRef.map(truck => {
+                  return <option value={truck.id} key={truck.id}>{truck.make}-{truck.model}-{truck.plates}</option>;
+                })}
+              </select>}
+            </p>
+
             <p>
               <label>Checkout Date:</label>
               <input
@@ -119,9 +171,9 @@ class TruckCheckoutForm extends Component {
             <p>
               <label>Pickup Location:</label>
               <input
-                name="gotLocation"
+                name="pickupLocation"
                 type="text"
-                value={gotLocation}
+                value={pickupLocation}
                 onChange={this.handleChange}
                 required
               />
@@ -130,9 +182,9 @@ class TruckCheckoutForm extends Component {
             <p>
               <label>Anticipated Return Location:</label>
               <input
-                name="endLocation"
+                name="returnLocation"
                 type="text"
-                value={endLocation}
+                value={returnLocation}
                 onChange={this.handleChange}/>
             </p>
 
@@ -144,7 +196,7 @@ class TruckCheckoutForm extends Component {
               <VehicleCheckItem 
                 attribute={attribute} 
                 key={attribute.name}
-                onComment={this.handleComment}
+                onChange={this.handleVehicleCheckChange}
               />
             ))
           }
