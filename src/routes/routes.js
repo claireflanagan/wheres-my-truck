@@ -11,6 +11,7 @@ import Home from '../components/home/Home';
 import InviteUser from '../components/admin/users/InviteUser';
 import UsersList from '../components/admin/users/UsersList';
 import AddTruck from '../components/admin/AddTruck';
+import TruckReturnForm from '../components/trip/TruckReturnForm';
 
 export const ROUTES = {
   HOME: {
@@ -33,11 +34,15 @@ export const ROUTES = {
     Component: TrucksList,
     linkTo: () => '/trucks/list'
   },
-
   TRUCKCHECKOUT: {
-    path: '/trip/checkout',
+    path: '/trip/checkout/:user',
     Component: TruckCheckoutForm,
-    linkTo: () => '/trip/checkout'
+    linkTo: user => `/trip/checkout/${user}`
+  },
+  TRUCKRETURN: {
+    path: '/trip/return',
+    Component: TruckReturnForm,
+    linkTo: () => '/trip/return'
   },
   TRIP: {
     path: '/trip/:id',

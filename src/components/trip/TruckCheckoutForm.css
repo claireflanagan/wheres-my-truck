@@ -7,17 +7,27 @@
   border-radius: 5px;
   max-width: 800px;
   font-size: 1.7rem;
+}
 
-  .largeInputs p input {
-      border-radius: 4px;
-      width: 100%;
-      border: 1px solid #ccc;
-      padding: 10px;
-      font-family: 'Helvetica', arial, sans-serif;
-      font-size: 20px;
-        label {
-            display: block;
-        }
+  input, select {
+    border-radius: 4px;
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-family: 'Helvetica', arial, sans-serif;
+    font-size: 18px;
+  }
+
+  select {
+    height: 49px;
+  }
+
+  input label {
+    display: block;
+  }
+
+  select label {
+    display: block;
   }
 
   [type=radio] { 
@@ -48,12 +58,13 @@
   }
 
   .radioLabel {
-      margin-right: 30px;
+    margin-right: 5vw;
   }
 
   .comments {
     font-size: 15px;
-    width: 102%;
+    width: 40vw;
+    max-width: 375px;
     display: flex;
     border-radius: 4px;
     border: 1px solid #ccc;
@@ -66,10 +77,6 @@
     font-weight: bold;
     margin-top: 28px;
   }
-  /* .innerFlex {
-    display: flex-end;
-    wrap: wrap;
-  } */
 
   .green {
     background: green;
@@ -81,12 +88,12 @@
   }
 
   .radioButton {
-      display: inline;
+    display: inline;
   }
 
   .radioButtonCategoryLabel {
-      width: 50%;
-      padding-top: 7px;
+    width: 50%;
+    padding-top: 7px;
   }
 
   .commentLabel {
@@ -96,8 +103,7 @@
   }
 
   .refs {
-      display: flex;
-      wrap: no-wrap;
+    display: flex;
   }
 
   .hide {
@@ -121,12 +127,11 @@
   }
 
 
-
-
   textarea:focus,
   input:focus,
   input[type]:focus,
-  .uneditable-input:focus {
+  .uneditable-input:focus,
+  select:focus {
       border-color: #99BE7F;
       box-shadow: 0 1px 1px #99BE7F inset, 0 0 8px #99BE7F;
       outline: 0 none;
@@ -140,23 +145,29 @@
       margin-left: 40px;
   }
 
-  button {
-      position: relative;
-      display: block;
-      background-color: #679D69;
-      padding: 19px 39px 18px 39px;
-      margin: 0 auto;
-      font-size: 2.2rem;
-      text-align: center;
-      width: 100%;
-      border-radius: 3px;
-      border: none;
-      margin-bottom: 10px;
-      color: white;
-      transition: all ease-in .3s;
-
-      &:hover {
-          background-color: #5d8d5f;
-      }
+  .form button {
+    position: relative;
+    display: block;
+    background-color: #679D69;
+    padding: 19px 39px 18px 39px;
+    margin: 0 auto;
+    font-size: 2.2rem;
+    text-align: center;
+    width: 100%;
+    border-radius: 3px;
+    border: none;
+    margin-bottom: 10px;
+    color: white;
+    transition: all ease-in .3s;
   }
-}
+
+  .form button:hover {
+    background-color: #5d8d5f;
+  }
+
+  .error {
+    color: red;
+    text-align: center;
+  }
+
+

@@ -1,5 +1,5 @@
 import { trucksCollection } from '../services/collections';
-import { truckRegistration, truckInsurance } from '../services/storage';
+// import { truckRegistration, truckInsurance } from '../services/storage';
 
 export const addTruck = truck => {
   const truckToAdd = { ...truck };
@@ -16,3 +16,7 @@ export const addTruck = truck => {
   //   ]);
   // });
 };
+
+export const updateTruckLocation = (id, location) => trucksCollection.doc(id).update({ location });
+
+
