@@ -1,7 +1,7 @@
 import React from 'react';
 import { useFirebase } from '../../hooks/useFirebase';
 import { ROUTES } from '../../routes/routes';
-import { addTruck } from '../../actions/trucks';
+import { editTruck } from '../../actions/trucks';
 import { trucksCollection } from '../../services/collections';
 import Loading from '../commons/Loading';
 import styles from './AddTruck.css';
@@ -9,7 +9,6 @@ import styles from './AddTruck.css';
 export default function TruckForm({ match }) {
   let truck = useFirebase(trucksCollection.doc(match.params.id));
   if(truck === undefined) return <Loading />;
-
   if(truck === null) {
     truck = {
       name: '',
@@ -28,8 +27,8 @@ export default function TruckForm({ match }) {
     };
   }
 
-  const handleChange = value => {
-    console.log('value', value);
+  const handleChange = e => {
+    console.log('e', e.target.value);
   };
 
   const handleFileChange = ({ target }) => {
@@ -42,7 +41,7 @@ export default function TruckForm({ match }) {
   const handleSubmit = event => {
     event.preventDefault();
     const truck = this.state;
-    addTruck(truck)
+    editTruck(truck.id, truck)
       .then(id => this.props.history.push(ROUTES.TRUCK.linkTo(id)));
   };
 
@@ -84,15 +83,15 @@ export default function TruckForm({ match }) {
         </p>
         <p>
           <label>Date of Purchase:</label>
-          <input required={true} name="boughtDate" type="date" value={truck.boughtDate} onChange={handleChange} />
+          <input required={true} name="boughtDate" type="date" value={new Date(truck.boughtDate.seconds).toISOString().split('T')[0]} onChange={handleChange} />
         </p>
         <p>
           <label>Proof of Registration:</label>
-          <input name="registration" type="file" accept=".jpg, .png, .svg, .gif" value={truck.registration} onChange={handleFileChange} />
+          <input name="registration" type="file" accept=".jpg, .png, .svg, .gif" value="" onChange={handleFileChange} />
         </p>
         <p>
           <label>Proof of Insurance:</label>
-          <input name="insurance" type="file" accept=".jpg, .png, .svg, .gif" value={truck.insurance} onChange={handleFileChange} />
+          <input name="insurance" type="file" accept=".jpg, .png, .svg, .gif" value="" onChange={handleFileChange} />
         </p>
         <button type="submit">Save</button>
       </form>
