@@ -3,71 +3,118 @@ import { withRouter } from 'react-router-dom';
 import { ROUTES } from '../../routes/routes';
 import styles from './TruckCheckoutForm.css';
 import { createTrip } from '../../actions/trips';
-import { truckChecksCollection } from '../../services/collections';
+import { createVehicleCheck } from '../../actions/vehicleCheck';
+import { updateTruckLocation } from '../../actions/trucks';
+import { vehicleChecksCollection, trucksCollection } from '../../services/collections';
+import VehicleCheckItem from './VehicleCheckItem';
 
 class TruckCheckoutForm extends Component {
   state = {
     startDate: '',
     endDate: '',
     tripPurpose: '',
-    gotLocation: '',
-    endLocation: '',
-    oilIsOk: '',
-    truckCheckRef: [],
-    brakeFluidComment: true,
-    coolantComment: false,
-    acAndHeatComment: false,
-    batteryCablesComment: false,
-    breakFluidComment: false,
-    fourWheelDriveComment: false,
-    insuranceComment: false,
-    lightsComment: false,
-    lpTagsComment: false,
-    motorOilComment: false,
-    powerSteeringFluidComment: false,
-    registrationComment: false
-  };
+    pickupLocation: '',
+    returnLocation: '',
+    truckId: '',
+    vehicleCheckRef: null,
+    trucksList: null,
+    vehicleCheck: {},
+    user: null
+  }
   
   componentDidMount() {
-    truckChecksCollection.limit(1).get()
+    vehicleChecksCollection.limit(1).get()
       .then(snap => {
         snap.forEach(doc => {
           const data = doc.data();
-          const truckAttributes = Object.keys(data).reduce((arr, key) => {
+          const checkAttributes = Object.keys(data).reduce((arr, key) => {
             const subObj = { name: key, ...data[key] };
             return arr.concat(subObj);
           }, []);
-          this.setState({ truckCheckRef: truckAttributes.filter(attribute => attribute.label !== undefined) });
+          this.setState({ vehicleCheckRef: checkAttributes.filter(attribute => attribute.ok !== undefined) });
         });
       });
+
+    trucksCollection.get()
+      .then(snap => {
+        let trucksList = [];
+        snap.forEach(doc => {
+          const id = doc.id;
+          const data = doc.data();
+          data.id = id;
+          trucksList.push(data);
+        });
+        return trucksList;
+      })
+      .then(trucksList => {
+        this.setState({ trucksList: trucksList });
+      });
+
+    this.setState({ user: this.props.match.params.user });
+  }
+
+  handleVehicleCheckChange = ({ target }) => {
+    let vehicleCheck = Object.assign({}, this.state.vehicleCheck);
+    let name = target.name.split('-')[0];
+
+    if(!vehicleCheck[name]) vehicleCheck[name] = {};
+    if(target.type === 'text') vehicleCheck[name]['comment'] = target.value;
+    else if(target.type === 'radio') vehicleCheck[name]['ok'] = target.value;
+    this.setState({ vehicleCheck });
   }
 
   handleChange = ({ target }) => {
     this.setState({ [target.name]: target.value });
-  };
+  }
 
   handleSubmit = event => {
     event.preventDefault();
-    const trip = this.state;
-    createTrip(trip)
-      .then(id => this.props.history.push(ROUTES.TRUCK.linkTo(id)));
-  };
+    const { 
+      truckId, 
+      user, 
+      vehicleCheck, 
+      startDate, 
+      endDate, 
+      tripPurpose, 
+      pickupLocation, 
+      returnLocation
+    } = this.state;
 
-  handleClick = ({ target }) => {
-    const name = target.id;
-    this.setState(prevState => ({
-      [`${name}Comment`]: !prevState[`${name}Comment`]
-    }));
-  };
+    const trip = {
+      startDate: startDate,
+      endDate: endDate,
+      tripPurpose: tripPurpose,
+      pickupLocation: pickupLocation,
+      returnLocation: returnLocation,
+      user: user,
+      truckId: truckId,
+      active: true
+    };
+
+    const vehicleCheckObj = {
+      truckId: truckId,
+      user: user,
+      date: new Date(),
+      ...vehicleCheck
+    };
+
+    createVehicleCheck(vehicleCheckObj);
+    updateTruckLocation(truckId, 'In Use');
+    createTrip(trip)
+      .then(() => this.props.history.push(ROUTES.HOME.linkTo()));    
+  }
+
 
   render() {
     const {
       startDate,
       endDate,
       tripPurpose,
-      gotLocation,
-      endLocation,
-      truckCheckRef
+      pickupLocation,
+      returnLocation,
+      vehicleCheckRef,
+      trucksList,
+      truckId
     } = this.state;
 
     return (
@@ -75,6 +122,21 @@ class TruckCheckoutForm extends Component {
         <h1>Truck Checkout Form</h1>
         <form onSubmit={this.handleSubmit}  className={styles.form}>
           <div className={styles.largeInputs}>
+            <p>
+              <label>Truck:</label>
+              {trucksList &&
+              <select
+                required
+                name="truckId"
+                defaultValue={truckId}
+                onChange={this.handleChange}>
+                <option value=''></option> 
+                {trucksList.map(truck => {
+                  return <option value={truck.id} key={truck.id}>{truck.make}-{truck.model}-{truck.plates}</option>;
+                })}
+              </select>}
+            </p>
+
             <p>
               <label>Checkout Date:</label>
               <input
@@ -113,9 +175,9 @@ class TruckCheckoutForm extends Component {
             <p>
               <label>Pickup Location:</label>
               <input
-                name="gotLocation"
+                name="pickupLocation"
                 type="text"
-                value={gotLocation}
+                value={pickupLocation}
                 onChange={this.handleChange}
                 required
               />
@@ -124,42 +186,24 @@ class TruckCheckoutForm extends Component {
             <p>
               <label>Anticipated Return Location:</label>
               <input
-                name="endLocation"
+                name="returnLocation"
                 type="text"
-                value={endLocation}
+                value={returnLocation}
                 onChange={this.handleChange}/>
             </p>
-          </div>
-          <h3>Vehicle Check:</h3>
-          {truckCheckRef &&
-            truckCheckRef.map(attribute => (
-              <div className={styles.refs} key={attribute.label}>
-                <p className={styles.radioButtonCategoryLabel}>{attribute.label}:</p>
-                <div className={styles.radioButtonContainer}>
-                  
-                  <label className={styles.radioLabel + ' ' + styles.ok} htmlFor={`${attribute.name}ok`}>
-                    <input className={styles.radioButton} type="radio" id={`${attribute.name}ok`} name={attribute.name} value="ok"/>
-                    <i className="far fa-check-circle"></i>
-                  </label>
-                  
-                  <label className={styles.radioLabel + ' ' + styles.notOk} htmlFor={`${attribute.name}notOk`}>
-                    <input className={styles.radioButton} type="radio" id={`${attribute.name}notOk`} name={attribute.name} value="notOk"/>
-                    <i className="far fa-times-circle"></i>
-                  </label>
 
-                  <label className={styles.radioLabel}  htmlFor={`${attribute.name}Comments`} aria-label="comments"></label>
-                  { this.state[`${attribute.name}Comment`] ?
-                    <span>
-                      <i className="far fa-minus-square" onClick={this.handleClick} id={`${attribute.name}`}></i>
-                      <input className={styles.comments} type="text" id={`${attribute.name}Comment`} name={`${attribute.name}`} placeholder="Additional Comments?"/>
-                    </span>
-                    : <i className="far fa-plus-square" onClick={this.handleClick} id={`${attribute.name}`}></i>
-                  }
-                </div>
-              </div>
+          </div>
+
+          <h3>Vehicle Check:</h3>
+          {vehicleCheckRef &&
+            vehicleCheckRef.map(attribute => (
+              <VehicleCheckItem 
+                attribute={attribute} 
+                key={attribute.name}
+                onChange={this.handleVehicleCheckChange}
+              />
             ))
           }
-
           <button type="submit">Submit</button>
         </form>
       </section>

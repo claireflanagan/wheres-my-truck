@@ -5,7 +5,7 @@ import styles from './TripDetail.css';
 import { useFirebase } from '../../hooks/useFirebase';
 import { tripsCollection } from '../../services/collections';
 import Loading from '../commons/Loading';
-import { app } from '../../services/firebase';
+// import { app } from '../../services/firebase';
 
 export default function TripDetail({ match }) {
   const trip = useFirebase(tripsCollection.doc(match.params.id));

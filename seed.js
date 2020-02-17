@@ -1,17 +1,17 @@
 import { Chance } from 'chance';
 import { addTruck } from './src/actions/trucks';
 import { createTrip } from './src/actions/trips';
-import { createTruckCheck } from './src/actions/truckCheck';
+import { createVehicleCheck } from './src/actions/VehicleCheck';
 // import { createIssue } from './src/actions/issues';
 // import { addMaintenance } from './src/actions/maintenances';
 
 
 const chance = Chance();
 let truckIds = [];
-let truckCheckIds = [];
+let vehicleCheckIds = [];
 
 async function seed() {
-  truckIds = await Promise.all([...Array(10)]
+  truckIds = await Promise.all([...Array(5)]
     .map(() => ({
       name: chance.name(),
       location: chance.address(),
@@ -20,6 +20,7 @@ async function seed() {
       year: chance.year(),
       make: chance.animal(),
       model: chance.animal(),
+      active: true,
       tireSize: chance.integer({ min: 1, max: 30 }),
       boughtDate: chance.date({ year: 2017 }),
       registration: 'https://firebasestorage.googleapis.com/v0/b/dudewheresmytruck-f2b38.appspot.com/o/registration%2Fdmv.gif?alt=media&token=6ac7d745-2c3b-44f1-9116-5cdc76b19337',
@@ -32,21 +33,21 @@ async function seed() {
       startDate: chance.date({ year: 2018 }),
       endDate: chance.date({ year: 2019 }),
       user: chance.string({ length: 10 }),
-      //truck: chance.pickone(truckIds),
-      purpose: chance.sentence({ words: 5 }),
+      truckId: chance.pickone(truckIds).id,
+      tripPurpose: chance.sentence({ words: 5 }),
       pickupLocation: chance.address(),
-      returnLocation: chance.address()
+      returnLocation: chance.address(),
+      active: chance.bool()
     }))
     .map(createTrip));
 
-  truckCheckIds = await Promise.all([...Array(10)]
+  vehicleCheckIds = await Promise.all([...Array(5)]
     .map(() => {
       const truckIdsCopy = truckIds.slice();
-      const truckCheck = {
+      const vehicleCheck = {
         date: chance.date(),
         user: chance.name(),
-        truckId: chance.pickone(truckIdsCopy),
-        inService: chance.bool(),
+        truckId: chance.pickone(truckIdsCopy).id,
         motorOil: {
           ok: chance.bool(),
           notes: chance.sentence()
@@ -92,10 +93,10 @@ async function seed() {
           notes: chance.sentence()
         }
       };
-      truckIdsCopy.splice(truckIdsCopy.indexOf(truckCheck.truckId), 1);
-      return truckCheck;
+      truckIdsCopy.splice(truckIdsCopy.indexOf(vehicleCheck.truckId), 1);
+      return vehicleCheck;
     })
-    .map(createTruckCheck));
+    .map(createVehicleCheck));
 
   // const issueIds = await Promise.all([...Array(100)].map(() => ({
   //   reportedDate: chance.date({ year: 2018 }),
@@ -128,4 +129,4 @@ async function seed() {
 
 seed()
   .then(() => console.log('done'))
-  .catch(console.error);
+  .catch('*** ERROR ***\n\n', console.error);

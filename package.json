@@ -8,6 +8,7 @@
     "test:watch": "npm run test -- --watch",
     "build": "webpack --mode production",
     "start": "webpack-dev-server --hot --mode development --devtool eval-source-map",
+    "seed": "babel-node seed.js",
     "deploy:all": "firebase deploy",
     "deploy": "firebase deploy --only hosting"
   },
