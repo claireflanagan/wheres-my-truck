@@ -6,7 +6,7 @@ import { trucksCollection } from '../../services/collections';
 import Loading from '../commons/Loading';
 import styles from './AddTruck.css';
 
-export default function TruckForm({ match }) {
+export default function TruckForm({ match, history }) {
   let truck = useFirebase(trucksCollection.doc(match.params.id));
   if(truck === undefined) return <Loading />;
   if(truck === null) {
@@ -40,9 +40,8 @@ export default function TruckForm({ match }) {
 
   const handleSubmit = event => {
     event.preventDefault();
-    const truck = this.state;
     editTruck(truck.id, truck)
-      .then(id => this.props.history.push(ROUTES.TRUCK.linkTo(id)));
+      .then(id => console.log('id', id));
   };
 
   return (
