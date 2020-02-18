@@ -1,30 +1,44 @@
-import React from 'react';
-import { useFirebase } from '../../hooks/useFirebase';
-import { ROUTES } from '../../routes/routes';
+import React, { useState, useEffect } from 'react';
+// import { ROUTES } from '../../routes/routes';
 import { editTruck } from '../../actions/trucks';
 import { trucksCollection } from '../../services/collections';
 import Loading from '../commons/Loading';
 import styles from './AddTruck.css';
 
-export default function TruckForm({ match, history }) {
-  let truck = useFirebase(trucksCollection.doc(match.params.id));
-  if(truck === undefined) return <Loading />;
+export default function TruckForm({ match }) {
+  const [truck, setTruck] = useState(null);
+
+  useEffect(() => {
+    trucksCollection.doc(match.params.id).get()
+      .then(doc => {
+        if(doc.exists) {
+          setTruck(doc.data());
+        } else {
+          return <Loading />;
+        }
+      });
+  }, {});
+
   if(truck === null) {
-    truck = {
-      name: '',
-      location: '',
-      vin: '',
-      plates: '',
-      year: '',
-      make: '',
-      model: '',
-      tireSize: '',
-      boughtDate: '',
-      registration: '',
-      registrationImg: '',
-      insurance: '',
-      insuranceImg: ''
-    };
+    return <Loading />;
+  }
+
+  if(match.params.id === null) {
+    // newTruck = {
+    //   name: '',
+    //   location: '',
+    //   vin: '',
+    //   plates: '',
+    //   year: '',
+    //   make: '',
+    //   model: '',
+    //   tireSize: '',
+    //   boughtDate: '',
+    //   registration: '',
+    //   registrationImg: '',
+    //   insurance: '',
+    //   insuranceImg: ''
+    // };
   }
 
   const handleChange = e => {
@@ -41,16 +55,16 @@ export default function TruckForm({ match, history }) {
   const handleSubmit = event => {
     event.preventDefault();
     editTruck(truck.id, truck)
-      .then(id => console.log('id', id));
+      .then(() => console.log('edited'));
   };
 
   return (
     <section className={styles.TruckForm}>
-      <h1>Add a Truck</h1>
+      <h1>Edit Truck</h1>
       <form onSubmit={handleSubmit} className={styles.form}>
         <p>
           <label>Truck Name:</label>
-          <input required={true} name="name" type="text" value={truck.name} onChange={handleChange} />
+          <input required={true} name="name" type="text" value={truck.name} onChange={e => (e)} />
         </p>
         <p>
           <label>Current Location:</label>
@@ -82,7 +96,7 @@ export default function TruckForm({ match, history }) {
         </p>
         <p>
           <label>Date of Purchase:</label>
-          <input required={true} name="boughtDate" type="date" value={new Date(truck.boughtDate.seconds).toISOString().split('T')[0]} onChange={handleChange} />
+          <input required={true} name="boughtDate" type="date" value={truck.boughtDate} onChange={handleChange} />
         </p>
         <p>
           <label>Proof of Registration:</label>

@@ -17,7 +17,7 @@ export const addTruck = truck => {
   // });
 };
 
-export const editTruck = (id) => trucksCollection.doc(id).update({ name: 'testChange' });
+export const editTruck = (id) => trucksCollection.doc(id).update({ name: 'Walter Castillo' });
 
 export const updateTruckLocation = (id, location) => trucksCollection.doc(id).update({ location });
 
