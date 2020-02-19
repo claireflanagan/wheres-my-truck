@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-// import { ROUTES } from '../../routes/routes';
+import { useHistory } from 'react-router-dom';
+import { ROUTES } from '../../routes/routes';
 import { editTruck } from '../../actions/trucks';
 import { trucksCollection } from '../../services/collections';
 import Loading from '../commons/Loading';
@@ -7,6 +8,7 @@ import styles from './AddTruck.css';
 
 export default function TruckForm({ match }) {
   let [truck, setTruck] = useState(null);
+  let history = useHistory();
 
   useEffect(() => {
     trucksCollection.doc(match.params.id).get()
@@ -55,7 +57,9 @@ export default function TruckForm({ match }) {
   const handleSubmit = event => {
     event.preventDefault();
     editTruck(truck.id, truck)
-      .then(() => console.log('edited'));
+      .then(() => {
+        history.push(ROUTES.TRUCK.linkTo(truck.id));
+      });
   };
 
   return (
