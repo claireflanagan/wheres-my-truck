@@ -6,7 +6,7 @@ import Loading from '../commons/Loading';
 import styles from './AddTruck.css';
 
 export default function TruckForm({ match }) {
-  const [truck, setTruck] = useState(null);
+  let [truck, setTruck] = useState(null);
 
   useEffect(() => {
     trucksCollection.doc(match.params.id).get()
@@ -24,25 +24,25 @@ export default function TruckForm({ match }) {
   }
 
   if(match.params.id === null) {
-    // newTruck = {
-    //   name: '',
-    //   location: '',
-    //   vin: '',
-    //   plates: '',
-    //   year: '',
-    //   make: '',
-    //   model: '',
-    //   tireSize: '',
-    //   boughtDate: '',
-    //   registration: '',
-    //   registrationImg: '',
-    //   insurance: '',
-    //   insuranceImg: ''
-    // };
+    truck = {
+      name: '',
+      location: '',
+      vin: '',
+      plates: '',
+      year: '',
+      make: '',
+      model: '',
+      tireSize: '',
+      boughtDate: '',
+      registration: '',
+      registrationImg: '',
+      insurance: '',
+      insuranceImg: ''
+    };
   }
 
-  const handleChange = e => {
-    console.log('e', e.target.value);
+  const handleChange = (e, key) => {
+    setTruck({ ...truck, [key]: e.target.value });
   };
 
   const handleFileChange = ({ target }) => {
@@ -64,39 +64,39 @@ export default function TruckForm({ match }) {
       <form onSubmit={handleSubmit} className={styles.form}>
         <p>
           <label>Truck Name:</label>
-          <input required={true} name="name" type="text" value={truck.name} onChange={e => (e)} />
+          <input required={true} name="name" type="text" value={truck.name} onChange={e => handleChange(e, 'name')} />
         </p>
         <p>
           <label>Current Location:</label>
-          <input required={true} name="location" type="text" value={truck.location} onChange={handleChange} />
+          <input required={true} name="location" type="text" value={truck.location} onChange={e => handleChange(e, 'location')} />
         </p>
         <p>
           <label>Vin:</label>
-          <input required={true} name="vin" type="text" value={truck.vin} onChange={handleChange} />
+          <input required={true} name="vin" type="text" value={truck.vin} onChange={e => handleChange(e, 'vin')} />
         </p>
         <p>
           <label>Plates:</label>
-          <input required={true} name="plates" type="text" value={truck.plates} onChange={handleChange} />
+          <input required={true} name="plates" type="text" value={truck.plates} onChange={e => handleChange(e, 'plates')} />
         </p>
         <p>
           <label>Year:</label>
-          <input required={true} name="year" type="year" value={truck.year} onChange={handleChange} />
+          <input required={true} name="year" type="year" value={truck.year} onChange={e => handleChange(e, 'year')} />
         </p>
         <p>
           <label>Make:</label>
-          <input required={true} name="make" type="text" value={truck.make} onChange={handleChange} />
+          <input required={true} name="make" type="text" value={truck.make} onChange={e => handleChange(e, 'make')} />
         </p>
         <p>
           <label>Model:</label>
-          <input required={true} name="model" type="text" value={truck.model} onChange={handleChange} />
+          <input required={true} name="model" type="text" value={truck.model} onChange={e => handleChange(e, 'model')} />
         </p>
         <p>
           <label>Tire Size:</label>
-          <input required={true} name="tireSize" type="number" value={truck.tireSize} onChange={handleChange} />
+          <input required={true} name="tireSize" type="number" value={truck.tireSize} onChange={e => handleChange(e, 'tireSize')} />
         </p>
         <p>
           <label>Date of Purchase:</label>
-          <input required={true} name="boughtDate" type="date" value={truck.boughtDate} onChange={handleChange} />
+          <input required={true} name="boughtDate" type="date" value={new Date(truck.boughtDate.seconds).toISOString().split('T')[0]} onChange={e => handleChange(e, 'boughtDate')} />
         </p>
         <p>
           <label>Proof of Registration:</label>
