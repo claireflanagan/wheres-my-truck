@@ -64,47 +64,112 @@ export default function TruckForm({ match }) {
       <form onSubmit={handleSubmit} className={styles.form}>
         <p>
           <label>Truck Name:</label>
-          <input required={true} name="name" type="text" value={truck.name} onChange={e => handleChange(e, 'name')} />
+          <input
+            required={true}
+            name="name"
+            type="text"
+            value={truck.name}
+            onChange={e => handleChange(e, 'name')}
+          />
         </p>
         <p>
           <label>Current Location:</label>
-          <input required={true} name="location" type="text" value={truck.location} onChange={e => handleChange(e, 'location')} />
+          <input
+            required={true}
+            name="location"
+            type="text"
+            value={truck.location}
+            onChange={e => handleChange(e, 'location')}
+          />
         </p>
         <p>
           <label>Vin:</label>
-          <input required={true} name="vin" type="text" value={truck.vin} onChange={e => handleChange(e, 'vin')} />
+          <input
+            required={true}
+            name="vin"
+            type="text"
+            value={truck.vin}
+            onChange={e => handleChange(e, 'vin')}
+          />
         </p>
         <p>
           <label>Plates:</label>
-          <input required={true} name="plates" type="text" value={truck.plates} onChange={e => handleChange(e, 'plates')} />
+          <input
+            required={true}
+            name="plates"
+            type="text"
+            value={truck.plates}
+            onChange={e => handleChange(e, 'plates')}
+          />
         </p>
         <p>
           <label>Year:</label>
-          <input required={true} name="year" type="year" value={truck.year} onChange={e => handleChange(e, 'year')} />
+          <input
+            required={true}
+            name="year"
+            type="year"
+            value={truck.year}
+            onChange={e => handleChange(e, 'year')}
+          />
         </p>
         <p>
           <label>Make:</label>
-          <input required={true} name="make" type="text" value={truck.make} onChange={e => handleChange(e, 'make')} />
+          <input
+            required={true}
+            name="make"
+            type="text"
+            value={truck.make}
+            onChange={e => handleChange(e, 'make')}
+          />
         </p>
         <p>
           <label>Model:</label>
-          <input required={true} name="model" type="text" value={truck.model} onChange={e => handleChange(e, 'model')} />
+          <input
+            required={true}
+            name="model"
+            type="text"
+            value={truck.model}
+            onChange={e => handleChange(e, 'model')}
+          />
         </p>
         <p>
           <label>Tire Size:</label>
-          <input required={true} name="tireSize" type="number" value={truck.tireSize} onChange={e => handleChange(e, 'tireSize')} />
+          <input
+            required={true}
+            name="tireSize"
+            type="number" value={truck.tireSize}
+            onChange={e => handleChange(e, 'tireSize')}
+          />
         </p>
         <p>
           <label>Date of Purchase:</label>
-          <input required={true} name="boughtDate" type="date" value={new Date(truck.boughtDate.seconds).toISOString().split('T')[0]} onChange={e => handleChange(e, 'boughtDate')} />
+          <input
+            required={true}
+            name="boughtDate"
+            type="date"
+            value={new Date(truck.boughtDate.seconds).toISOString().split('T')[0]}
+            onChange={e => handleChange(e, 'boughtDate')}
+          />
         </p>
         <p>
           <label>Proof of Registration:</label>
-          <input name="registration" type="file" accept=".jpg, .png, .svg, .gif" value="" onChange={handleFileChange} />
+          <input
+            name="registration"
+            type="file"
+            accept=".jpg, .png, .svg, .gif"
+            value=""
+            onChange={handleFileChange}
+          />
         </p>
         <p>
           <label>Proof of Insurance:</label>
-          <input name="insurance" type="file" accept=".jpg, .png, .svg, .gif" value="" onChange={handleFileChange} />
+          <input
+            name="insurance"
+            type="file"
+            accept=".jpg, .png, .svg, .gif"
+            value=""
+            onChange={handleFileChange}
+          />
         </p>
         <button type="submit">Save</button>
       </form>
