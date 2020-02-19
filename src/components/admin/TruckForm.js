@@ -47,11 +47,14 @@ export default function TruckForm({ match }) {
     setTruck({ ...truck, [key]: e.target.value });
   };
 
-  const handleFileChange = ({ target }) => {
-    this.setState({
-      [target.name]: target.value,
-      [`${target.name}Img`]: target.files[0]
+  const handleFileChange = (e, key) => {
+    setTruck({
+      ...truck,
+      [key]: e.target.value,
+      [`${key}Img`]: e.target.files[0]
     });
+
+    console.log('e.target.value', e.target.value);
   };
 
   const handleSubmit = event => {
@@ -162,7 +165,7 @@ export default function TruckForm({ match }) {
             type="file"
             accept=".jpg, .png, .svg, .gif"
             value=""
-            onChange={handleFileChange}
+            onChange={e => handleFileChange(e, 'registration')}
           />
         </p>
         <p>
@@ -172,7 +175,7 @@ export default function TruckForm({ match }) {
             type="file"
             accept=".jpg, .png, .svg, .gif"
             value=""
-            onChange={handleFileChange}
+            onChange={e => handleFileChange(e, 'insurance')}
           />
         </p>
         <button type="submit">Save</button>
